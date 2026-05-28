@@ -595,7 +595,7 @@ footer { border-top: 1px solid var(--border); padding: 24px; text-align: center;
   else{deadline=Date.now()+24*60*60*1000;localStorage.setItem(key,deadline);}
   function update(){
     var diff=deadline-Date.now();
-    if(diff<=0){document.getElementById('countdown').textContent='00:00:00';return;}
+    if(diff<=0){deadline=Date.now()+24*60*60*1000;localStorage.setItem(key,deadline);diff=deadline-Date.now();}
     var h=Math.floor(diff/3600000);
     var m=Math.floor((diff%3600000)/60000);
     var s=Math.floor((diff%60000)/1000);
@@ -616,7 +616,7 @@ footer { border-top: 1px solid var(--border); padding: 24px; text-align: center;
     var diff=deadline-Date.now();
     var el=document.getElementById('bonus-timer');
     if(!el)return;
-    if(diff<=0){el.textContent='Expirado';return;}
+    if(diff<=0){deadline=Date.now()+48*60*60*1000;localStorage.setItem(key,deadline);diff=deadline-Date.now();}
     var h=Math.floor(diff/3600000);
     var m=Math.floor((diff%3600000)/60000);
     var s=Math.floor((diff%60000)/1000);
