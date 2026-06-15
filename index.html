@@ -1,9 +1,13 @@
+LOGO=$(cat /tmp/logo_b64.txt)
+
+cat > /mnt/user-data/outputs/eaf-flow.html << HTMLEOF
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EAF Flow — Pare de Improvisar. Comece a Lucrar.</title>
-<meta name="description" content="Ferramentas profissionais para autônomos e MEIs. Gere orçamentos em PDF e calcule seus custos reais. Acesso imediato, sem mensalidade.">
+<title>EAF Flow — Ferramentas SaaS e Sites para Autônomos</title>
+<meta name="description" content="Ferramentas profissionais para autônomos e MEIs. Gere orçamentos em PDF com sua logo, calcule custos reais e tenha um site profissional. Assine o OrçaRápido e ganhe o CustoRápido de presente.">
 
 <!-- META PIXEL -->
 <script>
@@ -12,30 +16,55 @@ fbq('init','1674671890520272');
 fbq('track','PageView');
 </script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1674671890520272&ev=PageView&noscript=1"/></noscript>
-
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-FGT2HWFFMR"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-FGT2HWFFMR');</script>
-
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
 :root {
   --bg: #070910; --surface: #0f1117; --surface2: #161b26; --border: #1e2535;
   --grad: linear-gradient(135deg, #00e5a0, #00b8ff);
+  --grad-gold: linear-gradient(135deg, #f5c842, #e8960a);
   --green: #00e5a0; --blue: #00b8ff; --text: #f0f2f8; --muted: #5a6380; --soft: #8a9ab8;
   --danger: #ff4d6d; --orange: #ff6b1a; --yellow: #ffd11a;
+  --gold: #f5c842; --gold-dark: #c9920a;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; padding-top: 44px; }
+body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; padding-top: 58px; }
 
-#urgency-bar { position: fixed; top: 0; left: 0; right: 0; z-index: 9999; background: var(--surface); border-bottom: 1px solid var(--border); color: var(--text); text-align: center; padding: 10px 16px; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
-#urgency-bar span { color: var(--soft); }
-#countdown { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 16px; font-weight: 900; letter-spacing: 3px; }
-.urgency-cta { background: var(--grad); color: #000; border-radius: 6px; padding: 4px 14px; font-size: 11px; font-weight: 900; text-decoration: none; }
+/* ── NAV ── */
+#top-nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 9990;
+  background: rgba(7,9,16,.92); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 24px; height: 58px;
+}
+.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.nav-logo img { height: 36px; width: auto; }
+.nav-tabs { display: flex; gap: 4px; }
+.nav-tab {
+  padding: 7px 18px; border-radius: 8px; font-size: 13px; font-weight: 700;
+  text-decoration: none; color: var(--soft); border: 1px solid transparent;
+  transition: all .2s; cursor: pointer; background: none;
+}
+.nav-tab.active, .nav-tab:hover { color: var(--text); border-color: var(--border); background: var(--surface2); }
+.nav-tab.active { color: var(--green); border-color: rgba(0,229,160,.25); background: rgba(0,229,160,.06); }
+.nav-tab.gold-tab.active, .nav-tab.gold-tab:hover { color: var(--gold); border-color: rgba(245,200,66,.25); background: rgba(245,200,66,.06); }
+.nav-cta {
+  background: var(--grad); color: #000; font-weight: 900; font-size: 12px;
+  padding: 8px 18px; border-radius: 8px; text-decoration: none; white-space: nowrap;
+  display: none;
+}
+@media (min-width: 600px) { .nav-cta { display: block; } }
+@media (max-width: 480px) { .nav-tab { padding: 7px 11px; font-size: 12px; } }
 
+/* ── HERO ── */
 .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 80px 24px 100px; }
+.hero-logo { width: clamp(100px,18vw,160px); height: auto; margin-bottom: 20px; filter: drop-shadow(0 0 32px rgba(0,184,255,.25)); }
 .brand-eaf { font-family: 'Bebas Neue', sans-serif; font-size: clamp(72px, 14vw, 140px); letter-spacing: 12px; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1; }
-.brand-flow { font-family: 'Bebas Neue', sans-serif; font-size: clamp(32px, 6vw, 56px); letter-spacing: 18px; color: var(--soft); line-height: 1; margin-top: -4px; margin-bottom: 48px; }
+.brand-flow { font-family: 'Bebas Neue', sans-serif; font-size: clamp(32px, 6vw, 56px); letter-spacing: 18px; color: var(--soft); line-height: 1; margin-top: -4px; margin-bottom: 12px; }
+.brand-tagline { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); margin-bottom: 40px; }
 .hero-headline { font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px, 6vw, 68px); line-height: 1.05; color: var(--text); max-width: 700px; margin-bottom: 20px; }
 .hero-sub { font-size: clamp(15px, 2vw, 18px); color: var(--soft); max-width: 500px; line-height: 1.7; margin-bottom: 28px; }
 .hero-alert { background: rgba(255,77,109,.06); border: 1px solid rgba(255,77,109,.12); border-radius: 10px; padding: 12px 20px; font-size: 13px; color: var(--soft); max-width: 440px; margin-bottom: 32px; line-height: 1.6; }
@@ -44,6 +73,7 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
 .btn-primary:hover { opacity: .88; transform: translateY(-2px); }
 .hero-note { margin-top: 14px; font-size: 12px; color: var(--muted); }
 
+/* ── STATS ── */
 .sep { border: none; border-top: 1px solid var(--border); }
 .stats { display: flex; flex-wrap: wrap; }
 .stat { flex: 1; min-width: 130px; padding: 28px 20px; text-align: center; border-right: 1px solid var(--border); }
@@ -51,17 +81,20 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
 .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 42px; line-height: 1; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 .stat-label { font-size: 12px; color: var(--muted); margin-top: 5px; }
 
+/* ── COMMON ── */
 .section { padding: 80px 24px; max-width: 860px; margin: 0 auto; }
 .label { font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
 .title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(32px, 5vw, 56px); line-height: 1.05; color: var(--text); margin-bottom: 14px; }
 .subtitle { font-size: 15px; color: var(--soft); line-height: 1.7; margin-bottom: 36px; }
 
+/* ── PAIN ── */
 .pain-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; }
 .pain-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 22px 18px; }
 .pain-icon { font-size: 22px; margin-bottom: 10px; }
 .pain-card p { font-size: 13px; color: var(--soft); line-height: 1.6; }
 .pain-card p strong { color: var(--text); }
 
+/* ── COMPARE ── */
 .compare-bg { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 .compare-inner { max-width: 860px; margin: 0 auto; padding: 80px 24px; }
 .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 36px; }
@@ -81,6 +114,7 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
 .ico { flex-shrink: 0; font-weight: 900; font-size: 13px; margin-top: 1px; }
 .ico-x { color: #ff4d6d; } .ico-check { color: var(--green); }
 
+/* ── PRODUCTS ── */
 .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 36px; }
 .product-card { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 30px 26px; }
 .product-card.green { border-color: rgba(0,229,160,.2); }
@@ -104,76 +138,119 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
 .green .btn-product { background: rgba(0,229,160,.08); color: var(--green); border-color: rgba(0,229,160,.2); }
 .orange .btn-product { background: rgba(255,107,26,.08); color: var(--orange); border-color: rgba(255,107,26,.2); }
 .btn-product:hover { opacity: .72; }
+.plan-toggle { display: flex; gap: 8px; margin-bottom: 20px; }
+.plan-btn { flex: 1; padding: 10px 8px; border-radius: 8px; font-size: 12px; font-weight: 700; text-align: center; cursor: pointer; border: 1px solid var(--border); background: var(--surface2); color: var(--soft); transition: all .2s; text-decoration: none; display: block; }
+.plan-btn.active-monthly { border-color: rgba(0,229,160,.35); background: rgba(0,229,160,.07); color: var(--green); }
+.plan-badge { display: inline-block; font-size: 9px; font-weight: 800; background: rgba(0,229,160,.15); color: var(--green); border-radius: 100px; padding: 2px 7px; margin-left: 4px; letter-spacing: 0.5px; }
 
+/* ── PLANO ANUAL (combo) ── */
 .combo-bg { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 .combo-inner { max-width: 720px; margin: 0 auto; padding: 80px 24px; }
 .combo-card { border: 1px solid rgba(0,229,160,.18); border-radius: 24px; padding: 44px 36px; position: relative; text-align: center; }
 @media (max-width: 560px) { .combo-card { padding: 44px 20px 32px; } }
-.best-badge { position: absolute; top: -1px; left: 50%; transform: translateX(-50%); background: var(--grad); color: #000; font-size: 10px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; padding: 6px 20px; border-radius: 0 0 10px 10px; }
-.combo-eaf { font-family: 'Bebas Neue', sans-serif; font-size: clamp(56px, 10vw, 100px); line-height: 1; letter-spacing: 8px; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-top: 24px; }
+.best-badge { position: absolute; top: -1px; left: 50%; transform: translateX(-50%); background: var(--grad); color: #000; font-size: 10px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; padding: 6px 20px; border-radius: 0 0 10px 10px; white-space: nowrap; }
+.combo-logo { width: 90px; height: auto; margin: 20px auto 0; display: block; filter: drop-shadow(0 0 20px rgba(0,184,255,.2)); }
+.combo-eaf { font-family: 'Bebas Neue', sans-serif; font-size: clamp(56px, 10vw, 100px); line-height: 1; letter-spacing: 8px; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-top: 8px; }
 .combo-flow { font-family: 'Bebas Neue', sans-serif; font-size: clamp(24px, 4vw, 40px); letter-spacing: 14px; color: var(--soft); line-height: 1; margin-bottom: 8px; }
 .combo-tagline { font-size: 14px; color: var(--muted); margin-bottom: 36px; }
-
 .combo-items { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 28px; text-align: left; }
 .combo-item { background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; display: flex; gap: 10px; }
 .combo-item-icon { font-size: 18px; flex-shrink: 0; }
 .combo-item-name { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 2px; }
 .combo-item-old { font-size: 11px; color: var(--danger); text-decoration: line-through; }
 .combo-item-new { font-size: 11px; color: var(--green); font-weight: 700; }
-.bonus-item .combo-item-name { color: var(--yellow); }
-
+.gift-item .combo-item-name { color: var(--yellow); }
 .combo-price { margin-bottom: 20px; }
 .combo-de { font-size: 13px; color: var(--muted); margin-bottom: 4px; }
 .combo-de s { color: var(--danger); font-weight: 700; }
-.combo-economia { display: inline-block; font-size: 11px; font-weight: 800; color: var(--green); background: rgba(0,229,160,.08); border: 1px solid rgba(0,229,160,.12); padding: 3px 12px; border-radius: 100px; margin-bottom: 12px; }
 .combo-valor { font-family: 'Bebas Neue', sans-serif; font-size: 80px; line-height: 1; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 .combo-parcela { font-size: 15px; color: var(--soft); margin-top: 4px; }
 .combo-parcela strong { color: var(--text); }
-.combo-avista { font-size: 12px; color: var(--muted); margin-top: 5px; }
 .coffee-note { background: rgba(0,229,160,.04); border: 1px solid rgba(0,229,160,.1); border-radius: 10px; padding: 14px 18px; font-size: 13px; color: var(--soft); line-height: 1.6; margin-bottom: 20px; text-align: left; }
 .coffee-note strong { color: var(--green); }
 .btn-combo { display: block; width: 100%; background: var(--grad); color: #000; font-family: 'DM Sans', sans-serif; font-size: 17px; font-weight: 900; padding: 20px; border-radius: 12px; border: none; cursor: pointer; text-decoration: none; transition: opacity .2s, transform .2s; }
 .btn-combo:hover { opacity: .88; transform: translateY(-2px); }
 .combo-guarantee { margin-top: 12px; font-size: 12px; color: var(--muted); }
+.savings-box { background: rgba(0,229,160,.04); border: 1px solid rgba(0,229,160,.14); border-radius: 12px; padding: 18px 20px; margin-bottom: 24px; text-align: left; }
+.savings-row { display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--soft); padding: 6px 0; border-bottom: 1px solid var(--border); }
+.savings-row:last-child { border-bottom: none; }
+.savings-row strong { color: var(--text); }
+.savings-row .value-red { color: var(--danger); font-weight: 700; text-decoration: line-through; }
+.savings-total-row { display: flex; justify-content: space-between; align-items: center; font-size: 14px; font-weight: 800; color: var(--green); padding-top: 10px; margin-top: 4px; }
 
+/* ── SERVICES (Sites) ── */
+.services-bg { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.services-inner { max-width: 860px; margin: 0 auto; padding: 80px 24px; }
+.services-label { font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 12px; }
+.services-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(32px, 5vw, 56px); line-height: 1.05; color: var(--text); margin-bottom: 14px; }
+.services-title span { background: var(--grad-gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.services-sub { font-size: 15px; color: var(--soft); line-height: 1.7; margin-bottom: 36px; }
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+.service-card { background: var(--bg); border: 1px solid rgba(245,200,66,.15); border-radius: 20px; padding: 32px 28px; position: relative; overflow: hidden; }
+.service-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--grad-gold); }
+.service-card.featured { border-color: rgba(245,200,66,.3); background: rgba(245,200,66,.02); }
+.service-badge { font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; padding: 4px 10px; border-radius: 100px; display: inline-block; margin-bottom: 16px; background: rgba(245,200,66,.1); color: var(--gold); }
+.service-name { font-family: 'Bebas Neue', sans-serif; font-size: 36px; line-height: 1; color: var(--gold); margin-bottom: 10px; }
+.service-desc { font-size: 13px; color: var(--soft); line-height: 1.65; margin-bottom: 20px; }
+.service-features { list-style: none; margin-bottom: 24px; }
+.service-features li { font-size: 13px; color: var(--soft); padding: 8px 0; border-bottom: 1px solid var(--border); display: flex; gap: 8px; align-items: flex-start; }
+.service-features li:last-child { border-bottom: none; }
+.service-features .ico-gold { color: var(--gold); font-weight: 900; flex-shrink: 0; margin-top: 1px; }
+.service-price-from { font-size: 11px; color: var(--muted); margin-bottom: 2px; text-transform: uppercase; letter-spacing: 1px; }
+.service-price { font-family: 'Bebas Neue', sans-serif; font-size: 52px; line-height: 1; color: var(--gold); margin-bottom: 4px; }
+.service-price-note { font-size: 11px; color: var(--muted); margin-bottom: 20px; }
+.btn-service { display: block; text-align: center; padding: 14px; border-radius: 10px; font-weight: 700; font-size: 14px; text-decoration: none; cursor: pointer; background: rgba(245,200,66,.1); color: var(--gold); border: 1px solid rgba(245,200,66,.25); font-family: inherit; transition: all .2s; }
+.btn-service:hover { background: rgba(245,200,66,.18); transform: translateY(-1px); }
+.services-logo-strip { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 36px; padding: 20px; background: rgba(245,200,66,.03); border: 1px solid rgba(245,200,66,.1); border-radius: 14px; }
+.services-logo-strip img { height: 40px; width: auto; opacity: .8; filter: drop-shadow(0 0 10px rgba(245,200,66,.15)); }
+.services-logo-strip span { font-size: 12px; color: var(--muted); }
+
+/* ── TESTIMONIALS ── */
 .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-top: 32px; }
-.testimonial { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 22px 20px; }
-.stars { font-size: 13px; color: var(--yellow); margin-bottom: 10px; }
-.testimonial p { font-size: 13px; color: var(--soft); line-height: 1.65; margin-bottom: 16px; }
-.testimonial p strong { color: var(--text); }
-.testi-author { display: flex; align-items: center; gap: 10px; }
-.testi-avatar { width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 13px; color: #000; flex-shrink: 0; }
-.testi-name { font-weight: 700; font-size: 13px; }
-.testi-role { font-size: 11px; color: var(--muted); }
+.wa-testi { background: #0b141a; border-radius: 16px; padding: 20px; }
+.wa-header { display: flex; align-items: center; gap: 10px; padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,.06); margin-bottom: 14px; }
+.wa-avatar { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 14px; color: #000; flex-shrink: 0; }
+.wa-name { font-size: 13px; font-weight: 700; color: #e9edef; }
+.wa-role { font-size: 11px; color: #8696a0; }
+.wa-bubble { background: #202c33; border-radius: 0 8px 8px 8px; padding: 10px 14px; margin-bottom: 6px; max-width: 90%; position: relative; }
+.wa-bubble::before { content: ''; position: absolute; top: 0; left: -8px; border: 8px solid transparent; border-top-color: #202c33; border-left: 0; }
+.wa-bubble p { font-size: 13px; color: #e9edef; line-height: 1.55; }
+.wa-bubble .wa-time { font-size: 10px; color: #8696a0; text-align: right; margin-top: 4px; }
+.wa-stars { color: var(--yellow); font-size: 12px; margin-top: 8px; }
 
+/* ── FAQ ── */
 .faq-list { margin-top: 28px; }
 .faq-item { border-bottom: 1px solid var(--border); padding: 16px 0; }
 .faq-q { font-weight: 700; font-size: 14px; color: var(--text); margin-bottom: 6px; }
 .faq-a { font-size: 13px; color: var(--soft); line-height: 1.65; }
 
+/* ── FINAL ── */
 .final { padding: 100px 24px; text-align: center; }
 .final-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(38px, 7vw, 82px); line-height: 1.05; color: var(--text); margin-bottom: 16px; }
 .final-title span { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 .final-sub { font-size: 15px; color: var(--soft); max-width: 420px; margin: 0 auto 36px; line-height: 1.7; }
+.final-logo { width: 70px; height: auto; margin: 0 auto 24px; display: block; opacity: .7; }
 
+/* ── FOOTER ── */
 footer { border-top: 1px solid var(--border); padding: 24px; text-align: center; font-size: 12px; color: var(--muted); }
+.footer-links { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 8px; }
+.footer-links a { color: var(--muted); font-size: 11px; text-decoration: none; }
+.footer-links a:hover { color: var(--soft); }
+.footer-logo { height: 28px; width: auto; opacity: .4; margin-bottom: 10px; }
 
-/* MOCKUP PDF */
+/* ── MOCKUP ── */
 .mockup-section { padding: 80px 24px; background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 .mockup-inner { max-width: 900px; margin: 0 auto; }
 .mockup-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 40px; }
-@media (max-width: 640px) { .mockup-grid { grid-template-columns: 1fr; } }
+@media (max-width: 640px) { .mockup-grid, .services-grid { grid-template-columns: 1fr; } }
 .mockup-wrap { border-radius: 16px; overflow: hidden; border: 1px solid var(--border); }
 .mockup-label { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 10px 16px; background: var(--surface2); color: var(--muted); border-bottom: 1px solid var(--border); }
 .mockup-label.green { color: var(--green); }
 .mockup-label.orange { color: var(--orange); }
-
-/* PDF MOCKUP */
 .pdf-mock { background: #fff; padding: 20px; font-family: 'DM Sans', sans-serif; }
 .pdf-mock-header { background: #0a0c10; padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid #00e5a0; margin: -20px -20px 16px; }
 .pdf-mock-logo { width: 36px; height: 36px; background: #fff; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 13px; color: #0a0c10; }
 .pdf-mock-empresa { color: #fff; font-size: 13px; font-weight: 900; }
-.pdf-mock-date { color: #666; font-size: 11px; }
 .pdf-mock-title { font-size: 16px; font-weight: 900; color: #111; margin-bottom: 4px; }
 .pdf-mock-ref { font-size: 11px; color: #666; margin-bottom: 12px; }
 .pdf-mock-table { width: 100%; border-collapse: collapse; margin-bottom: 12px; }
@@ -186,8 +263,7 @@ footer { border-top: 1px solid var(--border); padding: 24px; text-align: center;
 .pdf-mock-pix { border: 1.5px dashed #e0f0ea; border-radius: 8px; padding: 8px 12px; }
 .pdf-mock-pix-label { font-size: 9px; font-weight: 800; color: #00b87d; margin-bottom: 3px; letter-spacing: 1px; }
 .pdf-mock-pix-key { font-size: 12px; font-weight: 700; color: #333; }
-
-/* CUSTO MOCKUP */
+.pdf-mock-logo-callout { background: rgba(0,229,160,.08); border: 1px solid rgba(0,229,160,.25); border-radius: 6px; padding: 6px 10px; margin-bottom: 10px; font-size: 10px; color: #00b87d; font-weight: 700; display: flex; align-items: center; gap: 6px; }
 .custo-mock { background: var(--bg); padding: 16px; }
 .custo-mock-item { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; margin-bottom: 8px; }
 .custo-mock-item-name { font-size: 12px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
@@ -196,39 +272,16 @@ footer { border-top: 1px solid var(--border); padding: 24px; text-align: center;
 .custo-mock-total-label { font-size: 10px; font-weight: 700; color: #ffb703; }
 .custo-mock-preco { font-size: 22px; font-weight: 900; color: var(--green); }
 
-/* WHATSAPP TESTIMONIALS */
-.wa-testi { background: #0b141a; border-radius: 16px; padding: 20px; }
-.wa-header { display: flex; align-items: center; gap: 10px; padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,.06); margin-bottom: 14px; }
-.wa-avatar { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 14px; color: #000; flex-shrink: 0; }
-.wa-name { font-size: 13px; font-weight: 700; color: #e9edef; }
-.wa-role { font-size: 11px; color: #8696a0; }
-.wa-bubble { background: #202c33; border-radius: 0 8px 8px 8px; padding: 10px 14px; margin-bottom: 6px; max-width: 90%; position: relative; }
-.wa-bubble::before { content: ''; position: absolute; top: 0; left: -8px; border: 8px solid transparent; border-top-color: #202c33; border-left: 0; }
-.wa-bubble p { font-size: 13px; color: #e9edef; line-height: 1.55; }
-.wa-bubble .wa-time { font-size: 10px; color: #8696a0; text-align: right; margin-top: 4px; }
-.wa-stars { color: var(--yellow); font-size: 12px; margin-top: 8px; }
-
-/* LOTE SCARCITY */
-.lote-bar { background: rgba(255,77,109,.06); border: 1px solid rgba(255,77,109,.15); border-radius: 10px; padding: 14px 18px; margin-bottom: 20px; }
-.lote-title { font-size: 12px; font-weight: 800; color: var(--danger); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; }
-.lote-progress-bg { background: var(--surface2); border-radius: 100px; height: 8px; overflow: hidden; margin-bottom: 6px; }
-.lote-progress-fill { height: 100%; background: linear-gradient(90deg, var(--danger), var(--orange)); border-radius: 100px; width: 73%; }
-.lote-text { font-size: 12px; color: var(--soft); }
-.lote-text strong { color: var(--danger); }
-
-/* MECANISMO ÚNICO */
-.mechanism { background: rgba(0,229,160,.03); border: 1px solid rgba(0,229,160,.12); border-radius: 16px; padding: 24px; margin-top: 36px; text-align: center; }
+/* ── MECHANISM ── */
+.mechanism { background: rgba(0,229,160,.03); border: 1px solid rgba(0,229,160,.12); border-radius: 16px; padding: 24px; margin-top: 48px; text-align: center; max-width: 520px; }
 .mechanism-title { font-family: 'Bebas Neue', sans-serif; font-size: 28px; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 8px; }
 .mechanism-desc { font-size: 13px; color: var(--soft); line-height: 1.65; max-width: 500px; margin: 0 auto; }
 
-/* LGPD */
-.footer-links { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 8px; }
-.footer-links a { color: var(--muted); font-size: 11px; text-decoration: none; }
-.footer-links a:hover { color: var(--soft); }
-
+/* ── SCROLL REVEAL ── */
 .reveal { opacity: 0; transform: translateY(24px); transition: opacity .55s ease, transform .55s ease; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
+/* ── SOCIAL POPUP ── */
 #social-popup { position: fixed; bottom: 20px; left: 14px; z-index: 9998; background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--green); border-radius: 12px; padding: 14px 16px; max-width: 260px; box-shadow: 0 8px 32px rgba(0,0,0,.6); display: none; }
 .popup-inner { display: flex; align-items: center; gap: 10px; }
 #popup-avatar { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 14px; color: #000; flex-shrink: 0; }
@@ -238,103 +291,80 @@ footer { border-top: 1px solid var(--border); padding: 24px; text-align: center;
 @keyframes slideIn { from { transform: translateX(-110%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
 @keyframes slideOut { from { opacity: 1; } to { transform: translateX(-110%); opacity: 0; } }
 
-/* WHATSAPP FLOATING BUTTON */
-#whatsapp-btn {
-  position: fixed;
-  bottom: 24px;
-  right: 20px;
-  z-index: 9997;
-  width: 58px;
-  height: 58px;
-  background: #25d366;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 20px rgba(37,211,102,.45);
-  text-decoration: none;
-  transition: transform .2s, box-shadow .2s;
-}
-#whatsapp-btn:hover {
-  transform: scale(1.1);
-  box-shadow: 0 6px 28px rgba(37,211,102,.6);
-}
-#whatsapp-btn svg {
-  width: 30px;
-  height: 30px;
-  fill: #fff;
-}
-@keyframes waPulse {
-  0%   { box-shadow: 0 0 0 0 rgba(37,211,102,.55); }
-  70%  { box-shadow: 0 0 0 14px rgba(37,211,102,0); }
-  100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); }
-}
-#whatsapp-btn { animation: waPulse 2.2s infinite; }
+/* ── WHATSAPP BTN ── */
+#whatsapp-btn { position: fixed; bottom: 24px; right: 20px; z-index: 9997; width: 58px; height: 58px; background: #25d366; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(37,211,102,.45); text-decoration: none; transition: transform .2s, box-shadow .2s; animation: waPulse 2.2s infinite; }
+#whatsapp-btn:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(37,211,102,.6); }
+#whatsapp-btn svg { width: 30px; height: 30px; fill: #fff; }
+@keyframes waPulse { 0% { box-shadow: 0 0 0 0 rgba(37,211,102,.55); } 70% { box-shadow: 0 0 0 14px rgba(37,211,102,0); } 100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); } }
 </style>
 </head>
 <body>
 
-<div id="urgency-bar">
-  <span>🎁 Os 3 bônus exclusivos saem do combo em:</span>
-  <span id="countdown" style="background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-size:15px;font-weight:900;letter-spacing:2px;">00:00:00</span>
-  <a href="#combo" class="urgency-cta">Garantir com bônus</a>
-</div>
+<!-- ── NAV FIXO ── -->
+<nav id="top-nav">
+  <a class="nav-logo" href="#hero">
+    <img src="data:image/png;base64,${LOGO}" alt="EAF Flow">
+  </a>
+  <div class="nav-tabs">
+    <a class="nav-tab active" href="#ferramentas" onclick="setTab(this)">⚙️ Ferramentas SaaS</a>
+    <a class="nav-tab gold-tab" href="#sites" onclick="setTab(this)">🌐 Criação de Sites</a>
+  </div>
+  <a class="nav-cta" href="#plano-anual">Assinar Plano Anual →</a>
+</nav>
 
-<!-- WHATSAPP FLOATING BUTTON -->
+<!-- ── WHATSAPP ── -->
 <a id="whatsapp-btn" href="https://api.whatsapp.com/send?phone=5541984213488" target="_blank" rel="noopener" aria-label="Falar no WhatsApp" onclick="gtag&&gtag('event','whatsapp_float_click')">
-  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-  </svg>
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
-<section class="hero">
+<!-- ── HERO ── -->
+<section class="hero" id="hero">
+  <img class="hero-logo" src="data:image/png;base64,${LOGO}" alt="EAF Flow Logo">
   <div class="brand-eaf">EAF</div>
   <div class="brand-flow">FLOW</div>
+  <div class="brand-tagline">Plataforma de Vendas Inteligente</div>
   <h1 class="hero-headline">Pare de improvisar.<br>Comece a profissionalizar.</h1>
-  <p class="hero-sub">Ferramentas simples e poderosas para autônomos e MEIs que querem transmitir credibilidade e saber exatamente quanto lucram.</p>
+  <p class="hero-sub">Ferramentas simples e poderosas para autônomos e MEIs que querem transmitir credibilidade — com sua logo no PDF — e saber exatamente quanto lucram.</p>
   <div class="hero-alert">Ferramentas gratuitas parecem de graça — mas <strong>custam credibilidade, clientes e dinheiro</strong> toda semana.</div>
-
-  <a href="#combo" class="btn-primary" onclick="gtag&&gtag('event','cta_hero_click')">Liberar meu acesso agora →</a>
-  <p class="hero-note">Acesso imediato • Garantia de 7 dias • Sem mensalidade</p>
-
-  <div class="mechanism" style="margin-top:48px; max-width:520px;">
+  <a href="#plano-anual" class="btn-primary" onclick="gtag&&gtag('event','cta_hero_click')">Assinar o Plano Anual e ganhar o CustoRápido →</a>
+  <p class="hero-note">Acesso imediato • Cancele quando quiser • Garantia de 7 dias</p>
+  <div class="mechanism">
     <div class="mechanism-title">Método 30 Segundos</div>
-    <p class="mechanism-desc">A única metodologia que transforma autônomos em profissionais visíveis — sem precisar de agência, designer ou sistema caro. Do celular, em 30 segundos.</p>
+    <p class="mechanism-desc">A única metodologia que transforma autônomos em profissionais visíveis — sem precisar de agência, designer ou sistema caro. Do celular, com a sua logo, em 30 segundos.</p>
   </div>
 </section>
 
 <hr class="sep">
 <div class="stats reveal">
-  <div class="stat"><div class="stat-num">30s</div><div class="stat-label">Para gerar PDF profissional</div></div>
-  <div class="stat"><div class="stat-num">2</div><div class="stat-label">Ferramentas no mesmo combo</div></div>
-  <div class="stat"><div class="stat-num">R$0</div><div class="stat-label">Mensalidade — pague uma vez</div></div>
+  <div class="stat"><div class="stat-num">30s</div><div class="stat-label">Para gerar PDF com sua logo</div></div>
+  <div class="stat"><div class="stat-num">2</div><div class="stat-label">Ferramentas incluídas no plano anual</div></div>
+  <div class="stat"><div class="stat-num">R$14,90</div><div class="stat-label">Por mês no plano mensal</div></div>
   <div class="stat"><div class="stat-num">7d</div><div class="stat-label">Garantia total sem risco</div></div>
 </div>
 <hr class="sep">
 
-<!-- MOCKUP VISUAL DOS PRODUTOS -->
-<div class="mockup-section reveal">
+<!-- ── MOCKUP ── -->
+<div class="mockup-section reveal" id="ferramentas">
   <div class="mockup-inner">
     <p class="label" style="text-align:center">Veja na prática</p>
     <h2 class="title" style="text-align:center">O que você entrega.<br>O que o cliente recebe.</h2>
     <div class="mockup-grid">
-
-      <!-- PDF MOCKUP -->
       <div class="mockup-wrap">
-        <div class="mockup-label green">📄 OrçaRápido — PDF gerado em 30s</div>
+        <div class="mockup-label green">📄 OrçaRápido — PDF com sua logo em 30s</div>
         <div class="pdf-mock">
+          <div class="pdf-mock-logo-callout">✦ Sua logomarca aqui — credibilidade profissional imediata</div>
           <div class="pdf-mock-header">
             <div style="display:flex;align-items:center;gap:10px;">
-              <div class="pdf-mock-logo">GC</div>
+              <div class="pdf-mock-logo">SM</div>
               <div>
-                <div class="pdf-mock-empresa">Giannini Clean</div>
-                <div style="color:#888;font-size:10px;">(11) 99999-0000</div>
+                <div class="pdf-mock-empresa">Sua marca aqui</div>
+                <div style="color:#888;font-size:10px;">(11) 00000-0000</div>
               </div>
             </div>
-            <div class="pdf-mock-date" style="color:#888;font-size:11px;">14 de maio de 2026</div>
+            <div style="color:#888;font-size:11px;">14 de maio de 2026</div>
           </div>
           <div class="pdf-mock-title">PROPOSTA COMERCIAL</div>
-          <div class="pdf-mock-ref">Ref: Camila Thomaz</div>
+          <div class="pdf-mock-ref">Ref: Maria Silva</div>
           <table class="pdf-mock-table">
             <thead><tr><th>Serviço</th><th>Desconto</th><th>Subtotal</th></tr></thead>
             <tbody>
@@ -349,64 +379,43 @@ footer { border-top: 1px solid var(--border); padding: 24px; text-align: center;
           </div>
           <div class="pdf-mock-pix">
             <div class="pdf-mock-pix-label">PAGAMENTO VIA PIX</div>
-            <div class="pdf-mock-pix-key">giannini@clean.com.br</div>
+            <div class="pdf-mock-pix-key">suamarcaaqui@gmail.com</div>
           </div>
         </div>
       </div>
-
-      <!-- CUSTO MOCKUP -->
       <div class="mockup-wrap">
         <div class="mockup-label orange">📊 CustoRápido — Margem calculada na hora</div>
         <div class="custo-mock">
           <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:10px;">Pizza Margherita — Ficha Técnica</div>
-          <div class="custo-mock-item">
-            <div class="custo-mock-item-name">🧀 Mussarela (200g de 1kg × R$45)</div>
-            <div class="custo-mock-item-val">R$ 9,00</div>
-          </div>
-          <div class="custo-mock-item">
-            <div class="custo-mock-item-name">🍅 Molho de tomate (150ml de 1L × R$8)</div>
-            <div class="custo-mock-item-val">R$ 1,20</div>
-          </div>
-          <div class="custo-mock-item">
-            <div class="custo-mock-item-name">🌾 Farinha (300g de 5kg × R$18)</div>
-            <div class="custo-mock-item-val">R$ 1,08</div>
-          </div>
-          <div class="custo-mock-item">
-            <div class="custo-mock-item-name">⛽ Deslocamento + Gás</div>
-            <div class="custo-mock-item-val">R$ 4,50</div>
-          </div>
+          <div class="custo-mock-item"><div class="custo-mock-item-name">🧀 Mussarela (200g de 1kg × R$45)</div><div class="custo-mock-item-val">R$ 9,00</div></div>
+          <div class="custo-mock-item"><div class="custo-mock-item-name">🍅 Molho de tomate (150ml de 1L × R$8)</div><div class="custo-mock-item-val">R$ 1,20</div></div>
+          <div class="custo-mock-item"><div class="custo-mock-item-name">🌾 Farinha (300g de 5kg × R$18)</div><div class="custo-mock-item-val">R$ 1,08</div></div>
+          <div class="custo-mock-item"><div class="custo-mock-item-name">⛽ Deslocamento + Gás</div><div class="custo-mock-item-val">R$ 4,50</div></div>
           <div class="custo-mock-total-box">
-            <div>
-              <div class="custo-mock-total-label">PREÇO DE VENDA SUGERIDO</div>
-              <div style="font-size:10px;color:var(--muted);margin-top:2px;">Margem de 35% aplicada</div>
-            </div>
+            <div><div class="custo-mock-total-label">PREÇO DE VENDA SUGERIDO</div><div style="font-size:10px;color:var(--muted);margin-top:2px;">Margem de 35% aplicada</div></div>
             <div class="custo-mock-preco">R$ 23,97</div>
           </div>
         </div>
       </div>
-
     </div>
-
-    <!-- ANTES / DEPOIS WHATSAPP -->
     <div style="margin-top:24px;display:grid;grid-template-columns:1fr 1fr;gap:16px;">
       <div style="background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px;">
         <div style="font-size:10px;font-weight:800;color:var(--danger);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;">❌ Antes — WhatsApp</div>
-        <div style="background:var(--surface2);border-radius:8px;padding:12px;font-size:12px;color:var(--soft);line-height:1.6;">
-          "Oi Camila, o serviço vai custar uns 950 reais mais ou menos, mas pode variar um pouco dependendo do material tá"
-        </div>
+        <div style="background:var(--surface2);border-radius:8px;padding:12px;font-size:12px;color:var(--soft);line-height:1.6;">"Oi Camila, o serviço vai custar uns 950 reais mais ou menos, mas pode variar um pouco dependendo do material tá"</div>
       </div>
       <div style="background:var(--surface);border:1px solid rgba(0,229,160,.2);border-radius:14px;padding:18px;">
-        <div style="font-size:10px;font-weight:800;color:var(--green);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;">✅ Depois — PDF Profissional</div>
-        <div style="background:rgba(0,229,160,.06);border-radius:8px;padding:12px;font-size:12px;color:var(--soft);line-height:1.6;">
-          PDF com logo, descrição detalhada, PIX e validade enviado em 30 segundos. Resposta do cliente: <strong style="color:var(--text)">"Aprovado! Pode começar."</strong>
-        </div>
+        <div style="font-size:10px;font-weight:800;color:var(--green);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;">✅ Depois — PDF com Sua Logo</div>
+        <div style="background:rgba(0,229,160,.06);border-radius:8px;padding:12px;font-size:12px;color:var(--soft);line-height:1.6;">PDF com <strong style="color:var(--green)">sua logomarca</strong>, descrição detalhada, PIX e validade em 30 segundos. Resposta: <strong style="color:var(--text)">"Aprovado! Pode começar."</strong></div>
       </div>
     </div>
   </div>
 </div>
+
+<!-- ── DOR ── -->
+<section class="section reveal">
   <h2 class="title">Você trabalha duro.<br>Mas ainda parece pequeno?</h2>
   <div class="pain-grid">
-    <div class="pain-card"><div class="pain-icon">😰</div><p><strong>Orçamento no WhatsApp.</strong> Sem logo, sem profissionalismo. O cliente compara com quem entregou PDF.</p></div>
+    <div class="pain-card"><div class="pain-icon">😰</div><p><strong>Orçamento no WhatsApp sem logo.</strong> O cliente compara você com quem entregou um PDF profissional com identidade visual. Adivinha quem fecha?</p></div>
     <div class="pain-card"><div class="pain-icon">🎲</div><p><strong>Preço no chute.</strong> Você nunca sabe se está lucrando ou trabalhando de graça.</p></div>
     <div class="pain-card"><div class="pain-icon">😤</div><p><strong>Clientes indo embora.</strong> Não pela qualidade — pela <strong>aparência de amador</strong> que você transmite sem querer.</p></div>
     <div class="pain-card"><div class="pain-icon">💸</div><p><strong>Trabalho no prejuízo.</strong> Sem calcular custos reais, você pode estar pagando pra trabalhar sem perceber.</p></div>
@@ -414,6 +423,7 @@ footer { border-top: 1px solid var(--border); padding: 24px; text-align: center;
 </section>
 
 <hr class="sep">
+<!-- ── COMPARE ── -->
 <div class="compare-bg reveal">
   <div class="compare-inner">
     <p class="label">Por que o gratuito sai mais caro</p>
@@ -424,9 +434,9 @@ footer { border-top: 1px solid var(--border); padding: 24px; text-align: center;
         <div class="compare-title">Improviso</div>
         <ul class="compare-list">
           <li><span class="ico ico-x">✗</span> Orçamento por texto no WhatsApp</li>
+          <li><span class="ico ico-x">✗</span> Sem logo — parece orçamento de amador</li>
           <li><span class="ico ico-x">✗</span> Planilha genérica sem identidade</li>
           <li><span class="ico ico-x">✗</span> Preço calculado no sentimento</li>
-          <li><span class="ico ico-x">✗</span> Sem logo, sem profissionalismo</li>
           <li><span class="ico ico-x">✗</span> Perde clientes para quem parece maior</li>
           <li><span class="ico ico-x">✗</span> Não sabe se está lucrando de verdade</li>
         </ul>
@@ -435,8 +445,8 @@ footer { border-top: 1px solid var(--border); padding: 24px; text-align: center;
         <span class="compare-tag">✅ EAF Flow</span>
         <div class="compare-title">Profissional</div>
         <ul class="compare-list">
-          <li><span class="ico ico-check">✓</span> PDF profissional com sua logo em 30s</li>
-          <li><span class="ico ico-check">✓</span> Identidade visual do seu negócio</li>
+          <li><span class="ico ico-check">✓</span> PDF com <strong>sua logomarca</strong> em destaque</li>
+          <li><span class="ico ico-check">✓</span> Credibilidade de empresa — sendo autônomo</li>
           <li><span class="ico ico-check">✓</span> Custo real calculado automaticamente</li>
           <li><span class="ico ico-check">✓</span> Margem de lucro definida com precisão</li>
           <li><span class="ico ico-check">✓</span> Transmite confiança e fecha mais</li>
@@ -448,164 +458,228 @@ footer { border-top: 1px solid var(--border); padding: 24px; text-align: center;
 </div>
 <hr class="sep">
 
+<!-- ── PRODUTOS ── -->
 <section class="section reveal" id="produtos">
-  <p class="label">As ferramentas</p>
+  <p class="label">As ferramentas SaaS</p>
   <h2 class="title">Duas ferramentas.<br>Um negócio diferente.</h2>
-  <p class="subtitle">Cada uma resolve uma dor real do seu dia a dia.</p>
+  <p class="subtitle">Assine o OrçaRápido e ganhe o CustoRápido grátis no Plano Anual — ou experimente separado.</p>
   <div class="products-grid">
     <div class="product-card green">
-      <span class="product-tag">Orçamentos</span>
+      <span class="product-tag">Orçamentos com sua logo</span>
       <div class="product-name">OrçaRápido</div>
-      <p class="product-desc">Gere propostas em PDF com sua logo, seus dados e PIX. Em 30 segundos. Do celular.</p>
+      <p class="product-desc">Gere <strong>Orçamento de Serviços, Proposta Comercial, Recibo de Pagamento, Pedido de Serviço e Contrato de Prestação de Serviços</strong> em PDF com <strong style="color:var(--green)">a sua logomarca</strong> e PIX. Em 30 segundos, do celular.</p>
       <ul class="product-features">
-        <li><span style="color:var(--green)">✓</span> PDF profissional com sua logo</li>
+        <li><span style="color:var(--green)">✓</span> <strong style="color:var(--text)">PDF com sua logo em destaque</strong> — credibilidade imediata</li>
+        <li><span style="color:var(--green)">✓</span> Identidade visual do seu negócio no documento</li>
         <li><span style="color:var(--green)">✓</span> Desconto por item e global</li>
         <li><span style="color:var(--green)">✓</span> Chave PIX no documento</li>
         <li><span style="color:var(--green)">✓</span> Funciona no celular e PC</li>
-        <li><span style="color:var(--green)">✓</span> Sem mensalidade</li>
       </ul>
-      <div class="product-price-old">De R$ 97,00</div>
-      <div class="product-price">R$ 59,90</div>
-      <div class="product-parcela">ou 3x de R$ 19,97 sem juros</div>
-      <a href="https://pay.kiwify.com.br/khOEGt6" class="btn-product" target="_blank" rel="noopener" onclick="gtag&&gtag('event','cta_orca_click')">Comprar só o OrçaRápido</a>
+      <div class="plan-toggle">
+        <a href="https://pay.kiwify.com.br/mEHNcIl" class="plan-btn active-monthly" target="_blank" rel="noopener" onclick="gtag&&gtag('event','cta_orca_mensal_click')">
+          Mensal<br><span style="font-size:14px;font-weight:900;">R$ 14,90/mês</span>
+        </a>
+        <a href="https://pay.kiwify.com.br/5TIjvKM" class="plan-btn" target="_blank" rel="noopener" onclick="gtag&&gtag('event','cta_orca_anual_click')" style="position:relative;">
+          Anual <span class="plan-badge">MELHOR</span><br><span style="font-size:14px;font-weight:900;">R$ 149,90/ano</span>
+          <div style="font-size:9px;color:var(--green);margin-top:2px;">+ CustoRápido grátis</div>
+        </a>
+      </div>
+      <p style="font-size:11px;color:var(--muted);text-align:center;">Cancele quando quiser</p>
     </div>
     <div class="product-card orange">
       <span class="product-tag">Gestão de Custos</span>
       <div class="product-name">CustoRápido</div>
-      <p class="product-desc">Calcule o custo real de qualquer serviço. Descubra sua margem e pare de trabalhar no prejuízo.</p>
+      <p class="product-desc">Calcule o custo real de qualquer serviço. Descubra sua margem e pare de trabalhar no prejuízo. Acesso vitalício — pague uma única vez.</p>
       <ul class="product-features">
         <li><span style="color:var(--orange)">✓</span> Ficha técnica completa</li>
         <li><span style="color:var(--orange)">✓</span> Margem de lucro em tempo real</li>
         <li><span style="color:var(--orange)">✓</span> Salva e edita suas fichas</li>
         <li><span style="color:var(--orange)">✓</span> Rateio de custos fixos</li>
-        <li><span style="color:var(--orange)">✓</span> Sem mensalidade</li>
+        <li><span style="color:var(--orange)">✓</span> Compra única — acesso vitalício</li>
       </ul>
-      <div class="product-price-old">De R$ 97,00</div>
-      <div class="product-price">R$ 59,90</div>
-      <div class="product-parcela">ou 3x de R$ 19,97 sem juros</div>
-      <a href="https://pay.kiwify.com.br/Phu7JXJ" class="btn-product" target="_blank" rel="noopener" onclick="gtag&&gtag('event','cta_custo_click')">Comprar só o CustoRápido</a>
+      <div class="product-price-old">Separado por R$ 99,90</div>
+      <div class="product-price">Grátis</div>
+      <div class="product-parcela">no Plano Anual do OrçaRápido</div>
+      <a href="https://pay.kiwify.com.br/5TIjvKM" class="btn-product" target="_blank" rel="noopener" onclick="gtag&&gtag('event','cta_custo_anual_click')">Pegar o CustoRápido grátis no anual →</a>
+      <div style="margin-top:10px;border-top:1px solid var(--border);padding-top:10px;">
+        <div style="font-size:11px;color:var(--muted);margin-bottom:6px;">Ou comprar separado (acesso vitalício):</div>
+        <a href="https://pay.kiwify.com.br/Phu7JXJ" class="btn-product" target="_blank" rel="noopener" onclick="gtag&&gtag('event','cta_custo_avulso_click')">Comprar CustoRápido por R$ 99,90</a>
+      </div>
     </div>
   </div>
 </section>
 
 <hr class="sep">
-<div class="combo-bg reveal" id="combo">
+
+<!-- ── PLANO ANUAL ── -->
+<div class="combo-bg reveal" id="plano-anual">
   <div class="combo-inner">
     <div class="combo-card">
       <div class="best-badge">Melhor escolha</div>
+      <img class="combo-logo" src="data:image/png;base64,${LOGO}" alt="EAF Flow">
       <div class="combo-eaf">EAF</div>
       <div class="combo-flow">FLOW</div>
-      <p class="combo-tagline">Os dois produtos + 3 bônus. Para quem quer resultado de verdade.</p>
+      <p class="combo-tagline">Assine o OrçaRápido por 1 ano, garanta o melhor preço e ganhe acesso total ao CustoRápido de presente.</p>
       <div class="combo-items">
-        <div class="combo-item"><div class="combo-item-icon">🟢</div><div><div class="combo-item-name">OrçaRápido</div><div class="combo-item-old">R$ 59,90</div><div class="combo-item-new">✓ Incluído</div></div></div>
-        <div class="combo-item"><div class="combo-item-icon">🟠</div><div><div class="combo-item-name">CustoRápido</div><div class="combo-item-old">R$ 59,90</div><div class="combo-item-new">✓ Incluído</div></div></div>
-        <div class="combo-item bonus-item"><div class="combo-item-icon">🎁</div><div><div class="combo-item-name">Tabela de Precificação</div><div class="combo-item-old">R$ 9,90</div><div class="combo-item-new">Grátis</div></div></div>
-        <div class="combo-item bonus-item"><div class="combo-item-icon">🎁</div><div><div class="combo-item-name">5 Mensagens WhatsApp Prontas</div><div class="combo-item-old">R$ 9,90</div><div class="combo-item-new">Grátis</div></div></div>
-        <div class="combo-item bonus-item" style="grid-column:1/-1"><div class="combo-item-icon">🎁</div><div><div class="combo-item-name">Mini Guia: Como Não Sair no Prejuízo</div><div class="combo-item-old">R$ 9,90</div><div class="combo-item-new">Grátis</div></div></div>
+        <div class="combo-item">
+          <div class="combo-item-icon">🟢</div>
+          <div>
+            <div class="combo-item-name">OrçaRápido — Plano Anual</div>
+            <div class="combo-item-old">12× R$ 14,90 = R$ 178,80</div>
+            <div class="combo-item-new">✓ R$ 149,90 — você economiza R$ 28,90</div>
+          </div>
+        </div>
+        <div class="combo-item gift-item">
+          <div class="combo-item-icon">🎁</div>
+          <div>
+            <div class="combo-item-name">CustoRápido — 1 ano grátis</div>
+            <div class="combo-item-old">Valeria R$ 99,90</div>
+            <div class="combo-item-new">Presente incluso no plano</div>
+          </div>
+        </div>
+      </div>
+      <div class="savings-box">
+        <div style="font-size:11px;font-weight:800;color:var(--green);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;">💰 Sua economia real</div>
+        <div class="savings-row"><span>OrçaRápido mês a mês (12 meses)</span><span class="value-red">R$ 178,80</span></div>
+        <div class="savings-row"><span>CustoRápido avulso (acesso vitalício)</span><span class="value-red">R$ 99,90</span></div>
+        <div class="savings-row"><strong>Total se comprasse separado</strong><span class="value-red">R$ 278,70</span></div>
+        <div class="savings-total-row"><span>Você paga hoje (Plano Anual)</span><span>R$ 149,90 — economiza R$ 128,80</span></div>
       </div>
       <div class="combo-price">
-        <p class="combo-de">Valor total: <s>R$ 149,50</s></p>
-        <div class="combo-economia">Você economiza R$ 52,50</div>
-        <div class="combo-valor">R$ 97</div>
-        <p class="combo-parcela">ou <strong>3x de R$ 32,33</strong> sem juros</p>
-        <p class="combo-avista">à vista: R$ 92,15 (5% de desconto)</p>
+        <p class="combo-de">Tudo isso por apenas:</p>
+        <div class="combo-valor">R$ 149,90</div>
+        <p class="combo-parcela">equivale a <strong>R$ 12,49/mês</strong> — menos que um delivery</p>
+        <p style="margin-top:6px;color:var(--soft);font-size:13px;">OrçaRápido por 1 ano + CustoRápido grátis durante a assinatura</p>
       </div>
-      <div class="coffee-note">☕ <strong>R$ 32,33 por mês</strong> — menos que um almoço por semana. E diferente do almoço, isso muda como seus clientes te enxergam para sempre.</div>
-      <div class="lote-bar">
-        <div class="lote-title">🎁 Atenção — Bônus por tempo limitado</div>
-        <div style="font-size:13px;color:var(--soft);line-height:1.6;">
-          Os 3 bônus (<strong style="color:var(--text)">Tabela de Precificação, 5 Mensagens WhatsApp e Mini Guia</strong>) fazem parte do combo <strong style="color:var(--danger)">apenas durante o lançamento</strong>. Após o período, o combo continua disponível — mas <strong style="color:var(--danger)">sem os bônus</strong>.
-        </div>
-        <div style="margin-top:10px;font-size:12px;color:var(--muted);">⏱️ Bônus disponíveis por: <strong id="bonus-timer" style="color:var(--green)">calculando...</strong></div>
-      </div>
-
-      <a href="https://pay.kiwify.com.br/NqUJfUD" class="btn-combo" target="_blank" rel="noopener" onclick="gtag&&gtag('event','cta_combo_click')">Quero garantir com os bônus — R$ 97</a>
+      <div class="coffee-note">☕ <strong>R$ 12,49 por mês</strong> — menos que dois cafés por semana. E diferente dos cafés, isso muda como seus clientes te enxergam para sempre. Com a <strong>sua logo</strong> no PDF, você para de parecer amador e começa a fechar mais.</div>
+      <a href="https://pay.kiwify.com.br/5TIjvKM" class="btn-combo" target="_blank" rel="noopener" onclick="gtag&&gtag('event','cta_plano_anual_click')">Assinar Plano Anual e ganhar o CustoRápido grátis →</a>
       <p class="combo-guarantee">🛡️ Garantia de 7 dias. Não gostou, devolvemos 100%. Sem perguntas.</p>
     </div>
   </div>
 </div>
 <hr class="sep">
 
+<!-- ── DEPOIMENTOS ── -->
 <section class="section reveal">
   <p class="label">Resultados reais</p>
   <h2 class="title">O que estão falando</h2>
   <div class="testi-grid">
-
     <div class="wa-testi">
       <div class="wa-header">
         <div class="wa-avatar" style="background:var(--grad)">M</div>
         <div><div class="wa-name">Marcos Oliveira</div><div class="wa-role">Eletricista autônomo • SP</div></div>
       </div>
-      <div class="wa-bubble">
-        <p>Cara mandei o PDF pro cliente e ele nem pechinchar. Aprovou na hora. Nunca tinha acontecido isso antes kkk</p>
-        <div class="wa-time">14:32 ✓✓</div>
-      </div>
-      <div class="wa-bubble" style="margin-top:6px;">
-        <p>Valeu demais, tô usando toda semana agora</p>
-        <div class="wa-time">14:33 ✓✓</div>
-      </div>
+      <div class="wa-bubble"><p>Cara mandei o PDF com minha logo pro cliente e ele nem pechinchar. Aprovou na hora. Nunca tinha acontecido isso antes kkk</p><div class="wa-time">14:32 ✓✓</div></div>
+      <div class="wa-bubble" style="margin-top:6px;"><p>Valeu demais, tô usando toda semana agora</p><div class="wa-time">14:33 ✓✓</div></div>
       <div class="wa-stars">★★★★★</div>
     </div>
-
     <div class="wa-testi">
       <div class="wa-header">
         <div class="wa-avatar" style="background:linear-gradient(135deg,#ff6b1a,#ffd11a)">A</div>
         <div><div class="wa-name">Ana Paula Reis</div><div class="wa-role">Confeiteira • MG</div></div>
       </div>
-      <div class="wa-bubble">
-        <p>Meu Deus, acabei de descobrir que tava cobrando menos do que gastava no bolo de pote 😱</p>
-        <div class="wa-time">09:17 ✓✓</div>
-      </div>
-      <div class="wa-bubble" style="margin-top:6px;">
-        <p>O CustoRápido abriu meu olho. Reajustei tudo essa semana</p>
-        <div class="wa-time">09:18 ✓✓</div>
-      </div>
+      <div class="wa-bubble"><p>Meu Deus, acabei de descobrir que tava cobrando menos do que gastava no bolo de pote 😱</p><div class="wa-time">09:17 ✓✓</div></div>
+      <div class="wa-bubble" style="margin-top:6px;"><p>O CustoRápido abriu meu olho. Reajustei tudo essa semana</p><div class="wa-time">09:18 ✓✓</div></div>
       <div class="wa-stars">★★★★★</div>
     </div>
-
     <div class="wa-testi">
       <div class="wa-header">
         <div class="wa-avatar" style="background:linear-gradient(135deg,#b44fff,#7b2fff)">R</div>
         <div><div class="wa-name">Roberto Cunha</div><div class="wa-role">Pintor • RJ</div></div>
       </div>
-      <div class="wa-bubble">
-        <p>Cliente perguntou se eu tenho empresa. Falei que sou autônomo e ele ficou chocado kkkk</p>
-        <div class="wa-time">16:44 ✓✓</div>
-      </div>
-      <div class="wa-bubble" style="margin-top:6px;">
-        <p>É o PDF com logo mesmo, passa muita credibilidade. Recomendo demais</p>
-        <div class="wa-time">16:45 ✓✓</div>
-      </div>
+      <div class="wa-bubble"><p>Cliente perguntou se eu tenho empresa. Falei que sou autônomo e ele ficou chocado kkkk</p><div class="wa-time">16:44 ✓✓</div></div>
+      <div class="wa-bubble" style="margin-top:6px;"><p>É o PDF com minha logo mesmo, passa muita credibilidade. Recomendo demais</p><div class="wa-time">16:45 ✓✓</div></div>
       <div class="wa-stars">★★★★★</div>
     </div>
-
   </div>
 </section>
 <hr class="sep">
 
+<!-- ── SERVIÇOS: SITES ── -->
+<div class="services-bg reveal" id="sites">
+  <div class="services-inner">
+    <p class="services-label">Criação de Sites e Landing Pages</p>
+    <h2 class="services-title">Sua presença online.<br><span>Do jeito certo.</span></h2>
+    <p class="services-sub">Além das ferramentas SaaS, a EAF Flow cria sites e landing pages profissionais para autônomos, MEIs e pequenas empresas que querem atrair clientes na internet.</p>
+    <div class="services-grid">
+
+      <div class="service-card">
+        <span class="service-badge">Landing Page</span>
+        <div class="service-name">Página de Vendas</div>
+        <p class="service-desc">Uma página poderosa focada em um único objetivo: converter visitantes em clientes ou leads. Ideal para lançamentos, serviços e produtos.</p>
+        <ul class="service-features">
+          <li><span class="ico-gold">✦</span> Design dark, clean e profissional</li>
+          <li><span class="ico-gold">✦</span> Otimizada para celular (mobile-first)</li>
+          <li><span class="ico-gold">✦</span> Integração com WhatsApp e PIX</li>
+          <li><span class="ico-gold">✦</span> Formulário de captura de leads</li>
+          <li><span class="ico-gold">✦</span> Entrega em até 5 dias úteis</li>
+          <li><span class="ico-gold">✦</span> 1 rodada de revisões inclusa</li>
+        </ul>
+        <div class="service-price-from">A partir de</div>
+        <div class="service-price">R$ 500</div>
+        <div class="service-price-note">Pagamento via PIX ou cartão • Orçamento sem compromisso</div>
+        <a href="https://api.whatsapp.com/send?phone=5541984213488&text=Ol%C3%A1!%20Tenho%20interesse%20em%20criar%20uma%20Landing%20Page.%20Pode%20me%20passar%20um%20or%C3%A7amento%3F" class="btn-service" target="_blank" rel="noopener" onclick="gtag&&gtag('event','cta_landingpage_click')">💬 Solicitar orçamento no WhatsApp</a>
+      </div>
+
+      <div class="service-card featured">
+        <span class="service-badge">Site Completo</span>
+        <div class="service-name">Site Institucional</div>
+        <p class="service-desc">Site completo com múltiplas páginas para posicionar sua marca, apresentar serviços e gerar contatos de forma contínua e orgânica.</p>
+        <ul class="service-features">
+          <li><span class="ico-gold">✦</span> Até 5 páginas (Home, Sobre, Serviços, Portfólio, Contato)</li>
+          <li><span class="ico-gold">✦</span> Design com a identidade visual da sua marca</li>
+          <li><span class="ico-gold">✦</span> SEO básico configurado</li>
+          <li><span class="ico-gold">✦</span> Formulário de contato funcional</li>
+          <li><span class="ico-gold">✦</span> Integração com Google Maps</li>
+          <li><span class="ico-gold">✦</span> Entrega em até 10 dias úteis</li>
+          <li><span class="ico-gold">✦</span> 2 rodadas de revisões inclusas</li>
+        </ul>
+        <div class="service-price-from">A partir de</div>
+        <div class="service-price">R$ 900</div>
+        <div class="service-price-note">Pagamento via PIX ou cartão • Orçamento sem compromisso</div>
+        <a href="https://api.whatsapp.com/send?phone=5541984213488&text=Ol%C3%A1!%20Tenho%20interesse%20em%20criar%20um%20Site%20Completo.%20Pode%20me%20passar%20um%20or%C3%A7amento%3F" class="btn-service" target="_blank" rel="noopener" onclick="gtag&&gtag('event','cta_site_click')">💬 Solicitar orçamento no WhatsApp</a>
+      </div>
+
+    </div>
+
+    <div class="services-logo-strip">
+      <img src="data:image/png;base64,${LOGO}" alt="EAF Flow">
+      <span>Sites criados com a identidade e qualidade EAF Flow</span>
+    </div>
+  </div>
+</div>
+<hr class="sep">
+
+<!-- ── FAQ ── -->
 <section class="section reveal" style="max-width:640px">
   <p class="label">Dúvidas</p>
   <h2 class="title">Perguntas frequentes</h2>
   <div class="faq-list">
-    <div class="faq-item"><div class="faq-q">Preciso instalar alguma coisa?</div><div class="faq-a">Não. Funciona 100% no navegador — celular ou computador.</div></div>
-    <div class="faq-item"><div class="faq-q">Tem mensalidade?</div><div class="faq-a">Não. Você paga uma única vez e o acesso é seu para sempre.</div></div>
-    <div class="faq-item"><div class="faq-q">Quando recebo o acesso?</div><div class="faq-a">Imediatamente após a confirmação do pagamento.</div></div>
+    <div class="faq-item"><div class="faq-q">Preciso instalar alguma coisa?</div><div class="faq-a">Não. As ferramentas SaaS funcionam 100% no navegador — celular ou computador. Sem instalação.</div></div>
+    <div class="faq-item"><div class="faq-q">Quais tipos de documentos posso gerar no OrçaRápido?</div><div class="faq-a">Você tem 5 opções profissionais à disposição: Orçamento de Serviços, Proposta Comercial, Recibo de Pagamento, Pedido de Serviço e Contrato de Prestação de Serviços.</div></div>
+    <div class="faq-item"><div class="faq-q">O OrçaRápido tem mensalidade?</div><div class="faq-a">Sim, é uma assinatura. Você pode assinar por R$ 14,90/mês ou garantir o Plano Anual por R$ 149,90 — com acesso por 12 meses e ainda economiza R$ 28,90 em relação ao mensal.</div></div>
+    <div class="faq-item"><div class="faq-q">O CustoRápido também é assinatura?</div><div class="faq-a">Não. O CustoRápido é compra única com acesso vitalício (R$ 99,90 separado). No Plano Anual do OrçaRápido, ele fica liberado gratuitamente enquanto sua assinatura estiver ativa.</div></div>
+    <div class="faq-item"><div class="faq-q">O que acontece com o CustoRápido se eu cancelar a assinatura anual?</div><div class="faq-a">O acesso ao CustoRápido é vinculado à assinatura anual ativa. Se cancelar, o CustoRápido também é suspenso — a menos que você tenha comprado a versão avulsa separadamente por R$ 99,90.</div></div>
+    <div class="faq-item"><div class="faq-q">Quando recebo o acesso às ferramentas?</div><div class="faq-a">Imediatamente após a confirmação do pagamento.</div></div>
     <div class="faq-item"><div class="faq-q">E se eu não gostar?</div><div class="faq-a">Garantia de 7 dias. Devolução de 100% sem burocracia.</div></div>
-    <div class="faq-item"><div class="faq-q">Funciona para qualquer negócio?</div><div class="faq-a">Sim. Eletricista, confeiteiro, designer, fotógrafo, marceneiro — qualquer autônomo ou MEI.</div></div>
-    <div class="faq-item"><div class="faq-q">Posso parcelar?</div><div class="faq-a">Sim. Em até 3x sem juros. O combo fica 3x de R$ 32,33.</div></div>
+    <div class="faq-item"><div class="faq-q">Funciona para qualquer negócio?</div><div class="faq-a">Sim. Eletricista, confeiteiro, designer, fotógrafo, marceneiro — qualquer autônomo ou MEI pode usar.</div></div>
+    <div class="faq-item"><div class="faq-q">Posso colocar minha logo no PDF?</div><div class="faq-a">Sim — e essa é a maior diferença. O OrçaRápido coloca a sua logomarca no PDF gerado, tornando o documento completamente profissional. Seu cliente recebe um orçamento com a identidade visual do seu negócio, não um formulário genérico.</div></div>
+    <div class="faq-item"><div class="faq-q">Como funciona a criação de sites?</div><div class="faq-a">Entre em contato via WhatsApp para um orçamento sem compromisso. Após o briefing e aprovação, entregamos landing pages em até 5 dias e sites completos em até 10 dias úteis.</div></div>
   </div>
 </section>
 <hr class="sep">
 
+<!-- ── FINAL CTA ── -->
 <section class="final reveal">
+  <img class="final-logo" src="data:image/png;base64,${LOGO}" alt="EAF Flow">
   <h2 class="final-title">Amanhã você pode<br><span>ser diferente</span></h2>
-  <p class="final-sub">Seus concorrentes vão continuar improvisando. Você não precisa.</p>
-  <!-- CORRIGIDO: agora aponta para o mesmo checkout do combo com bônus -->
-  <a href="https://pay.kiwify.com.br/NqUJfUD" class="btn-primary" target="_blank" rel="noopener" onclick="gtag&&gtag('event','cta_final_click')">Garantir minha vaga agora — R$ 97</a>
-  <p class="hero-note" style="margin-top:12px">3x de R$ 32,33 sem juros • Acesso imediato • Garantia de 7 dias</p>
+  <p class="final-sub">Seus concorrentes vão continuar mandando orçamento no WhatsApp. Você vai enviar um PDF com a sua logo em 30 segundos.</p>
+  <a href="https://pay.kiwify.com.br/5TIjvKM" class="btn-primary" target="_blank" rel="noopener" onclick="gtag&&gtag('event','cta_final_click')">Assinar Plano Anual — R$ 149,90</a>
+  <p class="hero-note" style="margin-top:12px">Equivale a R$ 12,49/mês • CustoRápido grátis incluso • Garantia de 7 dias</p>
 </section>
 
 <footer>
+  <img class="footer-logo" src="data:image/png;base64,${LOGO}" alt="EAF Flow">
   <div class="footer-links">
     <a href="#">Política de Privacidade</a>
     <a href="#">Termos de Uso</a>
@@ -626,44 +700,25 @@ footer { border-top: 1px solid var(--border); padding: 24px; text-align: center;
 </div>
 
 <script>
-// COUNTDOWN URGENCY BAR
-(function(){
-  var key='eaf_deadline';
-  var stored=localStorage.getItem(key);
-  var deadline;
-  if(stored){deadline=parseInt(stored);}
-  else{deadline=Date.now()+24*60*60*1000;localStorage.setItem(key,deadline);}
-  function update(){
-    var diff=deadline-Date.now();
-    if(diff<=0){deadline=Date.now()+24*60*60*1000;localStorage.setItem(key,deadline);diff=deadline-Date.now();}
-    var h=Math.floor(diff/3600000);
-    var m=Math.floor((diff%3600000)/60000);
-    var s=Math.floor((diff%60000)/1000);
-    document.getElementById('countdown').textContent=
-      String(h).padStart(2,'0')+':'+String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+// NAV TAB ACTIVE STATE
+function setTab(el){
+  document.querySelectorAll('.nav-tab').forEach(function(t){t.classList.remove('active');});
+  el.classList.add('active');
+}
+// Update active tab on scroll
+var sectionMap = [
+  {id:'sites', tab:1},
+  {id:'ferramentas', tab:0},
+  {id:'hero', tab:0}
+];
+window.addEventListener('scroll', function(){
+  var scrollY = window.scrollY + 100;
+  var tabs = document.querySelectorAll('.nav-tab');
+  for(var i=0;i<sectionMap.length;i++){
+    var el = document.getElementById(sectionMap[i].id);
+    if(el && scrollY >= el.offsetTop){ tabs.forEach(function(t){t.classList.remove('active');}); tabs[sectionMap[i].tab].classList.add('active'); break; }
   }
-  update();setInterval(update,1000);
-})();
-
-// BONUS TIMER
-(function(){
-  var key='eaf_bonus_deadline';
-  var stored=localStorage.getItem(key);
-  var deadline;
-  if(stored){deadline=parseInt(stored);}
-  else{deadline=Date.now()+48*60*60*1000;localStorage.setItem(key,deadline);}
-  function update(){
-    var diff=deadline-Date.now();
-    var el=document.getElementById('bonus-timer');
-    if(!el)return;
-    if(diff<=0){deadline=Date.now()+48*60*60*1000;localStorage.setItem(key,deadline);diff=deadline-Date.now();}
-    var h=Math.floor(diff/3600000);
-    var m=Math.floor((diff%3600000)/60000);
-    var s=Math.floor((diff%60000)/1000);
-    el.textContent=String(h).padStart(2,'0')+'h '+String(m).padStart(2,'0')+'m '+String(s).padStart(2,'0')+'s';
-  }
-  update();setInterval(update,1000);
-})();
+}, {passive:true});
 
 // SCROLL REVEAL
 var reveals=document.querySelectorAll('.reveal');
@@ -674,11 +729,11 @@ reveals.forEach(function(r){obs.observe(r);});
 
 // SOCIAL PROOF POPUP
 var popupData=[
-  {nome:'Lucas M.',msg:'acabou de comprar o Combo EAF Flow',tempo:'agora mesmo',bg:'linear-gradient(135deg,#00e5a0,#00b8ff)',letra:'L'},
-  {nome:'Fernanda S.',msg:'comprou o OrçaRápido',tempo:'há 3 minutos',bg:'linear-gradient(135deg,#ff6b1a,#ffd11a)',letra:'F'},
-  {nome:'Rodrigo P.',msg:'comprou o CustoRápido',tempo:'há 7 minutos',bg:'linear-gradient(135deg,#b44fff,#7b2fff)',letra:'R'},
-  {nome:'Juliana C.',msg:'acabou de comprar o Combo EAF Flow',tempo:'há 12 minutos',bg:'var(--grad)',letra:'J'},
-  {nome:'André T.',msg:'comprou o OrçaRápido',tempo:'há 18 minutos',bg:'linear-gradient(135deg,#ff4d6d,#ff6b1a)',letra:'A'},
+  {nome:'Lucas M.',msg:'assinou o OrçaRápido — Plano Anual',tempo:'agora mesmo',bg:'linear-gradient(135deg,#00e5a0,#00b8ff)',letra:'L'},
+  {nome:'Fernanda S.',msg:'assinou o OrçaRápido',tempo:'há 3 minutos',bg:'linear-gradient(135deg,#ff6b1a,#ffd11a)',letra:'F'},
+  {nome:'Rodrigo P.',msg:'comprou o CustoRápido avulso',tempo:'há 7 minutos',bg:'linear-gradient(135deg,#b44fff,#7b2fff)',letra:'R'},
+  {nome:'Juliana C.',msg:'assinou o OrçaRápido — Plano Anual',tempo:'há 12 minutos',bg:'linear-gradient(135deg,#00e5a0,#00b8ff)',letra:'J'},
+  {nome:'André T.',msg:'assinou o OrçaRápido',tempo:'há 18 minutos',bg:'linear-gradient(135deg,#ff4d6d,#ff6b1a)',letra:'A'},
 ];
 var popup=document.getElementById('social-popup');
 var pidx=0;
