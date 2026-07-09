@@ -32,14 +32,35 @@ body {
   color: var(--text);
   overflow-x: hidden;
   padding-top: 68px;
-  opacity: 0;
-  transition: opacity .28s ease;
+  opacity: 1;
+  transform: translateY(0);
+  animation: page-enter .22s ease both;
+  transition: opacity .22s ease, transform .22s ease;
 }
-body.page-ready { opacity: 1; }
-body.page-leaving { opacity: 0; transition: opacity .16s ease; }
+body.page-ready {
+  opacity: 1;
+  transform: translateY(0);
+}
+body.page-leaving {
+  animation: none;
+  opacity: .86;
+  transform: translateY(4px);
+  transition: opacity .18s ease, transform .18s ease;
+}
+
+@keyframes page-enter {
+  from { opacity: .96; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
 @media (prefers-reduced-motion: reduce) {
-  body { opacity: 1 !important; transition: none !important; }
+  html { scroll-behavior: auto; }
+  body {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
 }
 
 /* Progressive enhancement: View Transitions nativas do navegador */

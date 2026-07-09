@@ -6,13 +6,44 @@
 
   function isInternalPageLink(link) {
     if (!link.href || link.target || link.hasAttribute('download')) return false;
-    var url = new URL(link.href, window.location.href);
+    var url;
+    try {
+      url = new URL(link.href, window.location.href);
+    } catch (error) {
+      return false;
+    }
     if (url.origin !== window.location.origin) return false;
+    if (url.hash && url.pathname === window.location.pathname && url.search === window.location.search) return false;
     return url.pathname !== window.location.pathname || url.search !== window.location.search;
   }
 
-  document.addEventListener('DOMContentLoaded', function () {
+  function startPageExit(href) {
+    document.body.classList.remove('page-ready');
+    window.requestAnimationFrame(function () {
+      document.body.classList.add('page-leaving');
+      window.setTimeout(function () {
+        window.location.assign(href);
+      }, 90);
+    });
+  }
+
+  function setPageReady() {
+    document.body.classList.remove('page-leaving');
     document.body.classList.add('page-ready');
+  }
+
+  function init() {
+    var readyApplied = false;
+    function applyReady() {
+      if (readyApplied) return;
+      readyApplied = true;
+      setPageReady();
+    }
+
+    window.requestAnimationFrame(function () {
+      applyReady();
+    });
+    window.setTimeout(applyReady, 40);
 
     if (!reduceMotion) {
       document.querySelectorAll('a[href]').forEach(function (link) {
@@ -21,10 +52,7 @@
           if (!isInternalPageLink(link)) return;
 
           event.preventDefault();
-          document.body.classList.add('page-leaving');
-          window.setTimeout(function () {
-            window.location.href = link.href;
-          }, 120);
+          startPageExit(link.href);
         });
       });
     }
@@ -52,5 +80,17 @@
     }, { threshold: 0.1 });
 
     reveals.forEach(function (section) { observer.observe(section); });
+  }
+
+  window.addEventListener('pageshow', function () {
+    if (document.body) setPageReady();
   });
+
+  if (document.body) {
+    init();
+  } else if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
 })();
