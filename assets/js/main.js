@@ -10,7 +10,7 @@
 
   /* Marca a aba de navegação ativa ao clicar */
   function setTab(el) {
-    document.querySelectorAll('.nav-tab').forEach(function (t) {
+    document.querySelectorAll('.main-nav a').forEach(function (t) {
       t.classList.remove('active');
     });
     el.classList.add('active');
