@@ -83,6 +83,14 @@
   align-items: center;
   gap: 56px;
 }
+.home-compact .home-hero,
+.inner-hero {
+  min-height: auto;
+  padding-top: 88px;
+}
+.home-compact .home-section {
+  padding: 54px 0;
+}
 .hero-copy h1,
 .section-heading h2,
 .evolution-card h2,
@@ -274,6 +282,21 @@
   line-height: 1.08;
   margin-bottom: 14px;
 }
+.page-title {
+  font-family: 'DM Sans', sans-serif;
+  color: var(--home-ink);
+  font-size: clamp(34px, 5vw, 58px);
+  line-height: 1.04;
+  letter-spacing: 0;
+  margin-bottom: 14px;
+}
+.page-intro {
+  padding-top: 88px;
+  padding-bottom: 0;
+}
+.page-intro + .home-section {
+  padding-top: 26px;
+}
 .section-heading p,
 .evolution-card p,
 .final-cta p {
@@ -414,6 +437,12 @@
 .solution-grid.two {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
+.home-overview-grid {
+  grid-template-columns: 1.25fr .9fr .9fr;
+}
+.product-index-grid {
+  grid-template-columns: 1.2fr repeat(2, .9fr);
+}
 .solution-card {
   display: block;
   padding: 26px;
@@ -441,6 +470,13 @@
   font-size: 13px;
 }
 .solution-card.service strong { color: var(--home-red); }
+.featured-solution {
+  border-color: rgba(217,45,45,.26);
+  background: linear-gradient(180deg, #fff, #fff7f6);
+}
+.featured-solution h3 {
+  font-size: 24px;
+}
 .portfolio-note {
   margin-top: 16px;
   padding: 18px 20px;
@@ -568,6 +604,8 @@
   .mockup-grid,
   .flow-grid,
   .inside-grid,
+  .home-overview-grid,
+  .product-index-grid,
   .solution-grid.two {
     grid-template-columns: 1fr;
   }
