@@ -21,6 +21,12 @@
   document.addEventListener('DOMContentLoaded', function () {
     var reveals = document.querySelectorAll('.reveal');
     if (!reveals.length) return;
+    if (window.location.hash) {
+      var target = document.querySelector(window.location.hash);
+      if (target && target.classList.contains('reveal')) {
+        target.classList.add('visible');
+      }
+    }
 
     if (!('IntersectionObserver' in window)) {
       reveals.forEach(function (r) { r.classList.add('visible'); });

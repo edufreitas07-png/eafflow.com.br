@@ -2,7 +2,7 @@
    EAF Flow — base.css
    Estilos globais: variáveis, reset, navegação, rodapé,
    botões genéricos, transições de página, FAQ, componente
-   de mídia/placeholder reutilizável
+   de mídia reutilizável
    ========================================================= */
 
 :root {
@@ -220,18 +220,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 24px; text-align: ce
   .reveal { opacity: 1; transform: none; transition: none; }
 }
 
-/* ---------- Componente de mídia / placeholder reutilizável ---------- */
-/* Usado em "Veja o EAF Menu por dentro" e em galerias de projetos.
-   Se a imagem não existir ainda, mostra um placeholder limpo sem
-   quebrar o layout (ver handleMediaError em main.js). */
+/* ---------- Componente de mídia reutilizável ---------- */
 .media-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 28px; }
 .media-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; text-decoration: none; display: block; transition: border-color .2s; }
 .media-card:hover { border-color: rgba(0,229,160,.25); }
 .media-frame { position: relative; aspect-ratio: 4 / 3; background: var(--surface2); display: flex; align-items: center; justify-content: center; }
 .media-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.media-frame img.media-missing { display: none; }
-.media-placeholder-label { display: none; font-size: 12px; color: var(--muted); text-align: center; padding: 0 16px; }
-.media-frame.is-placeholder .media-placeholder-label { display: block; }
 .media-body { padding: 14px 16px 18px; }
 .media-title { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
 .media-desc { font-size: 12px; color: var(--soft); line-height: 1.55; }
