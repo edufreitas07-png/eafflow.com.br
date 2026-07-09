@@ -1,0 +1,43 @@
+/* =========================================================
+   EAF Flow — servicos.css
+   Estilos das páginas de serviços (Sites / Landing Pages)
+   ========================================================= */
+
+.services-bg { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.services-inner { max-width: 860px; margin: 0 auto; padding: 80px 24px; }
+.services-label { font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 12px; }
+.services-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(32px, 5vw, 56px); line-height: 1.05; color: var(--text); margin-bottom: 14px; }
+.services-title span { background: var(--grad-gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.services-sub { font-size: 15px; color: var(--soft); line-height: 1.7; margin-bottom: 36px; }
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+@media (max-width: 640px) { .services-grid { grid-template-columns: 1fr; } }
+
+.service-card { background: var(--bg); border: 1px solid rgba(245,200,66,.15); border-radius: 20px; padding: 32px 28px; position: relative; overflow: hidden; }
+.service-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--grad-gold); }
+.service-card.featured { border-color: rgba(245,200,66,.3); background: rgba(245,200,66,.02); }
+.service-badge { font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; padding: 4px 10px; border-radius: 100px; display: inline-block; margin-bottom: 16px; background: rgba(245,200,66,.1); color: var(--gold); }
+.service-name { font-family: 'Bebas Neue', sans-serif; font-size: 36px; line-height: 1; color: var(--gold); margin-bottom: 10px; }
+.service-desc { font-size: 13px; color: var(--soft); line-height: 1.65; margin-bottom: 20px; }
+.service-features { list-style: none; margin-bottom: 24px; }
+.service-features li { font-size: 13px; color: var(--soft); padding: 8px 0; border-bottom: 1px solid var(--border); display: flex; gap: 8px; align-items: flex-start; }
+.service-features li:last-child { border-bottom: none; }
+.service-features .ico-gold { color: var(--gold); font-weight: 900; flex-shrink: 0; margin-top: 1px; }
+.service-price-from { font-size: 11px; color: var(--muted); margin-bottom: 2px; text-transform: uppercase; letter-spacing: 1px; }
+.service-price { font-family: 'Bebas Neue', sans-serif; font-size: 52px; line-height: 1; color: var(--gold); margin-bottom: 4px; }
+.service-price-note { font-size: 11px; color: var(--muted); margin-bottom: 20px; }
+.btn-service { display: block; text-align: center; padding: 14px; border-radius: 10px; font-weight: 700; font-size: 14px; text-decoration: none; cursor: pointer; background: rgba(245,200,66,.1); color: var(--gold); border: 1px solid rgba(245,200,66,.25); font-family: inherit; transition: all .2s; }
+.btn-service:hover { background: rgba(245,200,66,.18); transform: translateY(-1px); }
+
+.services-cta { text-align: center; margin-top: 36px; }
+.btn-services-cta { display: inline-flex; align-items: center; gap: 10px; background: var(--grad-gold); color: #1a1304; font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 900; padding: 16px 38px; border-radius: 100px; text-decoration: none; border: none; cursor: pointer; transition: opacity .2s, transform .2s; box-shadow: 0 8px 24px rgba(245,200,66,.18); }
+.btn-services-cta:hover { opacity: .9; transform: translateY(-2px); }
+.services-cta-note { margin-top: 12px; font-size: 12px; color: var(--muted); }
+.services-logo-strip { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 36px; padding: 20px; background: rgba(245,200,66,.03); border: 1px solid rgba(245,200,66,.1); border-radius: 14px; }
+.services-logo-strip img { height: 40px; width: auto; opacity: .8; filter: drop-shadow(0 0 10px rgba(245,200,66,.15)); }
+.services-logo-strip span { font-size: 12px; color: var(--muted); }
+
+/* ---------- Etapas do processo (páginas individuais de serviço) ---------- */
+.process-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-top: 32px; }
+.process-step { background: var(--bg); border: 1px solid rgba(245,200,66,.15); border-radius: 14px; padding: 20px 18px; }
+.process-num { font-family: 'Bebas Neue', sans-serif; font-size: 30px; color: var(--gold); line-height: 1; margin-bottom: 8px; }
+.process-step p { font-size: 13px; color: var(--soft); line-height: 1.6; }
