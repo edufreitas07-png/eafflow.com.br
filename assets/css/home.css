@@ -1,0 +1,104 @@
+/* =========================================================
+   EAF Flow — home.css
+   Estilos específicos da página inicial (institucional)
+   ========================================================= */
+
+/* ---------- Hero ---------- */
+.hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 80px 24px 100px; }
+.hero-logo { width: clamp(100px,18vw,160px); height: auto; margin-bottom: 20px; filter: drop-shadow(0 0 32px rgba(0,184,255,.25)); }
+.brand-eaf { font-family: 'Bebas Neue', sans-serif; font-size: clamp(72px, 14vw, 140px); letter-spacing: 12px; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1; }
+.brand-flow { font-family: 'Bebas Neue', sans-serif; font-size: clamp(32px, 6vw, 56px); letter-spacing: 18px; color: var(--soft); line-height: 1; margin-top: -4px; margin-bottom: 12px; }
+.brand-tagline { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); margin-bottom: 40px; }
+.hero-headline { font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px, 6vw, 68px); line-height: 1.05; color: var(--text); max-width: 700px; margin-bottom: 20px; }
+.hero-sub { font-size: clamp(15px, 2vw, 18px); color: var(--soft); max-width: 500px; line-height: 1.7; margin-bottom: 28px; }
+.hero-alert { background: rgba(255,77,109,.06); border: 1px solid rgba(255,77,109,.12); border-radius: 10px; padding: 12px 20px; font-size: 13px; color: var(--soft); max-width: 440px; margin-bottom: 32px; line-height: 1.6; }
+.hero-alert strong { color: #ff6b80; }
+
+.mechanism { background: rgba(0,229,160,.03); border: 1px solid rgba(0,229,160,.12); border-radius: 16px; padding: 24px; margin-top: 48px; text-align: center; max-width: 520px; }
+.mechanism-title { font-family: 'Bebas Neue', sans-serif; font-size: 28px; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 8px; }
+.mechanism-desc { font-size: 13px; color: var(--soft); line-height: 1.65; max-width: 500px; margin: 0 auto; }
+
+/* ---------- Estatísticas ---------- */
+.stats { display: flex; flex-wrap: wrap; }
+.stat { flex: 1; min-width: 130px; padding: 28px 20px; text-align: center; border-right: 1px solid var(--border); }
+.stat:last-child { border-right: none; }
+.stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 42px; line-height: 1; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.stat-label { font-size: 12px; color: var(--muted); margin-top: 5px; }
+
+/* ---------- Mockups (antes/depois) ---------- */
+.mockup-section { padding: 80px 24px; background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.mockup-inner { max-width: 900px; margin: 0 auto; }
+.mockup-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 40px; }
+@media (max-width: 640px) { .mockup-grid { grid-template-columns: 1fr; } }
+.mockup-wrap { border-radius: 16px; overflow: hidden; border: 1px solid var(--border); }
+.mockup-label { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 10px 16px; background: var(--surface2); color: var(--muted); border-bottom: 1px solid var(--border); }
+.mockup-label.green { color: var(--green); }
+.mockup-label.orange { color: var(--orange); }
+
+.pdf-mock { background: #fff; padding: 20px; font-family: 'DM Sans', sans-serif; }
+.pdf-mock-header { background: #0a0c10; padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid #00e5a0; margin: -20px -20px 16px; }
+.pdf-mock-logo { width: 36px; height: 36px; background: #fff; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 13px; color: #0a0c10; }
+.pdf-mock-empresa { color: #fff; font-size: 13px; font-weight: 900; }
+.pdf-mock-title { font-size: 16px; font-weight: 900; color: #111; margin-bottom: 4px; }
+.pdf-mock-ref { font-size: 11px; color: #666; margin-bottom: 12px; }
+.pdf-mock-table { width: 100%; border-collapse: collapse; margin-bottom: 12px; }
+.pdf-mock-table th { font-size: 9px; color: #999; font-weight: 700; text-transform: uppercase; padding: 6px 8px; background: #f8f8f8; border-bottom: 1px solid #eee; text-align: left; }
+.pdf-mock-table td { font-size: 11px; padding: 8px; border-bottom: 1px solid #f0f0f0; color: #333; font-weight: 600; }
+.pdf-mock-table td:last-child { text-align: right; }
+.pdf-mock-total { background: #0a0c10; color: #fff; padding: 10px 12px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.pdf-mock-total-label { font-size: 9px; font-weight: 700; letter-spacing: 1px; }
+.pdf-mock-total-val { font-size: 18px; font-weight: 900; color: #00e5a0; }
+.pdf-mock-pix { border: 1.5px dashed #e0f0ea; border-radius: 8px; padding: 8px 12px; }
+.pdf-mock-pix-label { font-size: 9px; font-weight: 800; color: #00b87d; margin-bottom: 3px; letter-spacing: 1px; }
+.pdf-mock-pix-key { font-size: 12px; font-weight: 700; color: #333; }
+.pdf-mock-logo-callout { background: rgba(0,229,160,.08); border: 1px solid rgba(0,229,160,.25); border-radius: 6px; padding: 6px 10px; margin-bottom: 10px; font-size: 10px; color: #00b87d; font-weight: 700; display: flex; align-items: center; gap: 6px; }
+
+.custo-mock { background: var(--bg); padding: 16px; }
+.custo-mock-item { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; margin-bottom: 8px; }
+.custo-mock-item-name { font-size: 12px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+.custo-mock-item-val { font-size: 16px; font-weight: 900; color: var(--danger); text-align: right; }
+.custo-mock-total-box { background: linear-gradient(135deg, rgba(255,183,3,.1), rgba(255,77,109,.05)); border: 1px solid rgba(255,183,3,.3); border-radius: 10px; padding: 14px; margin-top: 10px; display: flex; justify-content: space-between; align-items: center; }
+.custo-mock-total-label { font-size: 10px; font-weight: 700; color: #ffb703; }
+.custo-mock-preco { font-size: 22px; font-weight: 900; color: var(--green); }
+
+/* ---------- Dores do autônomo ---------- */
+.pain-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; }
+.pain-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 22px 18px; }
+.pain-icon { font-size: 22px; margin-bottom: 10px; }
+.pain-card p { font-size: 13px; color: var(--soft); line-height: 1.6; }
+.pain-card p strong { color: var(--text); }
+
+/* ---------- Comparativo grátis x EAF Flow ---------- */
+.compare-bg { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.compare-inner { max-width: 860px; margin: 0 auto; padding: 80px 24px; }
+.compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 36px; }
+@media (max-width: 560px) { .compare-grid { grid-template-columns: 1fr; } }
+.compare-card { border-radius: 16px; padding: 26px 22px; }
+.compare-card.free { background: var(--bg); border: 1px solid var(--border); }
+.compare-card.paid { background: rgba(0,229,160,.03); border: 1px solid rgba(0,229,160,.16); }
+.compare-tag { font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; padding: 4px 10px; border-radius: 100px; display: inline-block; margin-bottom: 14px; }
+.free .compare-tag { background: rgba(255,77,109,.08); color: #ff6b80; }
+.paid .compare-tag { background: rgba(0,229,160,.1); color: var(--green); }
+.compare-title { font-family: 'Bebas Neue', sans-serif; font-size: 26px; margin-bottom: 16px; }
+.free .compare-title { color: var(--muted); }
+.paid .compare-title { color: var(--green); }
+.compare-list { list-style: none; }
+.compare-list li { font-size: 13px; padding: 9px 0; border-bottom: 1px solid var(--border); display: flex; gap: 10px; align-items: flex-start; color: var(--soft); line-height: 1.45; }
+.compare-list li:last-child { border-bottom: none; }
+.ico { flex-shrink: 0; font-weight: 900; font-size: 13px; margin-top: 1px; }
+.ico-x { color: #ff4d6d; }
+.ico-check { color: var(--green); }
+
+/* ---------- Cards de teaser (produtos/serviços na home) ---------- */
+.teaser-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 36px; }
+.teaser-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 26px 22px; text-decoration: none; display: block; transition: border-color .2s, transform .2s; }
+.teaser-card:hover { transform: translateY(-2px); }
+.teaser-card.green { border-color: rgba(0,229,160,.2); }
+.teaser-card.orange { border-color: rgba(255,107,26,.2); }
+.teaser-card.gold { border-color: rgba(245,200,66,.2); }
+.teaser-icon { font-size: 26px; margin-bottom: 10px; }
+.teaser-name { font-family: 'Bebas Neue', sans-serif; font-size: 26px; color: var(--text); margin-bottom: 6px; }
+.teaser-desc { font-size: 13px; color: var(--soft); line-height: 1.6; margin-bottom: 10px; }
+.teaser-link { font-size: 12px; font-weight: 800; color: var(--green); }
+.teaser-card.orange .teaser-link { color: var(--orange); }
+.teaser-card.gold .teaser-link { color: var(--gold); }
