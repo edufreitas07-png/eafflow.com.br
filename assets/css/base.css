@@ -1,0 +1,119 @@
+/* =========================================================
+   EAF Flow — base.css
+   Estilos globais: variáveis, reset, navegação, rodapé,
+   botões genéricos, WhatsApp flutuante, FAQ, animação reveal
+   ========================================================= */
+
+:root {
+  --bg: #070910;
+  --surface: #0f1117;
+  --surface2: #161b26;
+  --border: #1e2535;
+  --grad: linear-gradient(135deg, #00e5a0, #00b8ff);
+  --grad-gold: linear-gradient(135deg, #f5c842, #e8960a);
+  --green: #00e5a0;
+  --blue: #00b8ff;
+  --text: #f0f2f8;
+  --muted: #5a6380;
+  --soft: #8a9ab8;
+  --danger: #ff4d6d;
+  --orange: #ff6b1a;
+  --yellow: #ffd11a;
+  --gold: #f5c842;
+  --gold-dark: #c9920a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  padding-top: 58px;
+}
+
+/* ---------- Navegação ---------- */
+#top-nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 9990;
+  background: rgba(7,9,16,.92); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 24px; height: 58px;
+}
+.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.nav-logo img { height: 36px; width: auto; }
+.nav-tabs { display: flex; gap: 4px; }
+.nav-tab {
+  padding: 7px 18px; border-radius: 8px; font-size: 13px; font-weight: 700;
+  text-decoration: none; color: var(--soft); border: 1px solid transparent;
+  transition: all .2s; cursor: pointer; background: none;
+}
+.nav-tab.active, .nav-tab:hover { color: var(--text); border-color: var(--border); background: var(--surface2); }
+.nav-tab.active { color: var(--green); border-color: rgba(0,229,160,.25); background: rgba(0,229,160,.06); }
+.nav-tab.gold-tab.active, .nav-tab.gold-tab:hover { color: var(--gold); border-color: rgba(245,200,66,.25); background: rgba(245,200,66,.06); }
+.nav-cta {
+  background: var(--grad); color: #000; font-weight: 900; font-size: 12px;
+  padding: 8px 18px; border-radius: 8px; text-decoration: none; white-space: nowrap;
+  display: none;
+}
+@media (min-width: 600px) { .nav-cta { display: block; } }
+@media (max-width: 480px) { .nav-tab { padding: 7px 11px; font-size: 12px; } }
+
+/* ---------- Botões genéricos ---------- */
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--grad); color: #000; font-family: 'DM Sans', sans-serif;
+  font-size: 16px; font-weight: 900; padding: 18px 42px; border-radius: 100px;
+  text-decoration: none; border: none; cursor: pointer;
+  transition: opacity .2s, transform .2s;
+}
+.btn-primary:hover { opacity: .88; transform: translateY(-2px); }
+.hero-note { margin-top: 14px; font-size: 12px; color: var(--muted); }
+
+/* ---------- Estrutura genérica de seção ---------- */
+.sep { border: none; border-top: 1px solid var(--border); }
+.section { padding: 80px 24px; max-width: 860px; margin: 0 auto; }
+.label { font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+.title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(32px, 5vw, 56px); line-height: 1.05; color: var(--text); margin-bottom: 14px; }
+.subtitle { font-size: 15px; color: var(--soft); line-height: 1.7; margin-bottom: 36px; }
+
+/* ---------- FAQ (usado em várias páginas) ---------- */
+.faq-list { margin-top: 28px; }
+.faq-item { border-bottom: 1px solid var(--border); padding: 16px 0; }
+.faq-q { font-weight: 700; font-size: 14px; color: var(--text); margin-bottom: 6px; }
+.faq-a { font-size: 13px; color: var(--soft); line-height: 1.65; }
+
+/* ---------- Seção final / CTA de fechamento ---------- */
+.final { padding: 100px 24px; text-align: center; }
+.final-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(38px, 7vw, 82px); line-height: 1.05; color: var(--text); margin-bottom: 16px; }
+.final-title span { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.final-sub { font-size: 15px; color: var(--soft); max-width: 420px; margin: 0 auto 36px; line-height: 1.7; }
+.final-logo { width: 70px; height: auto; margin: 0 auto 24px; display: block; opacity: .7; }
+
+/* ---------- Rodapé ---------- */
+footer { border-top: 1px solid var(--border); padding: 24px; text-align: center; font-size: 12px; color: var(--muted); }
+.footer-links { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 8px; }
+.footer-links a { color: var(--muted); font-size: 11px; text-decoration: none; }
+.footer-links a:hover { color: var(--soft); }
+.footer-logo { height: 28px; width: auto; opacity: .4; margin-bottom: 10px; }
+
+/* ---------- Animação reveal ao rolar ---------- */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .55s ease, transform .55s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ---------- Botão flutuante do WhatsApp ---------- */
+#whatsapp-btn {
+  position: fixed; bottom: 24px; right: 20px; z-index: 9997;
+  width: 58px; height: 58px; background: #25d366; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 20px rgba(37,211,102,.45); text-decoration: none;
+  transition: transform .2s, box-shadow .2s; animation: waPulse 2.2s infinite;
+}
+#whatsapp-btn:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(37,211,102,.6); }
+#whatsapp-btn svg { width: 30px; height: 30px; fill: #fff; }
+@keyframes waPulse {
+  0% { box-shadow: 0 0 0 0 rgba(37,211,102,.55); }
+  70% { box-shadow: 0 0 0 14px rgba(37,211,102,0); }
+  100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); }
+}
