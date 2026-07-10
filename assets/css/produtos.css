@@ -41,3 +41,34 @@
 .plan-btn:hover { border-color: rgba(0,229,160,.3); color: var(--text); }
 .plan-btn.suggested { border-color: rgba(0,229,160,.3); color: var(--text); }
 .plan-note { font-size: 10px; color: var(--muted); margin-top: 3px; font-weight: 500; }
+
+/* Identidade atual das paginas internas de produto */
+.product-detail-page > .section,
+.product-detail-page > .sep,
+.product-detail-page > .contato-block {
+  --bg: #f7f4ef; --surface: #ffffff; --surface2: #eef1f5;
+  --border: #dde3ea; --text: #102033; --muted: #5f6c7b; --soft: var(--muted);
+  --danger: #d92d2d; --green: #b91f24; --orange: var(--green); --grad: var(--danger);
+  background-color: var(--bg); color: var(--text);
+}
+
+.product-detail-page .product-card.green,
+.product-detail-page .product-card.orange,
+.product-detail-page .plan-btn:hover,
+.product-detail-page .plan-btn.suggested {
+  border-color: color-mix(in srgb, var(--danger) 30%, transparent);
+}
+.product-detail-page .orange .product-tag { background-color: color-mix(in srgb, var(--danger) 8%, transparent); }
+.product-detail-page .orange .btn-product,
+.product-detail-page .btn-primary {
+  background: var(--danger); border-color: var(--danger); color: var(--surface);
+}
+.product-detail-page .orange .btn-product:hover,
+.product-detail-page .orange .btn-product:active,
+.product-detail-page .btn-primary:hover,
+.product-detail-page .btn-primary:active {
+  background: var(--green); border-color: var(--green); color: var(--surface);
+}
+.product-detail-page .btn-product:focus-visible,
+.product-detail-page .plan-btn:focus-visible,
+.product-detail-page .btn-primary:focus-visible { outline-color: var(--danger); }
