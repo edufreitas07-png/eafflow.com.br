@@ -170,7 +170,7 @@ body.is-navigating main {
     font-size: 12px;
   }
   .main-nav a:first-child,
-  .main-nav a:nth-child(5) {
+  .main-nav a:last-child {
     display: none;
   }
 }
