@@ -562,7 +562,7 @@
   .home-page .main-nav a:nth-child(4) {
     display: inline-flex;
   }
-  .home-page .main-nav a:nth-child(5) {
+  .home-page .main-nav a:last-child {
     display: none;
   }
   .home-hero,
@@ -628,7 +628,7 @@
 
 @media (max-width: 420px) {
   .home-page .main-nav a:first-child,
-  .home-page .main-nav a:nth-child(5) {
+  .home-page .main-nav a:last-child {
     display: none;
   }
   .dashboard-mockup { border-radius: 12px; }
