@@ -156,7 +156,7 @@ body.nav-open {
   display: block;
   width: 18px;
   height: 2px;
-  background: var(--text);
+  background: var(--home-navy, #17263A);
   border-radius: 2px;
   transition: transform .2s ease, opacity .2s ease;
 }
