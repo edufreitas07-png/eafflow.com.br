@@ -43,14 +43,24 @@
 .plan-note { font-size: 10px; color: var(--muted); margin-top: 3px; font-weight: 500; }
 
 /* Identidade atual das paginas internas de produto */
-.product-detail-page > .section,
-.product-detail-page > .sep,
-.product-detail-page > .contato-block {
+body.product-detail-page {
   --bg: #f7f4ef; --surface: #ffffff; --surface2: #eef1f5;
   --border: #dde3ea; --text: #102033; --muted: #5f6c7b; --soft: var(--muted);
-  --danger: #d92d2d; --green: #b91f24; --orange: var(--green); --grad: var(--danger);
-  background-color: var(--bg); color: var(--text);
+  --danger: #d92d2d; --green: #b91f24; --orange: var(--green); --grad: var(--danger); --home-navy: #0f2742;
+  background: var(--bg); color: var(--text);
 }
+
+.product-detail-page .site-header {
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
+  border-bottom-color: color-mix(in srgb, var(--home-navy) 10%, transparent);
+  box-shadow: 0 10px 30px color-mix(in srgb, var(--home-navy) 6%, transparent);
+}
+.product-detail-page .nav-brand-text { color: var(--home-navy); }
+.product-detail-page .main-nav a { color: var(--muted); }
+.product-detail-page .main-nav a.active,
+.product-detail-page .main-nav a:hover { color: var(--danger); background: color-mix(in srgb, var(--danger) 8%, transparent); }
+.product-detail-page .nav-action { background: var(--home-navy); color: var(--surface); border-color: var(--home-navy); }
+.product-detail-page .nav-action:hover { background: var(--danger); color: var(--surface); border-color: var(--danger); }
 
 .product-detail-page .product-card.green,
 .product-detail-page .product-card.orange,
@@ -72,3 +82,11 @@
 .product-detail-page .btn-product:focus-visible,
 .product-detail-page .plan-btn:focus-visible,
 .product-detail-page .btn-primary:focus-visible { outline-color: var(--danger); }
+
+.product-detail-page footer { background: var(--bg); border-top-color: var(--border); color: var(--muted); }
+.product-detail-page .footer-links a { color: var(--muted); }
+.product-detail-page .footer-links a:hover { color: var(--danger); }
+
+@media (max-width: 900px) {
+  .product-detail-page .main-nav { box-shadow: 0 16px 30px color-mix(in srgb, var(--home-navy) 12%, transparent); }
+}
