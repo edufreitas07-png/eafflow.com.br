@@ -15,11 +15,12 @@
 
 <header class="site-header">
   <div class="nav-container">
-    <a class="nav-logo" href="/">
+    <a class="nav-logo" href="/" aria-label="EAF Flow">
       <img src="/assets/img/logo-eaf-flow.png" alt="EAF Flow">
+      <span class="nav-brand-text">EAF Flow</span>
     </a>
 
-    <nav class="main-nav" aria-label="Menu principal">
+    <nav class="main-nav" id="main-nav" aria-label="Menu principal">
       <a href="/">In&iacute;cio</a>
       <a href="/eaf-menu/">EAF Menu</a>
       <a href="/produtos/">Produtos</a>
@@ -29,6 +30,12 @@
     </nav>
 
     <a class="nav-action" href="https://api.whatsapp.com/send?phone=5541984213488" target="_blank" rel="noopener">Falar com a EAF Flow</a>
+
+    <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Abrir menu">
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+    </button>
   </div>
 </header>
 
@@ -75,20 +82,4 @@
   <p class="label">Contato</p>
   <h2 class="title">Pronto para ter um site profissional?</h2>
   <p>Solicite um orçamento sem compromisso pelo WhatsApp.</p>
-  <a href="https://api.whatsapp.com/send?phone=5541984213488&text=Ol%C3%A1!%20Tenho%20interesse%20em%20criar%20um%20Site%20Completo.%20Pode%20me%20passar%20um%20or%C3%A7amento%3F" class="btn-primary" target="_blank" rel="noopener">Solicitar orçamento</a>
-  <p style="margin-top:14px"><a href="https://portifolioeaf.vercel.app/" target="_blank" rel="noopener" style="color:var(--muted);font-size:12px">Ver portfólio de sites →</a></p>
-</div>
-
-<footer>
-  <img class="footer-logo" src="/assets/img/logo-eaf-flow.png" alt="EAF Flow">
-  <div class="footer-links">
-    <a href="#">Política de Privacidade</a>
-    <a href="#">Termos de Uso</a>
-    <a href="https://portifolioeaf.vercel.app/" target="_blank" rel="noopener">Portfólio</a>
-  </div>
-  © 2026 EAF Flow. Todos os direitos reservados.
-</footer>
-
-<script src="/assets/js/main.js" async></script>
-</body>
-</html>
+  <a href="https://api.whatsapp.com/send?phon
