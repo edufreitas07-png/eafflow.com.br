@@ -5,9 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>EAF Menu — Delivery direto para restaurantes | EAF Flow</title>
 <meta name="description" content="Conheça o EAF Menu: cardápio online, painel de pedidos, app do motoboy, relatórios e estrutura preparada para evoluir com integrações e webhooks.">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700;900&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#f5f8fc">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=DM+Sans:wght@400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/base.css">
 <link rel="stylesheet" href="/assets/css/home.css">
+<link rel="stylesheet" href="/assets/css/cinema.css">
 <script src="/assets/js/analytics.js" defer></script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1674671890520272&ev=PageView&noscript=1" alt=""></noscript>
 </head>
@@ -16,7 +20,7 @@
 <header class="site-header">
   <div class="nav-container">
     <a class="nav-logo" href="/" aria-label="EAF Flow">
-      <img src="/assets/img/logo-eaf-flow.png" alt="EAF Flow">
+      <img src="/assets/img/logo-mark.png" alt="EAF Flow">
       <span class="nav-brand-text">EAF Flow</span>
     </a>
 
@@ -119,6 +123,55 @@
     </div>
   </section>
 
+  <section class="cinema" id="tour" data-length="460" aria-label="Tour pelo EAF Menu, controlado pela rolagem">
+    <div class="cinema-track">
+      <div class="cinema-stage">
+        <div class="cinema-glow"></div>
+        <div class="cinema-inner">
+          <div class="cinema-copy">
+            <div class="cinema-head">
+              <p class="eyebrow">O EAF Menu por dentro</p>
+              <h2 class="cinema-title">Role a página e veja o EAF Menu funcionando.</h2>
+            </div>
+            <ol class="cinema-chapters">
+        <li class="cinema-chapter" data-start="0" data-end="21">
+          <span class="cinema-num">01</span>
+          <h3>Cardápio do cliente</h3>
+          <p>O cliente abre o cardápio pelo celular, vê as ofertas e escolhe os produtos.</p>
+        </li>
+        <li class="cinema-chapter" data-start="21" data-end="32.8">
+          <span class="cinema-num">02</span>
+          <h3>Painel do restaurante</h3>
+          <p>O monitor mostra os pedidos em tempo real, e o restaurante também pode lançar um pedido manualmente.</p>
+        </li>
+        <li class="cinema-chapter" data-start="32.8" data-end="45">
+          <span class="cinema-num">03</span>
+          <h3>Financeiro, cardápio e gestão</h3>
+          <p>Caixa e relatório financeiro, produtos e categorias, promoções e cupons, clientes, entregadores e equipe.</p>
+        </li>
+        <li class="cinema-chapter" data-start="45" data-end="46.8">
+          <span class="cinema-num">04</span>
+          <h3>Configurações e apps</h3>
+          <p>Personalize a marca e acesse o app do cliente e o app do motoboy.</p>
+        </li>
+            </ol>
+            <div class="cinema-dots" aria-hidden="true">
+        <span><i></i></span>
+        <span><i></i></span>
+        <span><i></i></span>
+        <span><i></i></span>
+            </div>
+          </div>
+          <div class="cinema-device">
+            <div class="cinema-phone">
+              <video muted playsinline preload="none" poster="/assets/video/tour-poster.jpg" data-src="/assets/video/tour.mp4" data-duration="46.8" aria-label="Telas do EAF Menu: cardápio do cliente, painel do restaurante, gestão e configurações"></video>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="home-section inside-section reveal" id="por-dentro">
     <div class="section-heading compact">
       <p class="eyebrow">Veja o EAF Menu por dentro</p>
@@ -194,6 +247,7 @@
   </div>
 </footer>
 
+<script src="/assets/js/cinema.js" defer></script>
 <script src="/assets/js/main.js" async></script>
 </body>
 </html>

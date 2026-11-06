@@ -85,9 +85,67 @@
     });
   }
 
+  /* ---------- Movimento na rolagem (site inteiro) ---------- */
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function initScrollMotion() {
+    if (reduceMotion) return;
+    var root = document.documentElement;
+    root.classList.add('has-motion');
+
+    // barra de progresso no topo + header com sombra ao rolar
+    var bar = document.createElement('div');
+    bar.className = 'scroll-progress';
+    bar.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(bar);
+    var header = document.querySelector('.site-header');
+    var mockup = document.querySelector('.hero-visual .dashboard-mockup');
+    var ticking = false;
+
+    function onScroll() {
+      var y = window.pageYOffset || document.documentElement.scrollTop;
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.transform = 'scaleX(' + (max > 0 ? Math.min(1, y / max) : 0) + ')';
+      if (header) header.classList.toggle('is-scrolled', y > 8);
+      if (mockup && y < window.innerHeight * 1.2) {
+        mockup.style.setProperty('--mock-y', (y * -0.06).toFixed(1) + 'px');
+      }
+      ticking = false;
+    }
+    window.addEventListener('scroll', function () {
+      if (!ticking) { ticking = true; requestAnimationFrame(onScroll); }
+    }, { passive: true });
+    onScroll();
+
+    // cartões e blocos entram em sequência
+    var selector = '.solution-card, .flow-card, .inside-card, .process-step, .faq-item, .product-card, .service-card, .section-heading, .label, .title, .services-title, .product-features li, .service-features li';
+    var items = [].slice.call(document.querySelectorAll(selector)).filter(function (el) {
+      return !el.closest('.cinema');
+    });
+    items.forEach(function (el) {
+      var siblings = el.parentElement ? [].slice.call(el.parentElement.children).filter(function (s) { return s.matches(selector); }) : [el];
+      el.style.setProperty('--stagger', Math.max(0, siblings.indexOf(el)) * 70 + 'ms');
+      el.classList.add('stagger-item');
+    });
+    if (!('IntersectionObserver' in window)) {
+      items.forEach(function (el) { el.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+    items.forEach(function (el) { io.observe(el); });
+  }
+
   function init() {
     initReveals(document);
     initNavToggle();
+    initScrollMotion();
   }
 
   if (document.body) {

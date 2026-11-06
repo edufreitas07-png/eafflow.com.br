@@ -1,92 +1,119 @@
 /* =========================================================
    EAF Flow — produtos.css
-   Estilos das páginas de produtos (OrçaRápido / CustoRápido /
-   EAF Menu). Vitrine sem preço; páginas internas com preço
-   discreto, nunca como elemento principal.
+   Páginas internas de produto (OrçaRápido / CustoRápido).
+   Preço discreto: nunca é o elemento principal da página.
    ========================================================= */
 
 .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 32px; }
-.product-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 28px 24px; display: flex; flex-direction: column; }
-.product-card.green { border-color: rgba(0,229,160,.18); }
-.product-card.orange { border-color: rgba(255,107,26,.18); }
-.product-card.blue { border-color: rgba(0,184,255,.18); }
-.product-tag { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 10px; border-radius: 100px; display: inline-block; margin-bottom: 14px; }
-.green .product-tag { background: rgba(0,229,160,.08); color: var(--green); }
-.orange .product-tag { background: rgba(255,107,26,.08); color: var(--orange); }
-.blue .product-tag { background: rgba(0,184,255,.08); color: var(--blue); }
-.product-name { font-family: 'Bebas Neue', sans-serif; font-size: 32px; line-height: 1; margin-bottom: 10px; letter-spacing: .3px; }
-.green .product-name { color: var(--green); }
-.orange .product-name { color: var(--orange); }
-.blue .product-name { color: var(--blue); }
-.product-desc { font-size: 13px; color: var(--soft); line-height: 1.6; margin-bottom: 18px; }
+
+.product-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 30px 26px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-md);
+}
+.product-card.green,
+.product-card.blue { border-color: rgba(27,111,179,.22); }
+.product-card.orange { border-color: rgba(217,86,11,.25); }
+
+.product-tag {
+  display: inline-block;
+  margin-bottom: 14px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  background: var(--tint);
+  color: var(--brand);
+}
+.orange .product-tag { background: rgba(217,86,11,.1); color: var(--accent); }
+
+.product-name {
+  font-family: var(--font-head);
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -.03em;
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+.product-desc { font-size: 14px; color: var(--muted); line-height: 1.65; margin-bottom: 18px; }
+
 .product-features { list-style: none; margin-bottom: 22px; }
-.product-features li { font-size: 13px; color: var(--soft); padding: 7px 0; border-bottom: 1px solid var(--border); display: flex; gap: 8px; }
+.product-features li {
+  display: flex;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 15px;
+  color: var(--ink-2);
+  line-height: 1.5;
+}
+.product-features li::before {
+  content: "";
+  flex: 0 0 20px;
+  height: 20px;
+  margin-top: 1px;
+  border-radius: 50%;
+  background: var(--tint) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5.5 10.4l3 3 6-6.4' fill='none' stroke='%231b6fb3' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 100% no-repeat;
+}
 .product-features li:last-child { border-bottom: none; }
 
-/* Preço discreto — usado só nas páginas internas de produto */
+/* Preço discreto */
 .price-modest { margin-bottom: 14px; }
 .price-modest .price-old { font-size: 12px; color: var(--muted); text-decoration: line-through; margin-bottom: 1px; }
-.price-modest .price-value { font-size: 20px; font-weight: 800; color: var(--text); }
+.price-modest .price-value { font-size: 20px; font-weight: 800; color: var(--ink); }
 .price-modest .price-note { font-size: 11px; color: var(--muted); margin-top: 1px; }
 
-.btn-product { margin-top: auto; display: block; text-align: center; padding: 12px; border-radius: 10px; font-weight: 700; font-size: 13px; text-decoration: none; cursor: pointer; border: 1px solid; font-family: inherit; transition: opacity .2s; }
-.green .btn-product { background: rgba(0,229,160,.07); color: var(--green); border-color: rgba(0,229,160,.18); }
-.orange .btn-product { background: rgba(255,107,26,.07); color: var(--orange); border-color: rgba(255,107,26,.18); }
-.blue .btn-product { background: rgba(0,184,255,.07); color: var(--blue); border-color: rgba(0,184,255,.18); }
-.btn-product:hover { opacity: .75; }
-
-/* ---------- Alternância de plano (mensal / anual) — páginas internas ---------- */
-.plan-toggle { display: flex; gap: 8px; margin-bottom: 16px; }
-.plan-btn { flex: 1; padding: 12px 10px; border-radius: 10px; font-size: 12px; font-weight: 700; text-align: center; cursor: pointer; border: 1px solid var(--border); background: var(--surface2); color: var(--soft); transition: border-color .2s, color .2s; text-decoration: none; display: block; }
-.plan-btn:hover { border-color: rgba(0,229,160,.3); color: var(--text); }
-.plan-btn.suggested { border-color: rgba(0,229,160,.3); color: var(--text); }
-.plan-note { font-size: 10px; color: var(--muted); margin-top: 3px; font-weight: 500; }
-
-/* Identidade atual das paginas internas de produto */
-body.product-detail-page {
-  --bg: #f7f4ef; --surface: #ffffff; --surface2: #eef1f5;
-  --border: #dde3ea; --text: #102033; --muted: #5f6c7b; --soft: var(--muted);
-  --danger: #d92d2d; --green: #b91f24; --orange: var(--green); --grad: var(--danger); --home-navy: #0f2742;
-  background: var(--bg); color: var(--text);
+.btn-product {
+  margin-top: auto;
+  display: block;
+  text-align: center;
+  padding: 14px;
+  border-radius: 14px;
+  font-weight: 800;
+  font-size: 14px;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: #fff;
+  font-family: inherit;
+  transition: background .2s, transform .2s;
 }
+.btn-product:hover { background: var(--accent-dark); border-color: var(--accent-dark); transform: translateY(-1px); }
 
-.product-detail-page .site-header {
-  background: color-mix(in srgb, var(--bg) 92%, transparent);
-  border-bottom-color: color-mix(in srgb, var(--home-navy) 10%, transparent);
-  box-shadow: 0 10px 30px color-mix(in srgb, var(--home-navy) 6%, transparent);
+/* ---------- Escolha de plano (mensal / anual) ---------- */
+.plan-toggle { display: flex; gap: 10px; margin-bottom: 16px; }
+.plan-btn {
+  flex: 1;
+  display: block;
+  padding: 16px 12px;
+  border-radius: 14px;
+  font-size: 14px;
+  font-weight: 800;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1.5px solid var(--line);
+  background: #fff;
+  color: var(--ink);
+  transition: border-color .2s, box-shadow .2s, transform .2s;
 }
-.product-detail-page .nav-brand-text { color: var(--home-navy); }
-.product-detail-page .main-nav a { color: var(--muted); }
-.product-detail-page .main-nav a.active,
-.product-detail-page .main-nav a:hover { color: var(--danger); background: color-mix(in srgb, var(--danger) 8%, transparent); }
-.product-detail-page .nav-action { background: var(--home-navy); color: var(--surface); border-color: var(--home-navy); }
-.product-detail-page .nav-action:hover { background: var(--danger); color: var(--surface); border-color: var(--danger); }
+.plan-btn:hover { border-color: var(--brand); transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+.plan-btn.suggested {
+  border-color: var(--accent);
+  background: linear-gradient(180deg, #fff, #fff4ec);
+  box-shadow: 0 10px 24px rgba(217,86,11,.14);
+}
+.plan-btn.suggested:hover { border-color: var(--accent-dark); }
+.plan-note { font-size: 11px; color: var(--muted); margin-top: 4px; font-weight: 500; }
 
-.product-detail-page .product-card.green,
-.product-detail-page .product-card.orange,
-.product-detail-page .plan-btn:hover,
-.product-detail-page .plan-btn.suggested {
-  border-color: color-mix(in srgb, var(--danger) 30%, transparent);
-}
-.product-detail-page .orange .product-tag { background-color: color-mix(in srgb, var(--danger) 8%, transparent); }
-.product-detail-page .orange .btn-product,
-.product-detail-page .btn-primary {
-  background: var(--danger); border-color: var(--danger); color: var(--surface);
-}
-.product-detail-page .orange .btn-product:hover,
-.product-detail-page .orange .btn-product:active,
-.product-detail-page .btn-primary:hover,
-.product-detail-page .btn-primary:active {
-  background: var(--green); border-color: var(--green); color: var(--surface);
-}
-.product-detail-page .btn-product:focus-visible,
-.product-detail-page .plan-btn:focus-visible,
-.product-detail-page .btn-primary:focus-visible { outline-color: var(--danger); }
-
-.product-detail-page footer { background: var(--bg); border-top-color: var(--border); color: var(--muted); }
-.product-detail-page .footer-links a { color: var(--muted); }
-.product-detail-page .footer-links a:hover { color: var(--danger); }
-
-@media (max-width: 900px) {
-  .product-detail-page .main-nav { box-shadow: 0 16px 30px color-mix(in srgb, var(--home-navy) 12%, transparent); }
+@media (max-width: 520px) {
+  .plan-toggle { flex-direction: column; }
 }

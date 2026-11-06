@@ -1,0 +1,187 @@
+/* =========================================================
+   EAF Flow — cinema.css
+   Seção cinematográfica: o celular fica fixo na tela e o app
+   avança conforme a página é rolada (vídeo controlado pela
+   rolagem, ver assets/js/cinema.js).
+   ========================================================= */
+
+.cinema {
+  position: relative;
+  width: 100%;
+  color: #fff;
+  background: #050d1a;
+  /* sangra para fora do contêiner e cobre a largura toda */
+  margin: 40px 0;
+}
+.cinema-track { position: relative; height: 420vh; }
+.cinema-stage {
+  position: sticky;
+  top: var(--header-h);
+  height: calc(100vh - var(--header-h));
+  min-height: 520px;
+  overflow: hidden;
+  display: grid;
+  align-items: center;
+}
+.cinema-glow {
+  position: absolute;
+  inset: -20%;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(40% 50% at 78% 45%, var(--cinema-a, rgba(47,164,231,.42)), transparent 70%),
+    radial-gradient(34% 44% at 10% 90%, var(--cinema-b, rgba(245,130,32,.26)), transparent 70%);
+  transition: background .8s ease;
+}
+.cinema[data-chapter="1"] { --cinema-a: rgba(245,130,32,.34); --cinema-b: rgba(47,164,231,.26); }
+.cinema[data-chapter="2"] { --cinema-a: rgba(47,164,231,.46); --cinema-b: rgba(27,111,179,.3); }
+.cinema[data-chapter="3"] { --cinema-a: rgba(31,160,98,.30); --cinema-b: rgba(47,164,231,.28); }
+
+.cinema-inner {
+  position: relative;
+  z-index: 1;
+  width: min(1120px, calc(100% - 48px));
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: clamp(32px, 7vw, 96px);
+}
+
+/* ---------- Texto ---------- */
+.cinema .eyebrow { color: #8fd0ff; }
+.cinema .eyebrow::before { background: #8fd0ff; }
+.cinema-title {
+  font-family: var(--font-head);
+  font-size: clamp(30px, 3.8vw, 52px);
+  font-weight: 800;
+  line-height: 1.04;
+  letter-spacing: -.035em;
+  color: #fff;
+  margin-bottom: 28px;
+  max-width: 560px;
+}
+.cinema-chapters { list-style: none; position: relative; min-height: 190px; max-width: 520px; }
+.cinema-chapter {
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 100%;
+  opacity: 0;
+  transform: translateY(18px);
+  filter: blur(6px);
+  pointer-events: none;
+  transition: opacity .55s ease, transform .55s ease, filter .55s ease;
+}
+.cinema-chapter.is-active { opacity: 1; transform: none; filter: none; pointer-events: auto; }
+.cinema-num {
+  display: inline-block;
+  margin-bottom: 12px;
+  font-family: var(--font-head);
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: .1em;
+  color: #ffb067;
+}
+.cinema-chapter h3 {
+  font-family: var(--font-head);
+  font-size: clamp(22px, 2.4vw, 30px);
+  font-weight: 700;
+  letter-spacing: -.025em;
+  line-height: 1.15;
+  color: #fff;
+  margin-bottom: 10px;
+}
+.cinema-chapter p { font-size: 17px; line-height: 1.7; color: rgba(255,255,255,.76); }
+
+.cinema-dots { display: flex; gap: 8px; margin-top: 30px; }
+.cinema-dots span {
+  height: 4px;
+  flex: 0 0 34px;
+  border-radius: 4px;
+  background: rgba(255,255,255,.18);
+  overflow: hidden;
+}
+.cinema-dots span i {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, #2fa4e7, #ffb067);
+}
+
+/* ---------- Celular ---------- */
+.cinema-device { display: grid; place-items: center; perspective: 1400px; }
+.cinema-phone {
+  position: relative;
+  height: min(calc(100vh - var(--header-h) - 56px), 720px);
+  min-height: 440px;
+  width: auto;
+  aspect-ratio: 480 / 962;
+  padding: 11px;
+  border-radius: 46px;
+  background: #0b1424;
+  border: 1px solid rgba(255,255,255,.14);
+  box-shadow:
+    0 0 0 2px rgba(255,255,255,.04),
+    0 50px 100px rgba(0,0,0,.55),
+    0 0 120px rgba(47,164,231,.22);
+  transform: translateY(var(--phone-y, 0px)) rotateY(var(--phone-ry, -10deg)) rotateX(var(--phone-rx, 3deg)) scale(var(--phone-s, .94));
+  will-change: transform;
+}
+.cinema-phone::before {
+  content: "";
+  position: absolute;
+  top: 18px; left: 50%;
+  width: 11px; height: 11px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: #05080f;
+  z-index: 2;
+}
+.cinema-phone video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 36px;
+  background: #fff;
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 860px) {
+  .cinema-track { height: 360vh; }
+  .cinema-stage { align-items: stretch; }
+  .cinema-inner {
+    width: calc(100% - 32px);
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    align-content: center;
+    gap: 14px;
+    padding: 14px 0 16px;
+  }
+  .cinema-copy { display: contents; }
+  .cinema-head { grid-row: 1; }
+  .cinema-title { font-size: clamp(24px, 7vw, 32px); margin-bottom: 0; }
+  .cinema .eyebrow { margin-bottom: 8px; }
+  .cinema-device { grid-row: 2; align-self: center; min-height: 0; }
+  .cinema-phone { width: auto; height: min(46vh, 430px); min-height: 0; }
+  .cinema-chapters { grid-row: 3; min-height: 150px; }
+  .cinema-chapter h3 { font-size: 20px; margin-bottom: 6px; }
+  .cinema-chapter p { font-size: 15px; line-height: 1.55; }
+  .cinema-dots { grid-row: 4; margin-top: 4px; }
+}
+
+/* ---------- Sem movimento: vira bloco comum, o vídeo vira controle manual ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .cinema-track { height: auto; }
+  .cinema-stage { position: relative; height: auto; padding: 72px 0; }
+  .cinema-chapters { min-height: 0; }
+  .cinema-chapter { position: static; opacity: 1; transform: none; filter: none; margin-bottom: 22px; }
+  .cinema-dots { display: none; }
+  .cinema-phone { transform: none; }
+}
+.cinema.no-scrub .cinema-track { height: auto; }
+.cinema.no-scrub .cinema-stage { position: relative; height: auto; padding: 72px 0; }
+.cinema.no-scrub .cinema-chapters { min-height: 0; }
+.cinema.no-scrub .cinema-chapter { position: static; opacity: 1; transform: none; filter: none; margin-bottom: 22px; }
+.cinema.no-scrub .cinema-dots { display: none; }
+.cinema.no-scrub .cinema-phone { transform: none; }
