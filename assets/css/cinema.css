@@ -18,6 +18,7 @@
   position: sticky;
   top: var(--header-h);
   height: calc(100vh - var(--header-h));
+  height: calc(100svh - var(--header-h));
   min-height: 520px;
   overflow: hidden;
   display: grid;

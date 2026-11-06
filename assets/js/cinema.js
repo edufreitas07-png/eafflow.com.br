@@ -18,14 +18,6 @@
     var dots = [].slice.call(section.querySelectorAll('.cinema-dots span i'));
     if (!track || !video) return;
 
-    var length = parseFloat(section.getAttribute('data-length')) || 420;
-    var narrow = window.matchMedia('(max-width: 860px)');
-    function applyLength() {
-      track.style.height = (narrow.matches ? Math.min(length, 360) : length) + 'vh';
-    }
-    applyLength();
-    window.addEventListener('resize', applyLength);
-
     var loaded = false;
     function load() {
       if (loaded) return;
@@ -33,6 +25,14 @@
       video.preload = 'auto';
       video.src = video.getAttribute('data-src');
       video.load();
+    }
+
+    // Só define a altura da pista quando há rolagem animada.
+    // (Com "reduzir movimento" a pista fica automática, senão sobra um vazio.)
+    var length = parseFloat(section.getAttribute('data-length')) || 420;
+    var narrow = window.matchMedia('(max-width: 860px)');
+    function applyLength() {
+      track.style.height = (narrow.matches ? Math.min(length, 360) : length) + 'vh';
     }
 
     if (reduce) {
@@ -43,6 +43,9 @@
       chapters.forEach(function (c) { c.classList.add('is-active'); });
       return;
     }
+
+    applyLength();
+    window.addEventListener('resize', applyLength);
 
     if ('IntersectionObserver' in window) {
       new IntersectionObserver(function (entries) {

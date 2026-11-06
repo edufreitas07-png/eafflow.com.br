@@ -50,7 +50,7 @@ body {
   font-family: var(--font-body);
   background: var(--bg);
   color: var(--ink);
-  overflow-x: hidden;
+  overflow-x: clip; /* clip (não hidden): hidden quebra position:sticky em celulares */
   padding-top: var(--header-h);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
