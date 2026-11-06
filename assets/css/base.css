@@ -36,8 +36,8 @@
   --danger: var(--accent);
   --home-navy: var(--ink);
 
-  --font-head: 'Bricolage Grotesque', 'DM Sans', system-ui, sans-serif;
-  --font-body: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-head: 'Poppins', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-body: 'Poppins', system-ui, -apple-system, 'Segoe UI', sans-serif;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -299,7 +299,7 @@ body.nav-open { overflow: hidden; }
   font-size: clamp(30px, 4.4vw, 48px);
   line-height: 1.06;
   font-weight: 800;
-  letter-spacing: -.03em;
+  letter-spacing: -.02em;
   color: var(--ink);
   margin-bottom: 16px;
 }
