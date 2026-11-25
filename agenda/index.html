@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EAF Agenda — agenda online para salão e barbearia | EAF Flow</title>
+<meta name="description" content="EAF Agenda: seu cliente agenda sozinho pelo celular, só aparecem horários livres, e você controla a agenda do dia, o caixa e a comissão de cada profissional.">
+<meta name="theme-color" content="#f5f8fc">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/base.css">
+<link rel="stylesheet" href="/assets/css/lead.css">
+<script src="/assets/js/analytics.js" defer></script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1674671890520272&ev=PageView&noscript=1" alt=""></noscript>
+</head>
+<body class="lp-body">
+<header class="lp-header">
+  <div class="lp-header-in">
+    <a class="lp-logo" href="/" aria-label="EAF Flow">
+      <img src="/assets/img/logo-mark.png" alt="">
+      <span>EAF Flow</span>
+    </a>
+    <a class="btn-primary" href="#formulario">Contrate agora</a>
+  </div>
+</header>
+
+<main>
+  <section class="lp-hero">
+    <div>
+      <img class="lp-prodlogo" src="/assets/img/logo-eaf-agenda.jpg" alt="EAF Agenda" width="120" height="120">
+      <p class="lp-eyebrow">Para salões, barbearias e manicures</p>
+      <h1>Seu cliente agenda <em>sozinho</em>, 24 horas por dia.</h1>
+      <p class="lp-sub">O EAF Agenda mostra só os horários livres, o cliente escolhe pelo seu link e você acompanha tudo na agenda do dia, sem ficar trocando mensagens no WhatsApp.</p>
+      <ul class="lp-bullets">
+        <li>O cliente escolhe o serviço, o profissional e o horário pelo celular</li>
+        <li>Só aparecem horários livres</li>
+        <li>Agenda do dia: confirmar, receber e fechar o caixa</li>
+        <li>Faturamento e comissão de cada profissional</li>
+      </ul>
+      <div class="lp-hero-cta"><a class="btn-primary" href="#formulario">Contrate agora</a></div>
+    </div>
+    <div id="formulario">
+    <div class="lp-card" id="lead-box">
+      <div id="lead-head">
+        <h2>Quero o EAF Agenda no meu negócio</h2>
+        <p class="lp-card-sub">Preencha em 1 minuto. A gente chama você no WhatsApp.</p>
+      </div>
+      <form id="lead-form" class="lp-form" novalidate data-produtos-fixos="agenda">
+        <div class="lp-field" data-campo="nome">
+          <label for="f-nome">Seu nome</label>
+          <input type="text" id="f-nome" name="nome" autocomplete="name" maxlength="120">
+          <div class="lp-error"></div>
+        </div>
+        <div class="lp-field" data-campo="whatsapp">
+          <label for="f-zap">WhatsApp (com DDD)</label>
+          <input type="tel" id="f-zap" name="whatsapp" inputmode="numeric" autocomplete="tel-national" placeholder="(41) 99999-0000">
+          <div class="lp-error"></div>
+        </div>
+        <div class="lp-field" data-campo="negocio">
+          <label for="f-neg">Nome do seu negócio</label>
+          <input type="text" id="f-neg" name="negocio" maxlength="120">
+          <div class="lp-error"></div>
+        </div>
+        <div class="lp-field" data-campo="cidade">
+          <label for="f-cid">Cidade</label>
+          <input type="text" id="f-cid" name="cidade" autocomplete="address-level2" maxlength="80">
+          <div class="lp-error"></div>
+        </div>
+        <div class="lp-field" data-campo="email">
+          <label for="f-mail">E-mail <small>(se quiser)</small></label>
+          <input type="email" id="f-mail" name="email" autocomplete="email" maxlength="160">
+          <div class="lp-error"></div>
+        </div>
+        <div class="lp-hp" aria-hidden="true"><label>Não preencha <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+        <div class="lp-field" data-campo="consent">
+          <label class="lp-consent"><input type="checkbox" name="consent"><span>Concordo em ser contatado pelo WhatsApp. Veja a <a href="/privacidade/" target="_blank" rel="noopener">política de privacidade</a>.</span></label>
+          <div class="lp-error"></div>
+        </div>
+        <div class="lp-msg-erro" id="lead-erro" role="alert"></div>
+        <button type="submit" class="btn-primary lp-submit" id="lead-enviar">Enviar meus dados</button>
+      </form>
+      <div class="lp-thanks" id="lead-thanks" aria-live="polite">
+        <div class="lp-check">✓</div>
+        <h2>Recebemos seu contato, <span id="thanks-nome"></span>!</h2>
+        <p>Falamos com você pelo WhatsApp em breve. Se preferir não esperar, é só clicar abaixo.</p>
+        <a class="btn-primary" id="thanks-zap" href="https://api.whatsapp.com/send?phone=5541984213488" target="_blank" rel="noopener">Falar agora no WhatsApp</a>
+        <div class="lp-more">
+          <p>Conheça também as outras ferramentas da EAF Flow:</p>
+          <a href="/produtos/">EAF Agenda e EAF Store →</a>
+          <a href="/">Ver o site da EAF Flow →</a>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <section class="lp-section">
+    <h2 class="lp-title">O que o EAF Agenda faz pelo seu negócio</h2>
+    <p class="lp-lead">Menos tempo no WhatsApp marcando horário, mais tempo atendendo.</p>
+    <div class="lp-grid">
+      <article class="lp-feat"><h3>Agenda sozinho, 24 horas</h3><p>O cliente abre o seu link, escolhe o serviço e agenda a qualquer hora, sem precisar criar login.</p></article>
+      <article class="lp-feat"><h3>Só horários livres</h3><p>O cliente só vê o que está disponível, pode juntar serviços (como corte e barba) e escolher o profissional.</p></article>
+      <article class="lp-feat"><h3>Agenda do dia</h3><p>Veja os agendamentos do dia, confirme, marque falta ou cancele, receba o pagamento e feche o caixa.</p></article>
+      <article class="lp-feat"><h3>Comissão de cada profissional</h3><p>Você define a porcentagem e o app calcula o faturamento e a comissão de cada um, por forma de pagamento.</p></article>
+      <article class="lp-feat"><h3>Seu horário, do seu jeito</h3><p>Você libera os dias e horários que quiser atender, e cada reserva trava o horário.</p></article>
+      <article class="lp-feat"><h3>Fale com o cliente no WhatsApp</h3><p>Na agenda do dia, um botão abre a conversa com o cliente, para avisar de qualquer mudança.</p></article>
+    </div>
+  </section>
+
+  <section class="lp-section">
+    <h2 class="lp-title">Veja o EAF Agenda funcionando</h2>
+    <p class="lp-lead">17 segundos para entender como o cliente agenda e como você acompanha.</p>
+    <div class="lp-media" style="grid-template-columns: 1fr; max-width: 860px; margin-left:auto; margin-right:auto;">
+      <video controls playsinline preload="none" poster="/assets/video/agenda-poster.jpg" aria-label="Vídeo do EAF Agenda">
+        <source src="/assets/video/agenda.mp4" type="video/mp4">
+      </video>
+    </div>
+  </section>
+
+  <section class="lp-final">
+    <h2>Pronto para encher a sua agenda?</h2>
+    <p>Deixe seus dados e a EAF Flow chama você no WhatsApp para mostrar como o EAF Agenda funciona no seu negócio.</p>
+    <a class="btn-primary" href="#formulario">Contrate agora</a>
+  </section>
+</main>
+<footer class="lp-footer">
+  <p>EAF Flow · <a href="/privacidade/">Política de privacidade</a></p>
+</footer>
+<script src="/assets/js/main.js" async></script>
+<script src="/assets/js/lead.js" defer></script>
+</body>
+</html>

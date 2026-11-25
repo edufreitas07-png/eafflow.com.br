@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EAF Store — gestão simples para vender, encomendar e receber | EAF Flow</title>
+<meta name="description" content="EAF Store: gestão simples para vender, encomendar e receber. Vendas, carnê, estoque, caixa, encomendas e vitrine online com pedido pelo WhatsApp.">
+<meta name="theme-color" content="#f5f8fc">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/base.css">
+<link rel="stylesheet" href="/assets/css/lead.css">
+<script src="/assets/js/analytics.js" defer></script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1674671890520272&ev=PageView&noscript=1" alt=""></noscript>
+</head>
+<body class="lp-body">
+<header class="lp-header">
+  <div class="lp-header-in">
+    <a class="lp-logo" href="/" aria-label="EAF Flow">
+      <img src="/assets/img/logo-mark.png" alt="">
+      <span>EAF Flow</span>
+    </a>
+    <a class="btn-primary" href="#formulario">Contrate agora</a>
+  </div>
+</header>
+
+<main>
+  <section class="lp-hero">
+    <div>
+      <img class="lp-prodlogo" src="/assets/img/logo-eaf-store.png" alt="EAF Store" width="120" height="120">
+      <p class="lp-eyebrow">Para lojas de todo tipo</p>
+      <h1>Venda, encomende e receba <em>sem bagunça</em>.</h1>
+      <p class="lp-sub">O EAF Store organiza vendas, carnê, estoque, encomendas e caixa em um só lugar, e ainda cria a sua vitrine online, onde o cliente monta o pedido e envia pelo WhatsApp.</p>
+      <ul class="lp-bullets">
+        <li>Vendas à vista ou no carnê, com controle das parcelas</li>
+        <li>Estoque, encomendas e caixa do dia</li>
+        <li>Vitrine online: o cliente monta o pedido e envia pelo WhatsApp</li>
+        <li>Funciona no celular, como aplicativo</li>
+      </ul>
+      <div class="lp-hero-cta"><a class="btn-primary" href="#formulario">Contrate agora</a></div>
+    </div>
+    <div id="formulario">
+    <div class="lp-card" id="lead-box">
+      <div id="lead-head">
+        <h2>Quero o EAF Store na minha loja</h2>
+        <p class="lp-card-sub">Preencha em 1 minuto. A gente chama você no WhatsApp.</p>
+      </div>
+      <form id="lead-form" class="lp-form" novalidate data-produtos-fixos="store">
+        <div class="lp-field" data-campo="nome">
+          <label for="f-nome">Seu nome</label>
+          <input type="text" id="f-nome" name="nome" autocomplete="name" maxlength="120">
+          <div class="lp-error"></div>
+        </div>
+        <div class="lp-field" data-campo="whatsapp">
+          <label for="f-zap">WhatsApp (com DDD)</label>
+          <input type="tel" id="f-zap" name="whatsapp" inputmode="numeric" autocomplete="tel-national" placeholder="(41) 99999-0000">
+          <div class="lp-error"></div>
+        </div>
+        <div class="lp-field" data-campo="negocio">
+          <label for="f-neg">Nome do seu negócio</label>
+          <input type="text" id="f-neg" name="negocio" maxlength="120">
+          <div class="lp-error"></div>
+        </div>
+        <div class="lp-field" data-campo="cidade">
+          <label for="f-cid">Cidade</label>
+          <input type="text" id="f-cid" name="cidade" autocomplete="address-level2" maxlength="80">
+          <div class="lp-error"></div>
+        </div>
+        <div class="lp-field" data-campo="email">
+          <label for="f-mail">E-mail <small>(se quiser)</small></label>
+          <input type="email" id="f-mail" name="email" autocomplete="email" maxlength="160">
+          <div class="lp-error"></div>
+        </div>
+        <div class="lp-hp" aria-hidden="true"><label>Não preencha <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+        <div class="lp-field" data-campo="consent">
+          <label class="lp-consent"><input type="checkbox" name="consent"><span>Concordo em ser contatado pelo WhatsApp. Veja a <a href="/privacidade/" target="_blank" rel="noopener">política de privacidade</a>.</span></label>
+          <div class="lp-error"></div>
+        </div>
+        <div class="lp-msg-erro" id="lead-erro" role="alert"></div>
+        <button type="submit" class="btn-primary lp-submit" id="lead-enviar">Enviar meus dados</button>
+      </form>
+      <div class="lp-thanks" id="lead-thanks" aria-live="polite">
+        <div class="lp-check">✓</div>
+        <h2>Recebemos seu contato, <span id="thanks-nome"></span>!</h2>
+        <p>Falamos com você pelo WhatsApp em breve. Se preferir não esperar, é só clicar abaixo.</p>
+        <a class="btn-primary" id="thanks-zap" href="https://api.whatsapp.com/send?phone=5541984213488" target="_blank" rel="noopener">Falar agora no WhatsApp</a>
+        <div class="lp-more">
+          <p>Conheça também as outras ferramentas da EAF Flow:</p>
+          <a href="/agenda/">Conhecer o EAF Agenda →</a>
+          <a href="/">Ver o site da EAF Flow →</a>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <section class="lp-section">
+    <h2 class="lp-title">O que o EAF Store faz pela sua loja</h2>
+    <p class="lp-lead">Menos caderno e memória, mais controle do que vendeu, do que falta receber e do que tem no estoque.</p>
+    <div class="lp-grid">
+      <article class="lp-feat"><h3>Vendas e carnê</h3><p>Venda com vários produtos e formas de pagamento (dinheiro, Pix, cartão ou carnê). As parcelas do carnê ficam controladas, com as atrasadas em destaque.</p></article>
+      <article class="lp-feat"><h3>Clientes e produtos</h3><p>Cadastro de clientes com o histórico de compras e de produtos com categorias e variações, com leitura de código de barras pelo celular.</p></article>
+      <article class="lp-feat"><h3>Estoque</h3><p>Controle de quantidades, entradas e movimentações, para saber o que tem e o que está acabando.</p></article>
+      <article class="lp-feat"><h3>Encomendas</h3><p>Acompanhe o que foi encomendado e transforme a encomenda em venda quando o cliente buscar.</p></article>
+      <article class="lp-feat"><h3>Caixa e financeiro</h3><p>Abra e feche o caixa, veja o que entrou e saiu e acompanhe o que vendeu, recebeu e tem a receber.</p></article>
+      <article class="lp-feat"><h3>Vitrine online</h3><p>A sua loja ganha um link com os produtos. O cliente escolhe, monta o pedido e envia pelo WhatsApp.</p></article>
+    </div>
+  </section>
+
+  <section class="lp-section">
+    <h2 class="lp-title">Veja o EAF Store por dentro</h2>
+    <p class="lp-lead">Em menos de um minuto, conheça as telas do app.</p>
+    <div class="lp-media" style="grid-template-columns: 1fr; max-width: 860px; margin-left:auto; margin-right:auto;">
+      <video controls playsinline preload="none" poster="/assets/video/store-poster.jpg" aria-label="Vídeo do EAF Store">
+        <source src="/assets/video/store.mp4" type="video/mp4">
+      </video>
+    </div>
+  </section>
+
+  <section class="lp-final">
+    <h2>Pronto para organizar a sua loja?</h2>
+    <p>Deixe seus dados e a EAF Flow chama você no WhatsApp para mostrar como o EAF Store funciona na sua loja.</p>
+    <a class="btn-primary" href="#formulario">Contrate agora</a>
+  </section>
+</main>
+<footer class="lp-footer">
+  <p>EAF Flow · <a href="/privacidade/">Política de privacidade</a></p>
+</footer>
+<script src="/assets/js/main.js" async></script>
+<script src="/assets/js/lead.js" defer></script>
+</body>
+</html>

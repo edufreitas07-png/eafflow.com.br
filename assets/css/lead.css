@@ -171,3 +171,6 @@
 .ct-item .ct-btn { width: 100%; min-height: 50px; padding: 10px 8px; font-size: 15px; text-align: center; }
 .ct-top .ct-acoes { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .ct-top .ct-btn { min-height: 44px; }
+
+.lp-prodlogo { display: block; width: 96px; height: 96px; border-radius: 22px; margin-bottom: 18px; box-shadow: var(--shadow-sm); object-fit: cover; }
+.lp-media video { aspect-ratio: 16 / 9; }
