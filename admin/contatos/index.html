@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Contatos | EAF Flow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/base.css">
+<link rel="stylesheet" href="/assets/css/lead.css">
+</head>
+<body style="padding-top:0">
+<main class="ct-wrap">
+
+  <section id="ct-login" class="ct-login lp-card">
+    <h2>Contatos da EAF Flow</h2>
+    <p class="lp-card-sub">Entre com o login de administrador.</p>
+    <form id="ct-form" class="lp-form" novalidate>
+      <div class="lp-field"><label for="ct-email">E-mail</label><input type="email" id="ct-email" autocomplete="username"></div>
+      <div class="lp-field"><label for="ct-senha">Senha</label><input type="password" id="ct-senha" autocomplete="current-password"></div>
+      <div class="lp-msg-erro" id="ct-erro" role="alert"></div>
+      <button class="btn-primary lp-submit" type="submit">Entrar</button>
+    </form>
+  </section>
+
+  <section id="ct-painel" style="display:none">
+    <div class="ct-top">
+      <h1>Contatos</h1>
+      <div class="ct-acoes">
+        <button class="ct-btn" id="ct-atualizar" type="button">Atualizar</button>
+        <button class="ct-btn" id="ct-sair" type="button">Sair</button>
+      </div>
+    </div>
+    <div class="ct-tabs" id="ct-tabs">
+      <button class="ct-tab on" data-f="faltam" type="button">Falta chamar <span id="n-faltam"></span></button>
+      <button class="ct-tab" data-f="feitos" type="button">Já chamei <span id="n-feitos"></span></button>
+      <button class="ct-tab" data-f="todos" type="button">Todos <span id="n-todos"></span></button>
+    </div>
+    <div class="ct-list" id="ct-lista"></div>
+  </section>
+
+</main>
+<script src="/assets/js/contatos.js"></script>
+</body>
+</html>

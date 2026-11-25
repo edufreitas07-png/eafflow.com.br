@@ -1,0 +1,173 @@
+/* =========================================================
+   EAF Flow — lead.css
+   Página de anúncio (/menu), formulário de contato (/contato),
+   política de privacidade e painel de contatos.
+   Usa as variáveis de base.css.
+   ========================================================= */
+
+.lp-body { padding-top: var(--header-h); }
+
+/* ---------- Cabeçalho enxuto (sem menu do site) ---------- */
+.lp-header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+  height: var(--header-h);
+  background: rgba(255,255,255,.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.lp-header-in {
+  max-width: 1120px; margin: 0 auto; height: 100%;
+  padding: 0 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px;
+}
+.lp-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 800; color: var(--ink); }
+.lp-logo img { height: 34px; width: auto; }
+.lp-header .btn-primary { min-height: 44px; padding: 10px 20px; font-size: 14px; }
+
+/* ---------- Hero ---------- */
+.lp-hero {
+  max-width: 1120px; margin: 0 auto; padding: 40px 20px 56px;
+  display: grid; grid-template-columns: 1.05fr .95fr; gap: 40px; align-items: start;
+}
+.lp-eyebrow { font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--brand); margin-bottom: 14px; }
+.lp-hero h1 { font-size: clamp(30px, 5vw, 46px); line-height: 1.12; font-weight: 800; color: var(--ink); }
+.lp-hero h1 em { font-style: normal; background: var(--grad-text); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.lp-sub { margin-top: 18px; font-size: 18px; line-height: 1.55; color: var(--ink-2); max-width: 560px; }
+.lp-bullets { list-style: none; margin-top: 22px; display: grid; gap: 10px; }
+.lp-bullets li { display: flex; gap: 10px; font-size: 16px; line-height: 1.45; color: var(--ink); }
+.lp-bullets li::before { content: "✓"; flex: none; width: 24px; height: 24px; border-radius: 50%; background: var(--tint); color: var(--brand); font-weight: 800; display: grid; place-items: center; font-size: 14px; }
+.lp-hero-cta { margin-top: 26px; display: none; }
+
+/* ---------- Formulário ---------- */
+.lp-card {
+  background: var(--card); border: 1px solid var(--line); border-radius: 20px;
+  box-shadow: var(--shadow-md); padding: 26px 24px;
+}
+.lp-card h2 { font-size: 22px; line-height: 1.25; font-weight: 800; }
+.lp-card .lp-card-sub { margin-top: 6px; color: var(--muted); font-size: 15px; line-height: 1.45; }
+.lp-form { margin-top: 18px; display: grid; gap: 14px; }
+.lp-field label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px; color: var(--ink); }
+.lp-field label small { font-weight: 500; color: var(--muted); }
+.lp-field input[type="text"],
+.lp-field input[type="tel"],
+.lp-field input[type="email"],
+.lp-field input[type="password"] {
+  width: 100%; min-height: 50px; padding: 12px 14px; font: inherit; font-size: 16px;
+  border: 1.5px solid var(--line); border-radius: 12px; background: #fff; color: var(--ink);
+}
+.lp-field input:focus { outline: none; border-color: var(--brand); box-shadow: 0 0 0 3px rgba(27,111,179,.15); }
+.lp-field.has-error input { border-color: #c62828; }
+.lp-error { color: #c62828; font-size: 13px; margin-top: 5px; display: none; }
+.lp-field.has-error .lp-error { display: block; }
+.lp-hp { position: absolute !important; left: -9999px !important; width: 1px; height: 1px; overflow: hidden; }
+
+/* Menu de produtos com caixinhas */
+.lp-drop { position: relative; }
+.lp-drop-btn {
+  width: 100%; min-height: 50px; padding: 12px 14px; font: inherit; font-size: 16px; text-align: left;
+  border: 1.5px solid var(--line); border-radius: 12px; background: #fff; color: var(--ink); cursor: pointer;
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+}
+.lp-drop-btn::after { content: ""; width: 9px; height: 9px; border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted); transform: rotate(45deg); margin-top: -4px; flex: none; }
+.lp-drop.open .lp-drop-btn { border-color: var(--brand); box-shadow: 0 0 0 3px rgba(27,111,179,.15); }
+.lp-drop.open .lp-drop-btn::after { transform: rotate(-135deg); margin-top: 4px; }
+.lp-drop-panel {
+  display: none; margin-top: 6px; border: 1.5px solid var(--line); border-radius: 12px; background: #fff; padding: 6px;
+  box-shadow: var(--shadow-sm);
+}
+.lp-drop.open .lp-drop-panel { display: block; }
+.lp-opt { display: flex; align-items: flex-start; gap: 12px; padding: 12px; border-radius: 10px; cursor: pointer; }
+.lp-opt:hover { background: var(--tint); }
+.lp-opt input { width: 20px; height: 20px; margin-top: 2px; accent-color: var(--brand); flex: none; }
+.lp-opt b { display: block; font-size: 15px; }
+.lp-opt span { display: block; font-size: 13px; color: var(--muted); }
+
+.lp-consent { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; line-height: 1.45; color: var(--ink-2); }
+.lp-consent input { width: 20px; height: 20px; margin-top: 2px; accent-color: var(--brand); flex: none; }
+.lp-consent a { color: var(--brand); }
+.lp-submit { width: 100%; border: none; font-size: 16px; }
+.lp-submit[disabled] { opacity: .7; cursor: wait; }
+.lp-msg-erro { background: #fdecea; color: #9f1d17; border-radius: 12px; padding: 12px 14px; font-size: 14px; display: none; }
+.lp-msg-erro.show { display: block; }
+
+/* Tela de agradecimento */
+.lp-thanks { display: none; text-align: center; padding: 8px 0 4px; }
+.lp-thanks.show { display: block; }
+.lp-thanks .lp-check { width: 64px; height: 64px; border-radius: 50%; background: #e6f6ec; color: #1e8e4e; display: grid; place-items: center; font-size: 34px; margin: 0 auto 14px; }
+.lp-thanks h2 { font-size: 24px; }
+.lp-thanks p { margin-top: 8px; color: var(--ink-2); font-size: 16px; line-height: 1.5; }
+.lp-thanks .btn-primary { margin-top: 18px; width: 100%; background: #1fa855; }
+.lp-more { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--line); text-align: left; }
+.lp-more p { font-size: 14px; color: var(--muted); margin: 0 0 10px; }
+.lp-more a { display: block; padding: 12px 14px; border: 1.5px solid var(--line); border-radius: 12px; text-decoration: none; font-weight: 600; margin-bottom: 8px; color: var(--ink); }
+.lp-more a:hover { border-color: var(--brand); color: var(--brand); }
+
+/* ---------- Seções ---------- */
+.lp-section { max-width: 1120px; margin: 0 auto; padding: 56px 20px; }
+.lp-section.alt { background: transparent; }
+.lp-section h2.lp-title { font-size: clamp(26px, 4vw, 34px); line-height: 1.2; font-weight: 800; text-align: center; }
+.lp-section .lp-lead { text-align: center; color: var(--ink-2); font-size: 17px; max-width: 640px; margin: 12px auto 0; line-height: 1.5; }
+.lp-grid { margin-top: 32px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.lp-feat { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 22px; box-shadow: var(--shadow-sm); }
+.lp-feat h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+.lp-feat p { font-size: 15px; line-height: 1.5; color: var(--ink-2); }
+.lp-feat .lp-tag { display: inline-block; font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 999px; background: var(--tint); color: var(--brand); margin-bottom: 10px; }
+
+.lp-media { margin-top: 32px; display: grid; grid-template-columns: 1.4fr .6fr; gap: 20px; align-items: center; }
+.lp-media img, .lp-media video { width: 100%; border-radius: 16px; border: 1px solid var(--line); box-shadow: var(--shadow-md); display: block; background: #0a1a2f; }
+.lp-media video { max-height: 520px; object-fit: contain; }
+
+.lp-final { text-align: center; padding: 56px 20px 72px; max-width: 760px; margin: 0 auto; }
+.lp-final h2 { font-size: clamp(26px, 4vw, 34px); line-height: 1.2; font-weight: 800; }
+.lp-final p { margin: 12px 0 24px; color: var(--ink-2); font-size: 17px; line-height: 1.5; }
+
+.lp-footer { border-top: 1px solid var(--line); padding: 22px 20px; text-align: center; font-size: 14px; color: var(--muted); }
+.lp-footer a { color: var(--brand); margin: 0 8px; }
+
+/* ---------- Texto longo (privacidade) ---------- */
+.lp-doc { max-width: 760px; margin: 0 auto; padding: 40px 20px 72px; }
+.lp-doc h1 { font-size: 32px; font-weight: 800; margin-bottom: 8px; }
+.lp-doc h2 { font-size: 20px; margin: 26px 0 8px; }
+.lp-doc p, .lp-doc li { font-size: 16px; line-height: 1.65; color: var(--ink-2); }
+.lp-doc ul { padding-left: 22px; }
+.lp-doc .lp-upd { color: var(--muted); font-size: 14px; }
+
+/* ---------- Painel de contatos ---------- */
+.ct-wrap { max-width: 920px; margin: 0 auto; padding: 24px 16px 64px; }
+.ct-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+.ct-top h1 { font-size: 24px; font-weight: 800; }
+.ct-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+.ct-tab { border: 1.5px solid var(--line); background: #fff; border-radius: 999px; padding: 9px 16px; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer; color: var(--ink); }
+.ct-tab.on { background: var(--brand); border-color: var(--brand); color: #fff; }
+.ct-list { display: grid; gap: 12px; }
+.ct-item { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 16px 18px; box-shadow: var(--shadow-sm); display: grid; gap: 10px; }
+.ct-item.feito { opacity: .65; }
+.ct-row { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; align-items: baseline; }
+.ct-nome { font-size: 18px; font-weight: 700; }
+.ct-data { font-size: 13px; color: var(--muted); }
+.ct-info { font-size: 15px; color: var(--ink-2); line-height: 1.5; }
+.ct-chips { display: flex; gap: 6px; flex-wrap: wrap; }
+.ct-chip { font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 999px; background: var(--tint); color: var(--brand); }
+.ct-acoes { display: flex; gap: 8px; flex-wrap: wrap; }
+.ct-btn { min-height: 44px; padding: 10px 16px; border-radius: 12px; font: inherit; font-size: 15px; font-weight: 700; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; border: 1.5px solid var(--line); background: #fff; color: var(--ink); }
+.ct-btn.zap { background: #1fa855; border-color: #1fa855; color: #fff; }
+.ct-btn.ok { background: var(--tint); border-color: var(--brand); color: var(--brand); }
+.ct-vazio { text-align: center; color: var(--muted); padding: 40px 0; }
+.ct-login { max-width: 380px; margin: 64px auto; }
+
+@media (max-width: 860px) {
+  .lp-hero { grid-template-columns: 1fr; gap: 28px; padding-top: 28px; }
+  .lp-hero-cta { display: block; }
+  .lp-grid { grid-template-columns: 1fr; }
+  .lp-media { grid-template-columns: 1fr; }
+  .lp-card { padding: 22px 18px; }
+}
+
+/* Rótulos que são caixinhas não herdam o estilo de rótulo de campo */
+.lp-field label.lp-consent { display: flex; font-weight: 500; margin: 0; font-size: 14px; }
+.lp-field label.lp-opt { display: flex; font-weight: 400; margin: 0; }
+
+/* Botões do cartão de contato: mesmo tamanho, lado a lado */
+.ct-item .ct-acoes { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.ct-item .ct-btn { width: 100%; min-height: 50px; padding: 10px 8px; font-size: 15px; text-align: center; }
+.ct-top .ct-acoes { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.ct-top .ct-btn { min-height: 44px; }

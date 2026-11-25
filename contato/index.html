@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fale com a EAF Flow | EAF Menu, EAF Store e EAF Agenda</title>
+<meta name="description" content="Escolha o produto e deixe seu contato. A EAF Flow chama você no WhatsApp.">
+<meta name="theme-color" content="#f5f8fc">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/base.css">
+<link rel="stylesheet" href="/assets/css/lead.css">
+<script src="/assets/js/analytics.js" defer></script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1674671890520272&ev=PageView&noscript=1" alt=""></noscript>
+</head>
+<body class="lp-body">
+<header class="lp-header">
+  <div class="lp-header-in">
+    <a class="lp-logo" href="/" aria-label="EAF Flow">
+      <img src="/assets/img/logo-mark.png" alt="">
+      <span>EAF Flow</span>
+    </a>
+    <a class="btn-primary" href="#formulario">Contrate agora</a>
+  </div>
+</header>
+
+<main>
+  <section class="lp-hero" style="grid-template-columns: 1fr; max-width: 640px; padding-top: 32px;">
+    <div id="formulario">
+      <p class="lp-eyebrow">Fale com a EAF Flow</p>
+      <h1 style="font-size: clamp(28px,5vw,38px); margin-bottom: 20px;">Qual ferramenta você quer conhecer?</h1>
+    <div class="lp-card" id="lead-box">
+      <div id="lead-head">
+        <h2>Fale com a EAF Flow</h2>
+        <p class="lp-card-sub">Preencha em 1 minuto. A gente chama você no WhatsApp.</p>
+      </div>
+      <form id="lead-form" class="lp-form" novalidate>
+        <div class="lp-field" data-campo="nome">
+          <label for="f-nome">Seu nome</label>
+          <input type="text" id="f-nome" name="nome" autocomplete="name" maxlength="120">
+          <div class="lp-error"></div>
+        </div>
+        <div class="lp-field" data-campo="whatsapp">
+          <label for="f-zap">WhatsApp (com DDD)</label>
+          <input type="tel" id="f-zap" name="whatsapp" inputmode="numeric" autocomplete="tel-national" placeholder="(41) 99999-0000">
+          <div class="lp-error"></div>
+        </div>
+        <div class="lp-field" data-campo="negocio">
+          <label for="f-neg">Nome do seu negócio</label>
+          <input type="text" id="f-neg" name="negocio" maxlength="120">
+          <div class="lp-error"></div>
+        </div>
+        <div class="lp-field" data-campo="cidade">
+          <label for="f-cid">Cidade</label>
+          <input type="text" id="f-cid" name="cidade" autocomplete="address-level2" maxlength="80">
+          <div class="lp-error"></div>
+        </div>
+        <div class="lp-field" data-campo="email">
+          <label for="f-mail">E-mail <small>(se quiser)</small></label>
+          <input type="email" id="f-mail" name="email" autocomplete="email" maxlength="160">
+          <div class="lp-error"></div>
+        </div>
+      <div class="lp-field" data-campo="produtos">
+        <label for="prod-btn">Produto de interesse</label>
+        <div class="lp-drop" id="prod-drop">
+          <button type="button" class="lp-drop-btn" id="prod-btn" aria-expanded="false" aria-controls="prod-panel">Escolha o produto</button>
+          <div class="lp-drop-panel" id="prod-panel">
+            <label class="lp-opt"><input type="checkbox" value="menu"><div><b>EAF Menu</b><span>Restaurante, pizzaria, hamburgueria, delivery</span></div></label>
+            <label class="lp-opt"><input type="checkbox" value="store"><div><b>EAF Store</b><span>Lojas de todo tipo</span></div></label>
+            <label class="lp-opt"><input type="checkbox" value="agenda"><div><b>EAF Agenda</b><span>Salão, barbearia, manicure</span></div></label>
+          </div>
+        </div>
+        <div class="lp-error"></div>
+      </div>
+
+        <div class="lp-hp" aria-hidden="true"><label>Não preencha <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+        <div class="lp-field" data-campo="consent">
+          <label class="lp-consent"><input type="checkbox" name="consent"><span>Concordo em ser contatado pelo WhatsApp. Veja a <a href="/privacidade/" target="_blank" rel="noopener">política de privacidade</a>.</span></label>
+          <div class="lp-error"></div>
+        </div>
+        <div class="lp-msg-erro" id="lead-erro" role="alert"></div>
+        <button type="submit" class="btn-primary lp-submit" id="lead-enviar">Enviar meus dados</button>
+      </form>
+      <div class="lp-thanks" id="lead-thanks" aria-live="polite">
+        <div class="lp-check">✓</div>
+        <h2>Recebemos seu contato, <span id="thanks-nome"></span>!</h2>
+        <p>Falamos com você pelo WhatsApp em breve. Se preferir não esperar, é só clicar abaixo.</p>
+        <a class="btn-primary" id="thanks-zap" href="https://api.whatsapp.com/send?phone=5541984213488" target="_blank" rel="noopener">Falar agora no WhatsApp</a>
+        <div class="lp-more">
+          <p>Conheça também as outras ferramentas da EAF Flow:</p>
+          <a href="/produtos/">EAF Agenda e EAF Store →</a>
+          <a href="/">Ver o site da EAF Flow →</a>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+</main>
+<footer class="lp-footer">
+  <p>EAF Flow · <a href="/privacidade/">Política de privacidade</a></p>
+</footer>
+<script src="/assets/js/main.js" async></script>
+<script src="/assets/js/lead.js" defer></script>
+</body>
+</html>
