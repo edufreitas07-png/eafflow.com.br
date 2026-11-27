@@ -365,7 +365,7 @@
     const dados = Object.fromEntries(new FormData(form).entries());
 
     try {
-      const resp = await fetch('https://curso-checkout.vercel.app/api/create-checkout', {
+      const resp = await fetch('/api/create-checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(dados)
