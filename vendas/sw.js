@@ -1,6 +1,6 @@
 // Service worker do painel: instalável, abre rápido e recebe as notificações de venda. Nunca guarda dados da API.
-const V = 'vendas-v2';
-const ARQ = ['/vendas/', '/vendas/icon-vendas-192.png'];
+const V = 'vendas-v3';
+const ARQ = ['/vendas/', '/vendas/icon-vendas-192.png', '/vendas/badge-vendas-96.png'];
 self.addEventListener('install', (e) => { e.waitUntil(caches.open(V).then((c) => c.addAll(ARQ)).then(() => self.skipWaiting())); });
 self.addEventListener('activate', (e) => {
   e.waitUntil(caches.keys().then((ks) => Promise.all(ks.filter((k) => k !== V).map((k) => caches.delete(k)))).then(() => self.clients.claim()));
@@ -21,7 +21,7 @@ self.addEventListener('push', (e) => {
     await self.registration.showNotification(d.titulo || 'Nova venda!', {
       body: d.corpo || 'Toque para enviar o acesso.',
       icon: '/vendas/icon-vendas-192.png',
-      badge: '/vendas/icon-vendas-192.png',
+      badge: '/vendas/badge-vendas-96.png',
       tag: d.tag || 'venda',
       renotify: true,
       requireInteraction: true,
