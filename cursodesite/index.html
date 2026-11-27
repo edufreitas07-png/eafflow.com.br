@@ -365,12 +365,16 @@
     const dados = Object.fromEntries(new FormData(form).entries());
 
     try {
-      const resp = await fetch('https://curso-checkout.vercel.app/api/create-checkout', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(dados)
-      });
-      const json = await resp.json();
+      // Tenta primeiro a API deste site; se ela ainda não estiver configurada, usa a antiga.
+      const chamar = async (url) => {
+        const r = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(dados) });
+        const j = await r.json().catch(() => ({}));
+        return { r, j };
+      };
+      let { r: resp, j: json } = await chamar('/api/create-checkout').catch(() => ({ r: { ok: false, status: 0 }, j: {} }));
+      if ((!resp.ok || !json.url) && (resp.status === 0 || resp.status >= 500 || resp.status === 404)) {
+        ({ r: resp, j: json } = await chamar('https://curso-checkout.vercel.app/api/create-checkout'));
+      }
       if (!resp.ok || !json.url) throw new Error(json.error || 'Não foi possível gerar o pagamento. Tente de novo.');
       window.location.href = json.url;
     } catch (err) {
