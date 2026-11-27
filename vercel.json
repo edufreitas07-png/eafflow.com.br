@@ -1,9 +1,0 @@
-{
-  "rewrites": [
-    { "source": "/", "has": [{ "type": "host", "value": "vendas.eafflow.com.br" }], "destination": "/admin-vendas.html" },
-    { "source": "/admin-vendas", "destination": "/admin-vendas.html" }
-  ],
-  "headers": [
-    { "source": "/sw-vendas.js", "headers": [{ "key": "Cache-Control", "value": "no-cache" }, { "key": "Service-Worker-Allowed", "value": "/" }] }
-  ]
-}
