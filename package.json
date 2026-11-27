@@ -1,0 +1,8 @@
+{
+  "name": "curso-site-vendas",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Checkout e painel de vendas (PWA) do curso Criar Site pelo Celular",
+  "engines": { "node": ">=18" },
+  "dependencies": { "web-push": "^3.6.7" }
+}

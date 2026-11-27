@@ -1,0 +1,7 @@
+{
+  "headers": [
+    { "source": "/vendas/sw.js", "headers": [ { "key": "Cache-Control", "value": "no-cache" }, { "key": "Service-Worker-Allowed", "value": "/vendas/" } ] },
+    { "source": "/vendas/(.*)", "headers": [ { "key": "X-Robots-Tag", "value": "noindex" } ] },
+    { "source": "/cursodesite/obrigado/(.*)", "headers": [ { "key": "X-Robots-Tag", "value": "noindex" } ] }
+  ]
+}

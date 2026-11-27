@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Vendas do curso</title>
+<link rel="manifest" href="/vendas/manifest.webmanifest">
+<meta name="theme-color" content="#0b1b3a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Vendas">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="/vendas/icon-vendas-180.png">
+<link rel="icon" type="image/png" href="/vendas/icon-vendas-192.png">
+<style>
+  :root { --navy:#0b1b3a; --green:#22c55e; --edge:#15803d; --paper:#f5f8fc; --ink:#0b1630; --muted:#4a5b78; --orange:#fb923c; }
+  * { box-sizing:border-box; }
+  body { margin:0; font:16px/1.5 system-ui,sans-serif; background:var(--paper); color:var(--ink); padding:16px 16px 70px; }
+  main { max-width:640px; margin:0 auto; }
+  h1 { margin:8px 0 6px; font-size:1.6rem; }
+  input, button { font:inherit; }
+  input { width:100%; padding:14px; border:2px solid #cbd6e8; border-radius:12px; background:#fff; }
+  .btn { display:inline-flex; align-items:center; justify-content:center; padding:13px 18px; border-radius:12px; border:0; background:var(--green); color:#04200d; font-weight:700; cursor:pointer; text-decoration:none; box-shadow:0 3px 0 var(--edge); }
+  .btn.sec { background:#fff; color:var(--navy); border:2px solid var(--navy); box-shadow:none; }
+  .btn.mini { padding:9px 12px; font-size:.9rem; }
+  .btn[disabled] { opacity:.6; }
+  .linha { display:flex; gap:8px; flex-wrap:wrap; }
+  .abas { display:flex; gap:8px; margin:14px 0; }
+  .abas button { flex:1; padding:11px; border-radius:999px; border:2px solid var(--navy); background:#fff; font-weight:700; cursor:pointer; }
+  .abas button.on { background:var(--navy); color:#fff; }
+  .card { background:#fff; border:2px solid var(--navy); border-radius:18px; padding:16px; margin-bottom:12px; }
+  .card.nova { border-color:var(--green); box-shadow:0 0 0 4px rgba(34,197,94,.25); }
+  .card h3 { margin:0 0 2px; font-size:1.1rem; }
+  .card small { color:var(--muted); display:block; }
+  .tag { display:inline-block; padding:3px 10px; border-radius:999px; font-size:.75rem; font-weight:700; background:var(--orange); color:#3b1a00; margin-bottom:8px; }
+  .tag.ok { background:var(--green); color:#04200d; }
+  .acoes { display:flex; gap:8px; flex-wrap:wrap; margin-top:12px; }
+  .aviso { background:#fff4e5; border:2px solid var(--orange); border-radius:14px; padding:12px; margin:12px 0; font-size:.95rem; }
+  .resumo { display:flex; gap:10px; margin:10px 0; }
+  .resumo div { flex:1; background:#fff; border:2px solid var(--navy); border-radius:14px; padding:10px; text-align:center; }
+  .resumo b { display:block; font-size:1.3rem; }
+  .resumo span { color:var(--muted); font-size:.8rem; }
+  #erro { color:#b3261e; font-weight:600; margin-top:10px; white-space:pre-wrap; word-break:break-word; }
+  .vazio { color:var(--muted); text-align:center; padding:30px 0; }
+  .topo { display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; }
+  .vivo { font-size:.8rem; color:var(--muted); display:flex; align-items:center; gap:6px; }
+  .vivo i { width:9px; height:9px; border-radius:50%; background:#cbd5e1; display:inline-block; }
+  .vivo i.on { background:var(--green); animation:pisca 2s infinite; }
+  @keyframes pisca { 50% { opacity:.35; } }
+  #toast { position:fixed; left:12px; right:12px; top:12px; background:var(--green); color:#04200d; font-weight:700; padding:14px 16px; border-radius:14px; box-shadow:0 6px 20px rgba(0,0,0,.25); z-index:10; text-align:center; }
+  [hidden] { display:none !important; }
+</style>
+</head>
+<body>
+<div id="toast" hidden role="status"></div>
+<main>
+  <section id="login">
+    <h1>Vendas do curso</h1>
+    <p>Área só do vendedor.</p>
+    <input id="senha" type="password" placeholder="Senha" autocomplete="current-password">
+    <p><button class="btn" id="entrar" style="width:100%;margin-top:12px">Entrar</button></p>
+    <div id="erro" role="alert"></div>
+  </section>
+
+  <section id="painel" hidden>
+    <div class="topo">
+      <div><h1>Vendas do curso</h1><div class="vivo"><i id="bolinha"></i><span id="vivoTxt">conectando…</span></div></div>
+      <div class="linha"><button class="btn sec mini" id="atualizar">Atualizar</button><button class="btn sec mini" id="abrirCfg">Ajustes</button><button class="btn sec mini" id="sair">Sair</button></div>
+    </div>
+
+    <div class="aviso" id="avisoPush" hidden></div>
+    <div class="aviso" id="avisoLink" hidden>Cole abaixo o link da pasta do Drive do curso. Ele vai nas mensagens de WhatsApp.</div>
+
+    <section id="boxCfg" class="card" hidden>
+      <h3>Ajustes</h3>
+      <small>Link do curso (Drive)</small>
+      <input id="linkCurso" placeholder="https://drive.google.com/..." style="margin-top:6px">
+      <div class="acoes"><button class="btn mini" id="salvarLink">Salvar link</button></div>
+      <div id="msgLink" role="status" style="margin-top:8px;font-weight:600"></div>
+      <hr style="border:0;border-top:1px solid #dbe3f0;margin:16px 0">
+      <small>Notificações neste aparelho</small>
+      <div class="acoes"><button class="btn mini" id="btnPush">Ativar notificações</button><button class="btn sec mini" id="btnTeste">Enviar teste</button></div>
+      <div id="msgPush" role="status" style="margin-top:8px;font-weight:600"></div>
+      <hr style="border:0;border-top:1px solid #dbe3f0;margin:16px 0">
+      <small>Trocar senha (mínimo 10 caracteres; os outros aparelhos saem da conta)</small>
+      <input id="senhaAtual" type="password" placeholder="Senha atual" autocomplete="current-password" style="margin-top:8px">
+      <input id="senhaNova" type="text" placeholder="Nova senha" autocomplete="new-password" style="margin-top:8px">
+      <div class="acoes">
+        <button class="btn sec mini" id="gerar">Gerar senha aleatória</button>
+        <button class="btn sec mini" id="copiar">Copiar</button>
+        <button class="btn mini" id="salvarSenha">Salvar nova senha</button>
+      </div>
+      <div id="msgSenha" role="status" style="margin-top:8px;font-weight:600"></div>
+    </section>
+
+    <div class="resumo"><div><b id="rVendas">0</b><span>vendas</span></div><div><b id="rTotal">R$ 0</b><span>faturado</span></div><div><b id="rPend">0</b><span>a enviar</span></div></div>
+    <div class="abas"><button id="abaPend" class="on">A enviar (0)</button><button id="abaOk">Enviados (0)</button></div>
+    <div id="lista"></div>
+  </section>
+</main>
+
+<script>
+(function () {
+  const $ = (id) => document.getElementById(id);
+  let token = '', pedidos = [], link = '', vapid = '', aba = 'pend', vistos = null, novas = new Set(), timer = null, carregando = false;
+  const guardar = (k, v) => { try { localStorage.setItem(k, v); } catch (e) {} };
+  const ler = (k) => { try { return localStorage.getItem(k) || ''; } catch (e) { return ''; } };
+
+  function erroTxt(j) { return (j.error || 'Erro') + (j.dica ? '\n' + j.dica : '') + (j.detalhe ? '\n(' + j.detalhe + ')' : ''); }
+  async function api(metodo, corpo) {
+    const r = await fetch('/api/admin', {
+      method: metodo,
+      headers: { Authorization: 'Bearer ' + token, 'Content-Type': 'application/json' },
+      body: corpo ? JSON.stringify(corpo) : undefined
+    });
+    const j = await r.json().catch(() => ({}));
+    if (!r.ok) { const e = new Error(erroTxt(j)); e.status = r.status; throw e; }
+    return j;
+  }
+  async function login(senha) {
+    const r = await fetch('/api/admin', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ acao: 'login', senha }) });
+    const j = await r.json().catch(() => ({}));
+    if (!r.ok) throw new Error(erroTxt(j));
+    return j.token;
+  }
+
+  const reais = (c) => (c / 100).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  const data = (s) => s ? new Date(s).toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' }) : '';
+  function zapUrl(p) {
+    let d = String(p.whatsapp || '').replace(/\D/g, '');
+    if (d.length <= 11) d = '55' + d;
+    const primeiro = String(p.nome || '').trim().split(/\s+/)[0] || '';
+    const msg = `Olá, ${primeiro}! Seu pagamento foi confirmado. Aqui está o seu acesso ao curso Criar Site pelo Celular:\n${link}\n\nQualquer dúvida de pagamento ou de acesso, é só chamar aqui.`;
+    return `https://wa.me/${d}?text=${encodeURIComponent(msg)}`;
+  }
+
+  function beep() {
+    try {
+      const C = window.AudioContext || window.webkitAudioContext; if (!C) return;
+      const a = new C(); const o = a.createOscillator(); const g = a.createGain();
+      o.type = 'sine'; o.frequency.value = 880; o.connect(g); g.connect(a.destination);
+      g.gain.setValueAtTime(.001, a.currentTime); g.gain.exponentialRampToValueAtTime(.3, a.currentTime + .02); g.gain.exponentialRampToValueAtTime(.001, a.currentTime + .6);
+      o.start(); o.stop(a.currentTime + .6);
+    } catch (e) {}
+  }
+  function toast(msg) {
+    const t = $('toast'); t.textContent = msg; t.hidden = false;
+    clearTimeout(toast.t); toast.t = setTimeout(() => { t.hidden = true; }, 6000);
+  }
+
+  function desenhar() {
+    const pend = pedidos.filter((p) => p.status !== 'entregue');
+    const ok = pedidos.filter((p) => p.status === 'entregue');
+    $('rVendas').textContent = pedidos.length;
+    $('rTotal').textContent = reais(pedidos.reduce((s, p) => s + (p.valor_centavos || 0), 0));
+    $('rPend').textContent = pend.length;
+    $('abaPend').textContent = `A enviar (${pend.length})`;
+    $('abaOk').textContent = `Enviados (${ok.length})`;
+    $('abaPend').classList.toggle('on', aba === 'pend');
+    $('abaOk').classList.toggle('on', aba === 'ok');
+    document.title = pend.length ? `(${pend.length}) Vendas do curso` : 'Vendas do curso';
+    if ('setAppBadge' in navigator) { (pend.length ? navigator.setAppBadge(pend.length) : navigator.clearAppBadge()).catch(() => {}); }
+    $('avisoLink').hidden = !!link;
+    const lista = $('lista'); lista.textContent = '';
+    const itens = aba === 'pend' ? pend : ok;
+    if (!itens.length) { const v = document.createElement('p'); v.className = 'vazio'; v.textContent = aba === 'pend' ? 'Nenhuma venda para enviar.' : 'Nada enviado ainda.'; lista.appendChild(v); return; }
+    itens.forEach((p) => {
+      const c = document.createElement('article'); c.className = 'card' + (novas.has(p.order_nsu) ? ' nova' : '');
+      const tag = document.createElement('span'); tag.className = 'tag' + (p.status === 'entregue' ? ' ok' : ''); tag.textContent = p.status === 'entregue' ? 'Enviado' : (novas.has(p.order_nsu) ? 'Nova venda! Enviar acesso' : 'Enviar acesso'); c.appendChild(tag);
+      const h = document.createElement('h3'); h.textContent = p.nome; c.appendChild(h);
+      [(p.valor_centavos ? reais(p.valor_centavos) : '') + (p.forma_pagamento ? ' · ' + p.forma_pagamento : ''), p.email, p.whatsapp, 'Pago em ' + data(p.pago_em) + (p.entregue_em ? ' · enviado em ' + data(p.entregue_em) : '')].filter(Boolean).forEach((t) => { const s = document.createElement('small'); s.textContent = t; c.appendChild(s); });
+      const ac = document.createElement('div'); ac.className = 'acoes';
+      const w = document.createElement('a'); w.className = 'btn mini'; w.target = '_blank'; w.rel = 'noopener'; w.textContent = 'Enviar acesso no WhatsApp';
+      if (link) w.href = zapUrl(p); else { w.href = '#'; w.addEventListener('click', (e) => { e.preventDefault(); $('boxCfg').hidden = false; $('linkCurso').focus(); }); }
+      ac.appendChild(w);
+      const m = document.createElement('button'); m.className = 'btn sec mini'; m.textContent = p.status === 'entregue' ? 'Desmarcar enviado' : 'Marcar como enviado';
+      m.addEventListener('click', async () => { m.disabled = true; try { novas.delete(p.order_nsu); await api('POST', { order_nsu: p.order_nsu, enviado: p.status !== 'entregue' }); await carregar(); } catch (e) { alert(e.message); m.disabled = false; } });
+      ac.appendChild(m);
+      c.appendChild(ac); lista.appendChild(c);
+    });
+  }
+
+  async function carregar() {
+    if (carregando) return; carregando = true;
+    try {
+      const j = await api('GET');
+      pedidos = j.pedidos; link = j.link || ''; vapid = j.vapid || '';
+      if ($('linkCurso') !== document.activeElement) $('linkCurso').value = link;
+      const ids = new Set(pedidos.map((p) => p.order_nsu));
+      if (vistos) {
+        const fresh = pedidos.filter((p) => !vistos.has(p.order_nsu));
+        if (fresh.length) {
+          fresh.forEach((p) => novas.add(p.order_nsu));
+          aba = 'pend';
+          toast(fresh.length === 1 ? `Nova venda: ${fresh[0].nome}` : `${fresh.length} novas vendas!`);
+          beep(); if (navigator.vibrate) navigator.vibrate([200, 100, 200]);
+        }
+      }
+      vistos = ids;
+      $('bolinha').classList.add('on'); $('vivoTxt').textContent = 'ao vivo · atualizado ' + new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+      desenhar();
+      await estadoPush();
+    } catch (e) {
+      $('bolinha').classList.remove('on'); $('vivoTxt').textContent = 'sem conexão';
+      if (e.status === 401) { sairAgora(); return; }
+      throw e;
+    } finally { carregando = false; }
+  }
+  function iniciarAoVivo() {
+    clearInterval(timer);
+    timer = setInterval(() => { if (!document.hidden) carregar().catch(() => {}); }, 5000);
+  }
+
+  // ---- Notificações ----
+  const ios = /iphone|ipad|ipod/i.test(navigator.userAgent);
+  const instalado = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+  const temPush = 'serviceWorker' in navigator && 'PushManager' in window && 'Notification' in window;
+  function b64(s) { const p = '='.repeat((4 - s.length % 4) % 4); const r = atob((s + p).replace(/-/g, '+').replace(/_/g, '/')); return Uint8Array.from(r, (c) => c.charCodeAt(0)); }
+  async function inscricaoAtual() {
+    if (!temPush) return null;
+    const reg = await navigator.serviceWorker.ready;
+    return reg.pushManager.getSubscription();
+  }
+  async function estadoPush() {
+    const av = $('avisoPush'), btn = $('btnPush');
+    if (!temPush) {
+      av.hidden = false;
+      av.textContent = ios && !instalado ? 'Para receber avisos no iPhone: toque em Compartilhar e em "Adicionar à Tela de Início". Depois abra o app pela tela inicial e ative as notificações em Ajustes.' : 'Este navegador não suporta notificações. Use o Chrome (Android) ou instale o app (iPhone).';
+      btn.disabled = true; return;
+    }
+    const sub = await inscricaoAtual();
+    const perm = Notification.permission;
+    if (sub && perm === 'granted') { av.hidden = true; btn.textContent = 'Desativar notificações'; $('msgPush').textContent = ''; return; }
+    btn.textContent = 'Ativar notificações';
+    av.hidden = false;
+    av.textContent = perm === 'denied' ? 'As notificações estão bloqueadas neste aparelho. Libere nas configurações do navegador ou do app e tente de novo.' : 'Ative as notificações em Ajustes para ser avisado a cada nova venda, mesmo com o app fechado.';
+  }
+  async function alternarPush() {
+    const msg = $('msgPush'); msg.style.color = ''; msg.textContent = '';
+    try {
+      const sub = await inscricaoAtual();
+      if (sub && Notification.permission === 'granted') {
+        await api('POST', { acao: 'push_cancelar', endpoint: sub.endpoint }); await sub.unsubscribe();
+        msg.textContent = 'Notificações desativadas neste aparelho.'; await estadoPush(); return;
+      }
+      const perm = await Notification.requestPermission();
+      if (perm !== 'granted') { msg.style.color = '#b3261e'; msg.textContent = 'Permissão negada.'; await estadoPush(); return; }
+      const reg = await navigator.serviceWorker.ready;
+      const nova = await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: b64(vapid) });
+      await api('POST', { acao: 'push_inscrever', inscricao: nova.toJSON() });
+      msg.style.color = '#15803d'; msg.textContent = 'Pronto! Toque em "Enviar teste" para conferir.';
+      await estadoPush();
+    } catch (e) { msg.style.color = '#b3261e'; msg.textContent = e.message; }
+  }
+
+  // ---- Entrar / sair ----
+  function sairAgora() { token = ''; guardar('token', ''); clearInterval(timer); $('painel').hidden = true; $('login').hidden = false; }
+  async function entrar() {
+    $('erro').textContent = '';
+    try {
+      if (!token) { const sn = $('senha').value; if (!sn) return; token = await login(sn); }
+      await carregar();
+      guardar('token', token); $('senha').value = '';
+      $('login').hidden = true; $('painel').hidden = false;
+      iniciarAoVivo();
+    } catch (e) { token = ''; guardar('token', ''); $('login').hidden = false; $('painel').hidden = true; $('erro').textContent = e.message; }
+  }
+  function gerarSenha() {
+    const al = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789';
+    const v = new Uint32Array(16); crypto.getRandomValues(v);
+    return Array.from(v, (n) => al[n % al.length]).join('');
+  }
+  async function salvarSenha() {
+    const msg = $('msgSenha'); msg.style.color = ''; msg.textContent = '';
+    try {
+      const j = await api('POST', { acao: 'trocar', senhaAtual: $('senhaAtual').value, novaSenha: $('senhaNova').value });
+      token = j.token; guardar('token', token);
+      msg.style.color = '#15803d'; msg.textContent = 'Senha trocada. Guarde a nova senha em um lugar seguro.';
+      $('senhaAtual').value = '';
+    } catch (e) { msg.style.color = '#b3261e'; msg.textContent = e.message; }
+  }
+
+  $('entrar').addEventListener('click', entrar);
+  $('senha').addEventListener('keydown', (e) => { if (e.key === 'Enter') entrar(); });
+  $('atualizar').addEventListener('click', () => carregar().catch((e) => alert(e.message)));
+  $('sair').addEventListener('click', () => { sairAgora(); });
+  $('abaPend').addEventListener('click', () => { aba = 'pend'; desenhar(); });
+  $('abaOk').addEventListener('click', () => { aba = 'ok'; desenhar(); });
+  $('abrirCfg').addEventListener('click', () => { $('boxCfg').hidden = !$('boxCfg').hidden; });
+  $('salvarLink').addEventListener('click', async () => {
+    const m = $('msgLink'); m.style.color = ''; m.textContent = '';
+    try { await api('POST', { acao: 'link', link: $('linkCurso').value.trim() }); m.style.color = '#15803d'; m.textContent = 'Link salvo.'; await carregar(); }
+    catch (e) { m.style.color = '#b3261e'; m.textContent = e.message; }
+  });
+  $('btnPush').addEventListener('click', alternarPush);
+  $('btnTeste').addEventListener('click', async () => { const m = $('msgPush'); m.style.color = ''; try { await api('POST', { acao: 'push_teste' }); m.textContent = 'Teste enviado. Se não chegar em alguns segundos, ative as notificações.'; } catch (e) { m.style.color = '#b3261e'; m.textContent = e.message; } });
+  $('gerar').addEventListener('click', () => { $('senhaNova').value = gerarSenha(); });
+  $('copiar').addEventListener('click', async () => { try { await navigator.clipboard.writeText($('senhaNova').value); $('msgSenha').style.color = ''; $('msgSenha').textContent = 'Copiada.'; } catch (e) { $('senhaNova').select(); } });
+  $('salvarSenha').addEventListener('click', salvarSenha);
+  document.addEventListener('visibilitychange', () => { if (!document.hidden && token) carregar().catch(() => {}); });
+
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register("/vendas/sw.js", { scope: "/vendas/" }).catch(() => {});
+    navigator.serviceWorker.addEventListener('message', (e) => { if (e.data && e.data.tipo === 'venda' && token) carregar().catch(() => {}); });
+  }
+  token = ler('token');
+  if (token) entrar();
+})();
+</script>
+</body>
+</html>
