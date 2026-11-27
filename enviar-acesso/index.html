@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0b1b3a">
+<title>Enviar acesso</title>
+<style>
+  * { box-sizing:border-box; }
+  body { margin:0; font:17px/1.5 system-ui,sans-serif; background:#f5f8fc; color:#0b1630; padding:18px; }
+  main { max-width:520px; margin:0 auto; }
+  h1 { margin:6px 0 4px; font-size:1.6rem; }
+  p.sub { margin:0 0 16px; color:#4a5b78; }
+  label { display:block; font-weight:700; margin:14px 0 6px; }
+  input, select { width:100%; padding:15px; font:inherit; border:2px solid #cbd6e8; border-radius:12px; background:#fff; }
+  .btn { display:block; width:100%; margin-top:16px; padding:16px; border:0; border-radius:14px; background:#22c55e; color:#04200d; font:inherit; font-weight:800; text-align:center; text-decoration:none; box-shadow:0 3px 0 #15803d; cursor:pointer; }
+  .btn.sec { background:#fff; color:#0b1b3a; border:2px solid #0b1b3a; box-shadow:none; }
+  small { color:#4a5b78; display:block; margin-top:6px; }
+  details { margin-top:22px; background:#fff; border:2px solid #cbd6e8; border-radius:14px; padding:12px 14px; }
+  summary { font-weight:700; cursor:pointer; }
+  #aviso { background:#fff4e5; border:2px solid #fb923c; border-radius:12px; padding:10px 12px; margin:12px 0; display:none; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Enviar acesso</h1>
+  <p class="sub">Preencha com os dados do cliente e toque em enviar.</p>
+
+  <div id="aviso">Antes de enviar, cole o link do curso em “Link do curso” lá embaixo (só na primeira vez).</div>
+
+  <label for="curso">Curso</label>
+  <select id="curso">
+    <option value="Criar Site pelo Celular">Criar Site pelo Celular</option>
+    <option value="Higienização de Sofá">Higienização de Sofá</option>
+  </select>
+
+  <label for="nome">Nome do cliente</label>
+  <input id="nome" type="text" autocomplete="off" placeholder="Maria Silva">
+
+  <label for="zap">WhatsApp do cliente</label>
+  <input id="zap" type="tel" inputmode="numeric" autocomplete="off" placeholder="(41) 99999-9999">
+
+  <a class="btn" id="enviarZap" href="#">Enviar pelo WhatsApp</a>
+
+  <label for="email">E-mail do cliente (opcional)</label>
+  <input id="email" type="email" autocomplete="off" placeholder="cliente@email.com">
+  <a class="btn sec" id="enviarEmail" href="#">Enviar por e-mail</a>
+
+  <details id="cfg">
+    <summary>Link do curso</summary>
+    <label for="l1">Criar Site pelo Celular</label>
+    <input id="l1" type="url" placeholder="https://drive.google.com/...">
+    <label for="l2">Higienização de Sofá</label>
+    <input id="l2" type="url" placeholder="https://...">
+    <small>Os links ficam salvos só neste aparelho.</small>
+  </details>
+</main>
+<script>
+(function () {
+  const $ = (id) => document.getElementById(id);
+  const ler = (k) => { try { return localStorage.getItem(k) || ''; } catch (e) { return ''; } };
+  const gravar = (k, v) => { try { localStorage.setItem(k, v); } catch (e) {} };
+  const chaves = { 'Criar Site pelo Celular': 'l1', 'Higienização de Sofá': 'l2' };
+
+  $('l1').value = ler('link_site'); $('l2').value = ler('link_sofa');
+  $('l1').addEventListener('input', () => { gravar('link_site', $('l1').value.trim()); montar(); });
+  $('l2').addEventListener('input', () => { gravar('link_sofa', $('l2').value.trim()); montar(); });
+  $('curso').value = ler('curso') || $('curso').value;
+
+  $('zap').addEventListener('input', () => {
+    let d = $('zap').value.replace(/\D/g, '').slice(0, 11);
+    if (d.length > 6) d = `(${d.slice(0,2)}) ${d.slice(2, d.length > 10 ? 7 : 6)}-${d.slice(d.length > 10 ? 7 : 6)}`;
+    else if (d.length > 2) d = `(${d.slice(0,2)}) ${d.slice(2)}`;
+    $('zap').value = d; montar();
+  });
+  ['curso', 'nome', 'email'].forEach((id) => $(id).addEventListener('input', () => { if (id === 'curso') gravar('curso', $('curso').value); montar(); }));
+
+  function link() { return $(chaves[$('curso').value]).value.trim(); }
+  function texto() {
+    const n = $('nome').value.trim().split(/\s+/)[0];
+    return `Olá${n ? ', ' + n : ''}! Seu pagamento foi confirmado. Aqui está o seu acesso ao curso ${$('curso').value}:\n${link()}\n\nQualquer dúvida, é só chamar aqui. Bons estudos!`;
+  }
+  function montar() {
+    const l = link();
+    $('aviso').style.display = l ? 'none' : 'block';
+    const d = $('zap').value.replace(/\D/g, '');
+    const okZap = l && d.length >= 10;
+    $('enviarZap').href = okZap ? `https://wa.me/55${d}?text=${encodeURIComponent(texto())}` : '#';
+    $('enviarZap').style.opacity = okZap ? 1 : .5;
+    const em = $('email').value.trim();
+    const okEm = l && /^\S+@\S+\.\S+$/.test(em);
+    $('enviarEmail').href = okEm ? `mailto:${encodeURIComponent(em)}?subject=${encodeURIComponent('Seu acesso ao curso ' + $('curso').value)}&body=${encodeURIComponent(texto())}` : '#';
+    $('enviarEmail').style.opacity = okEm ? 1 : .5;
+  }
+  ['enviarZap', 'enviarEmail'].forEach((id) => $(id).addEventListener('click', (e) => {
+    if ($(id).getAttribute('href') === '#') { e.preventDefault(); if (!link()) $('cfg').open = true; else alert(id === 'enviarZap' ? 'Preencha o WhatsApp do cliente.' : 'Preencha o e-mail do cliente.'); }
+  }));
+  montar();
+})();
+</script>
+</body>
+</html>
