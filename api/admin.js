@@ -103,7 +103,7 @@ module.exports = async function handler(req, res) {
     }
 
     if (req.method === 'POST' && body.acao === 'push_teste') {
-      const rel = await avisarAparelhos({ titulo: 'Teste de notificação ✅', corpo: 'Se você está vendo isso, os avisos de venda funcionam.', tag: 'teste', url: '/vendas/' }, { limpar: false });
+      const rel = await avisarAparelhos({ titulo: 'Teste de notificação ✅', corpo: 'Se você está vendo isso, os avisos de venda funcionam.', tag: 'teste-' + Date.now(), url: '/vendas/' }, { limpar: false });
       return res.status(200).json({ ok: true, ...rel });
     }
 
