@@ -5,9 +5,9 @@
 <link rel="canonical" href="https://eafflow.com.br/cursodesite">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Criar Site pelo Celular | Curso passo a passo por R$ 10</title>
-<meta name="description" content="Crie um site completo direto do celular, sem programar. 6 bônus incluídos, prompts prontos e aulas passo a passo. R$ 10, pagamento único.">
+<meta name="description" content="Crie um site completo direto do celular, só com celular e internet. 6 bônus incluídos. R$ 10, pagamento único.">
 <meta property="og:title" content="Criar Site pelo Celular">
-<meta property="og:description" content="Seu site no ar pelo celular, sem programar. Aulas, prompts prontos e 6 bônus por R$ 10.">
+<meta property="og:description" content="Seu site no ar pelo celular. Aulas, prompts prontos e 6 bônus por R$ 10.">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -165,6 +165,11 @@
   .renda .caminho b { display:block; color:var(--green); font-family:var(--display); font-size:1.15rem; margin-bottom:4px; }
   .renda .caminho span { color:#d3def2; }
   .miudo { font-size:.78rem; line-height:1.45; color:#9fb0cd; max-width:70ch; }
+  .bonus .card { padding:16px 18px; border-width:2px; border-radius:18px; }
+  .bonus .card h3 { font-size:1.1rem; margin-bottom:4px; }
+  .bonus .card .tag { margin-bottom:8px; }
+  .bonus .card p { font-size:.95rem; }
+  section { padding:40px 0; }
   .barra { position:fixed; left:0; right:0; bottom:0; z-index:50; background:var(--navy-900); padding:10px 16px calc(10px + env(safe-area-inset-bottom)); display:flex; align-items:center; justify-content:space-between; gap:12px; box-shadow:0 -6px 20px rgba(0,0,0,.25); transform:translateY(110%); transition:transform .25s; }
   .barra.on { transform:none; }
   .barra b { color:#fff; font-family:var(--display); font-size:1.35rem; }
@@ -176,7 +181,7 @@
     .renda .caminho { grid-template-columns:repeat(3,minmax(0,1fr)); }
     .fotos figure { flex-basis:240px; }
     .pagina { flex-basis:260px; }
-    section { padding:88px 0; }
+    section { padding:64px 0; }
     .hero { padding:64px 0 88px; }
     .steps { grid-template-columns:repeat(3,minmax(0,1fr)); column-gap:40px; }
     .steps div { border-top:0; padding:22px 0 0 0; }
@@ -199,10 +204,9 @@
       <strong>R$ 10</strong>
       <span>pagamento único<br>no Pix ou cartão · 6 bônus incluídos</span>
     </div>
-    <p class="lead">Quem faz site por encomenda cobra caro. Aqui você aprende a fazer o seu, pelo celular, em minutos, e ainda vê como oferecer esse serviço para o comércio da sua cidade.</p>
+    <p class="lead">Só celular e internet. Você aprende a fazer o seu site em minutos e a oferecer esse serviço para o comércio da sua cidade.</p>
     <ul class="pontos">
-      <li>Sem programar e sem computador</li>
-      <li>Aulas curtas, no formato do celular</li>
+      <li>Só celular e internet</li>
       <li>Prompts prontos: é só trocar os dados</li>
       <li>6 bônus incluídos no mesmo preço</li>
     </ul>
@@ -214,84 +218,39 @@
 <main>
   <section class="como on-dark">
     <div class="wrap">
-      <p class="kicker">Como funciona</p>
-      <h2>Três passos, tudo no celular.</h2>
+      <h2>Três passos. Só celular e internet.</h2>
       <div class="steps">
-        <div>
-          <h3>Peça o site ao Claude</h3>
-          <p>Você escolhe um prompt pronto, troca os dados do seu negócio, cola no Claude e recebe o site completo em um único arquivo.</p>
-        </div>
-        <div>
-          <h3>Publique no Netlify</h3>
-          <p>Você envia esse arquivo para o Netlify e o site entra no ar, com um endereço que você pode compartilhar.</p>
-        </div>
-        <div>
-          <h3>Ajuste quando quiser</h3>
-          <p>Quer mudar uma cor, um texto ou um preço? Você pede no mesmo chat e sobe a nova versão.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="apoio">
-    <div class="wrap">
-      <p class="kicker">Curso barato, material de sobra</p>
-      <h2>Muito material de apoio para os seus negócios.</h2>
-      <p class="sub">Tudo para copiar, colar e editar direto no chat. Você não começa do zero.</p>
-      <div class="cards">
-        <article class="card">
-          <span class="tag">6 prompts prontos</span>
-          <h3>Prompts prontos</h3>
-          <p>Salão de beleza, barbearia, petshop, contador e site de links. E um prompt para qualquer outro nicho: você escreve o nome do nicho e cola o briefing do cliente.</p>
-        </article>
-        <article class="card">
-          <span class="tag">5 modelos</span>
-          <h3>Modelos de briefing</h3>
-          <p>O questionário para preencher com o cliente antes de pedir o site, com PDF de combinados e mensagens prontas para WhatsApp.</p>
-        </article>
-        <article class="card">
-          <span class="tag">PDF</span>
-          <h3>Mini guia de site</h3>
-          <p>Consulta rápida sobre código, GitHub, bancos de dados gratuitos, como começar um site e como registrar domínio próprio.</p>
-        </article>
-        <article class="card">
-          <span class="tag">PDF ilustrado</span>
-          <h3>Passo a passo das contas</h3>
-          <p>Como criar, com imagens, as contas gratuitas que você vai usar no curso.</p>
-        </article>
+        <div><h3>Peça o site</h3><p>Escolha um prompt pronto, troque os dados do seu negócio e receba o site completo.</p></div>
+        <div><h3>Coloque no ar</h3><p>Publique grátis e receba um link para compartilhar.</p></div>
+        <div><h3>Ajuste quando quiser</h3><p>Mudar cor, texto ou foto leva minutos, no mesmo lugar.</p></div>
       </div>
     </div>
   </section>
 
   <section class="exemplo on-dark">
     <div class="wrap">
-      <p class="kicker">Veja o que dá para fazer</p>
       <h2>Este site foi feito pelo celular.</h2>
-      <p class="sub">Site de exemplo criado durante o curso: logo, fotos, galeria e botão de WhatsApp. Você aprende a fazer o seu do mesmo jeito.</p>
+      <p class="sub">Exemplo criado no curso: logo, fotos, galeria e botão de WhatsApp. Funciona no celular e no computador.</p>
       <div class="fotos">
-        <figure><img src="/cursodesite/assets/site-exemplo-1.jpg" width="540" height="980" alt="Tela inicial do site de exemplo de uma barbearia, com logo e botão de agendar" loading="lazy" decoding="async"><figcaption>Página inicial</figcaption></figure>
-        <figure><img src="/cursodesite/assets/site-exemplo-2.jpg" width="540" height="980" alt="Seção sobre do site de exemplo, com foto da barbearia" loading="lazy" decoding="async"><figcaption>Seção sobre</figcaption></figure>
-        <figure><img src="/cursodesite/assets/site-exemplo-3.jpg" width="540" height="980" alt="Galeria de fotos do site de exemplo" loading="lazy" decoding="async"><figcaption>Galeria de fotos</figcaption></figure>
+        <figure><img src="/cursodesite/assets/site-exemplo-1.jpg" width="540" height="980" alt="Tela inicial do site de exemplo de uma barbearia, com logo e botão de agendar" loading="lazy" decoding="async"></figure>
+        <figure><img src="/cursodesite/assets/site-exemplo-2.jpg" width="540" height="980" alt="Seção sobre do site de exemplo, com foto da barbearia" loading="lazy" decoding="async"></figure>
+        <figure><img src="/cursodesite/assets/site-exemplo-3.jpg" width="540" height="980" alt="Galeria de fotos do site de exemplo" loading="lazy" decoding="async"></figure>
       </div>
-      <div class="portfolio">
-        <b>Outros sites que o EAF Flow já criou:</b>
-        <a href="https://portifolioeaf.vercel.app/" rel="noopener">Ver portfólio</a>
-      </div>
+      <div class="portfolio"><b>Outros sites do EAF Flow:</b><a href="https://portifolioeaf.vercel.app/" rel="noopener">Ver portfólio</a></div>
     </div>
   </section>
 
   <section class="bonus">
     <div class="wrap">
-      <p class="kicker">Incluído no mesmo preço</p>
-      <h2>6 bônus para você não ficar parado.</h2>
-      <p class="sub">Aulas e PDFs extras para tirar dúvida, escrever o pedido certo e saber como oferecer o seu serviço.</p>
+      <h2>Incluído: 6 bônus.</h2>
+      <p class="sub">Além das aulas, 6 prompts prontos e 5 modelos de briefing.</p>
       <div class="cards">
-        <article class="card"><span class="tag">Bônus 1 · Aula</span><h3>O que é um prompt</h3><p>Em menos de um minuto você entende como pedir ao Claude do jeito certo e por que um pedido claro dá um site melhor.</p></article>
-        <article class="card"><span class="tag">Bônus 2 · Aula</span><h3>Como vender o seu site</h3><p>Como achar negócios da sua cidade pelo Google, o que pesquisar antes de cobrar e como abordar pelo WhatsApp.</p></article>
-        <article class="card"><span class="tag">Bônus 3 · Aula</span><h3>Claude como seu suporte</h3><p>Travou? Aprenda a pedir ajuda ao Claude, 24 horas por dia, e resolver quase tudo sozinho, na hora.</p></article>
-        <article class="card"><span class="tag">Bônus 4 · PDF</span><h3>Mensagens prontas de suporte</h3><p>5 mensagens para copiar e colar: site que não abre, trocar WhatsApp, cores, foto que não apareceu e "não entendi".</p></article>
-        <article class="card"><span class="tag">Bônus 5 · PDF</span><h3>Abordagem e checklist de cobrança</h3><p>A mensagem curta para chamar um comércio no WhatsApp e a lista do que combinar antes de cobrar.</p></article>
-        <article class="card"><span class="tag">Bônus 6 · PDF</span><h3>Qual plano do Claude usar</h3><p>Dá para fazer tudo no gratuito. Veja quando vale a pena o Pro e quanto tempo ele pode economizar.</p></article>
+        <article class="card"><span class="tag">Bônus 1 · Aula</span><h3>O que é um prompt</h3><p>Peça do jeito certo e o site sai melhor.</p></article>
+        <article class="card"><span class="tag">Bônus 2 · Aula</span><h3>Como vender o seu site</h3><p>Achar clientes, definir preço e abordar.</p></article>
+        <article class="card"><span class="tag">Bônus 3 · Aula</span><h3>Seu suporte 24 horas</h3><p>Travou? Resolva sozinho, na hora.</p></article>
+        <article class="card"><span class="tag">Bônus 4 · PDF</span><h3>Mensagens prontas de suporte</h3><p>5 mensagens para copiar e colar.</p></article>
+        <article class="card"><span class="tag">Bônus 5 · PDF</span><h3>Abordagem e checklist</h3><p>O que mandar e o que combinar antes de cobrar.</p></article>
+        <article class="card"><span class="tag">Bônus 6 · PDF</span><h3>Qual plano usar</h3><p>Grátis ou pago: quando vale a pena.</p></article>
       </div>
     </div>
   </section>
@@ -299,89 +258,13 @@
   <section class="renda on-dark">
     <div class="wrap">
       <p class="kicker">Renda extra</p>
-      <h2>Um serviço que o comércio local precisa.</h2>
-      <p class="lead">Muito negócio perto de você só tem Instagram ou WhatsApp. Se você sabe fazer um site simples pelo celular, tem algo concreto para oferecer. O curso mostra o caminho.</p>
+      <h2>Muito comércio ainda não tem site.</h2>
       <div class="caminho">
-        <div><b>1. Ache</b><span>Procure no Google e no Google Maps negócios da sua cidade sem site.</span></div>
-        <div><b>2. Mostre</b><span>Monte um site de exemplo com o nome do negócio e mande o link.</span></div>
-        <div><b>3. Entregue</b><span>Troque os dados, publique e entregue o link. Cobre pelo tamanho e pela dificuldade do projeto.</span></div>
+        <div><b>1. Ache</b><span>Procure negócios da sua cidade sem site.</span></div>
+        <div><b>2. Mostre</b><span>Monte um exemplo e mande o link.</span></div>
+        <div><b>3. Entregue</b><span>Troque os dados, publique e cobre pelo tamanho do projeto.</span></div>
       </div>
-      <p class="miudo">* Renda extra é uma possibilidade, não uma garantia. O curso ensina a fazer o site e a se organizar para oferecer o serviço, mas não promete quanto você vai ganhar nem que vai conseguir clientes. Os resultados dependem do seu esforço, da sua região, da sua divulgação e do preço que você combinar. Não há resultado garantido.</p>
-    </div>
-  </section>
-
-  <section class="previa">
-    <div class="wrap">
-      <p class="kicker">Espie o material</p>
-      <h2>Veja como são os PDFs por dentro.</h2>
-      <p class="sub">Visual simples, direto ao ponto, feito para ler no celular. Arraste para o lado.</p>
-      <div class="paginas">
-        <figure class="pagina"><img src="/cursodesite/assets/pdf-contas-2.jpg" width="640" height="905" alt="Página do passo a passo com telas de celular e círculos vermelhos mostrando onde tocar" loading="lazy" decoding="async"><figcaption>Passo a passo das contas</figcaption></figure>
-        <figure class="pagina"><img src="/cursodesite/assets/pdf-briefing-1.jpg" width="640" height="905" alt="Capa do modelo de briefing com tabela de qual prompt usar" loading="lazy" decoding="async"><figcaption>Modelo de briefing</figcaption></figure>
-        <figure class="pagina"><img src="/cursodesite/assets/pdf-briefing-2.jpg" width="640" height="905" alt="Tabela de perguntas para o cliente e campos do prompt" loading="lazy" decoding="async"><figcaption>Perguntas para o cliente</figcaption></figure>
-        <figure class="pagina"><img src="/cursodesite/assets/pdf-guia-1.jpg" width="640" height="905" alt="Capa e sumário do mini guia de site" loading="lazy" decoding="async"><figcaption>Mini guia de site</figcaption></figure>
-        <figure class="pagina"><img src="/cursodesite/assets/pdf-guia-2.jpg" width="640" height="905" alt="Página do mini guia sobre repositório e GitHub com esquema do caminho completo" loading="lazy" decoding="async"><figcaption>Explicado em palavras simples</figcaption></figure>
-        <figure class="pagina"><img src="/cursodesite/assets/pdf-contas-1.jpg" width="640" height="905" alt="Capa do passo a passo para criar as contas" loading="lazy" decoding="async"><figcaption>Tudo pelo celular</figcaption></figure>
-      </div>
-    </div>
-  </section>
-
-  <!-- VÍDEO DE DEMONSTRAÇÃO: para ativar, coloque o arquivo em assets/demo.mp4 e remova o atributo "hidden" da section abaixo.
-       Pode ser um trecho de aula ou o EAF Flow funcionando. -->
-  <section class="demo" hidden>
-    <div class="wrap">
-      <p class="kicker">Veja funcionando</p>
-      <h2>Um site criado pelo celular.</h2>
-      <p class="sub">Um exemplo real, do pedido ao site no ar.</p>
-      <video controls playsinline preload="none" poster="/cursodesite/assets/demo-poster.jpg"><source src="/cursodesite/assets/demo.mp4" type="video/mp4"></video>
-    </div>
-  </section>
-
-  <section class="conteudo">
-    <div class="wrap">
-      <p class="kicker">O que tem dentro</p>
-      <h2>Do zero até o site no ar.</h2>
-      <ul class="lista-aulas">
-        <li><b>Preparação</b><span>Criar as contas gratuitas, com PDF passo a passo.</span></li>
-        <li><b>Como usar o material de apoio</b><span>Prompts, briefings e mini guia em vídeos curtos.</span></li>
-        <li><b>Criação</b><span>Pedir o seu site ao Claude com os prompts prontos.</span></li>
-        <li><b>Publicação</b><span>Colocar o site no ar pelo Netlify.</span></li>
-        <li><b>Ajustes</b><span>Mudar e atualizar o site quando quiser.</span></li>
-        <li><b>Como vender</b><span>Briefing, combinados, como achar clientes e honestidade com o cliente.</span></li>
-        <li><b>Suporte com o Claude</b><span>Como pedir ajuda e tirar as suas dúvidas sozinho.</span></li>
-      </ul>
-    </div>
-  </section>
-
-  <section class="paraquem">
-    <div class="wrap">
-      <h2>Para quem é este curso.</h2>
-      <div class="duo">
-        <article>
-          <h3>Tem um negócio</h3>
-          <p>Quer um site para o salão, a barbearia, o petshop ou o seu serviço, sem pagar para alguém fazer.</p>
-        </article>
-        <article>
-          <h3>Quer uma renda extra</h3>
-          <p>Quer aprender a criar sites para outras pessoas e se organizar para oferecer esse serviço.</p>
-        </article>
-        <article>
-          <h3>Está começando</h3>
-          <p>Nunca programou. O curso mostra cada passo e usa o próprio Claude para tirar as dúvidas.</p>
-        </article>
-      </div>
-      <div class="precisa">
-        <b>O que você precisa:</b>
-        <div class="tags"><span>Um celular</span><span>Um e-mail</span><span>Contas gratuitas</span></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="honesto">
-    <div class="wrap">
-      <p class="kicker" style="color:#3b1a00">Sem promessa milagrosa</p>
-      <h2>Renda extra depende de você.</h2>
-      <p>O curso ensina a criar e publicar sites e a se organizar para oferecer esse serviço. Não prometemos quanto você vai ganhar nem que vai vender: isso depende da sua dedicação, da sua região e da sua divulgação.</p>
+      <p class="miudo">* Renda extra é uma possibilidade, não uma garantia. O curso ensina a fazer o site e a oferecer o serviço, mas não promete quanto você vai ganhar nem que vai conseguir clientes. O resultado depende do seu esforço, da sua região, da sua divulgação e do preço que você combinar.</p>
     </div>
   </section>
 
@@ -399,8 +282,7 @@
         <div class="price-block"><strong>R$ 10</strong><span>pagamento único</span></div>
         <ul class="inclui">
           <li>Aulas em vídeo no formato de celular</li>
-          <li>6 prompts prontos, inclusive um para qualquer nicho</li>
-          <li>5 modelos de briefing</li>
+          <li>6 prompts prontos e 5 modelos de briefing</li>
           <li>Mini guia de site e passo a passo das contas</li>
           <li>6 bônus: 3 aulas e 3 PDFs</li>
           <li>Acesso enviado por e-mail e WhatsApp</li>
@@ -424,49 +306,15 @@
 
   <section class="duvidas">
     <div class="wrap">
-      <h2>Dúvidas frequentes</h2>
+      <h2>Dúvidas</h2>
       <div class="lista">
-        <div>
-          <h3>Como eu recebo o acesso?</h3>
-          <p>Depois que o pagamento é confirmado, enviamos o link das aulas e dos materiais para o e-mail e o WhatsApp que você informou.</p>
-        </div>
-        <div>
-          <h3>Preciso saber programar?</h3>
-          <p>Não. Quem escreve o código é o Claude. Você escolhe um prompt pronto, troca os dados e envia.</p>
-        </div>
-        <div>
-          <h3>Funciona só pelo celular?</h3>
-          <p>Sim. O curso inteiro foi pensado para ser feito no celular, sem computador.</p>
-        </div>
-        <div>
-          <h3>Preciso pagar alguma coisa além do curso?</h3>
-          <p>Não para criar e publicar: as contas usadas no curso são gratuitas. O plano gratuito do Claude tem limite de uso por período, então, se o limite acabar, é só esperar liberar. Domínio próprio (como .com.br) é opcional e pago à parte; o site funciona com o endereço grátis do Netlify.</p>
-        </div>
-        <div>
-          <h3>Vou ganhar dinheiro com isso?</h3>
-          <p>Não prometemos. O curso ensina a fazer o site e mostra como oferecer o serviço, mas o resultado depende de você: do seu esforço, da sua região e da sua divulgação.</p>
-        </div>
-        <div>
-          <h3>Quanto custa?</h3>
-          <p>R$ 10, pagamento único, no Pix ou cartão. Sem mensalidade.</p>
-        </div>
-        <div>
-          <h3>Pagou e o acesso não chegou?</h3>
-          <p>Olhe a caixa de spam. Se não estiver lá, chame no WhatsApp com o nome e o e-mail da compra.</p>
-        </div>
-        <div>
-          <h3>Posso pedir reembolso?</h3>
-          <p>Compra feita pela internet tem direito de arrependimento em até 7 dias. É só chamar no WhatsApp.</p>
-        </div>
+        <div><h3>Preciso saber programar?</h3><p>Não. Você escolhe um prompt pronto, troca os dados e envia.</p></div>
+        <div><h3>Preciso de computador?</h3><p>Não. O curso inteiro é feito no celular. Os sites que você cria também abrem bem no computador.</p></div>
+        <div><h3>Tem custo além dos R$ 10?</h3><p>Não para criar e publicar: as contas usadas são gratuitas. O plano gratuito tem limite de uso por período. Domínio próprio (.com.br) é opcional e pago à parte.</p></div>
+        <div><h3>Vou ganhar dinheiro com isso?</h3><p>Não prometemos. O curso ensina a fazer o site e a oferecer o serviço, mas o resultado depende de você.</p></div>
+        <div><h3>Pagou e o acesso não chegou?</h3><p>Olhe o spam. Se não estiver lá, chame no WhatsApp com o nome e o e-mail da compra: <a href="https://wa.me/5541984213488">(41) 98421-3488</a>.</p></div>
+        <div><h3>Posso pedir reembolso?</h3><p>Sim, em até 7 dias (direito de arrependimento). É só chamar no WhatsApp.</p></div>
       </div>
-    </div>
-  </section>
-
-  <section class="final">
-    <div class="wrap">
-      <h2>Daqui a pouco o seu site pode estar no ar. Feito por você, no celular.</h2>
-      <a class="btn" href="#comprar">Quero o curso por R$&nbsp;10</a>
-      <small>Dúvidas? <a href="https://wa.me/5541984213488">Chame no WhatsApp: (41) 98421-3488</a></small>
     </div>
   </section>
 </main>
@@ -476,7 +324,7 @@
     <strong>EAF Flow · Criar Site pelo Celular</strong>
     <p>O resultado de cada aluno depende de dedicação, prática e divulgação. Não há promessa nem garantia de ganho financeiro ou de renda extra.</p>
     <p>Alguns links indicados no material do curso podem ser de afiliados: se você contratar por eles, podemos receber uma comissão, sem custo extra para você.</p>
-    <p>Claude e Netlify são produtos de terceiros, sujeitos aos planos e limites de cada empresa.</p>
+    <p>As ferramentas gratuitas usadas no curso são de terceiros e têm planos e limites próprios.</p>
   </div>
 </footer>
 
