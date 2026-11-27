@@ -54,11 +54,13 @@ async function chavesPush() {
 }
 
 // Manda a notificação para todos os aparelhos inscritos. Nunca derruba quem chamou.
-async function avisarAparelhos(payload) {
+async function avisarAparelhos(payload, { limpar = true } = {}) {
+  const rel = { aparelhos: 0, enviados: 0, falhas: [] };
   try {
     const k = await chavesPush();
     webpush.setVapidDetails(process.env.VAPID_CONTACT || 'mailto:contato@eafflow.com.br', k.publicKey, k.privateKey);
     const subs = (await sb('curso_site_push?select=endpoint,p256dh,auth')) || [];
+    rel.aparelhos = subs.length;
     await Promise.all(subs.map(async (s) => {
       try {
         await webpush.sendNotification(
@@ -66,8 +68,10 @@ async function avisarAparelhos(payload) {
           JSON.stringify(payload),
           { TTL: 86400, urgency: 'high' }
         );
+        rel.enviados++;
       } catch (e) {
-        if (e && (e.statusCode === 404 || e.statusCode === 410)) {
+        rel.falhas.push({ status: e && e.statusCode, erro: String((e && (e.body || e.message)) || '').slice(0, 160) });
+        if (limpar && e && (e.statusCode === 404 || e.statusCode === 410)) {
           await sb(`curso_site_push?endpoint=eq.${encodeURIComponent(s.endpoint)}`, { method: 'DELETE', prefer: 'return=minimal' }).catch(() => {});
         } else {
           console.warn('push falhou', e && e.statusCode, e && e.body);
@@ -76,7 +80,9 @@ async function avisarAparelhos(payload) {
     }));
   } catch (e) {
     console.warn('avisarAparelhos:', e.message);
+    rel.falhas.push({ erro: e.message });
   }
+  return rel;
 }
 
 module.exports = { sb, lerConfig, gravarConfig, chavesPush, avisarAparelhos };

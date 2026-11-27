@@ -294,7 +294,7 @@
     catch (e) { m.style.color = '#b3261e'; m.textContent = e.message; }
   });
   $('btnPush').addEventListener('click', alternarPush);
-  $('btnTeste').addEventListener('click', async () => { const m = $('msgPush'); m.style.color = ''; try { await api('POST', { acao: 'push_teste' }); m.textContent = 'Teste enviado. Se não chegar em alguns segundos, ative as notificações.'; } catch (e) { m.style.color = '#b3261e'; m.textContent = e.message; } });
+  $('btnTeste').addEventListener('click', async () => { const m = $('msgPush'); m.style.color = ''; try { const r = await api('POST', { acao: 'push_teste' }); if (!r.aparelhos) { m.style.color = '#b3261e'; m.textContent = 'Nenhum aparelho cadastrado no servidor. Toque em Desativar e Ativar notificações de novo.'; } else if (r.falhas && r.falhas.length) { m.style.color = '#b3261e'; m.textContent = 'Falhou: ' + r.falhas.map((f) => (f.status || '') + ' ' + (f.erro || '')).join(' | '); } else { m.textContent = 'Enviado para ' + r.enviados + ' aparelho(s). Se não aparecer em alguns segundos, me avise.'; } } catch (e) { m.style.color = '#b3261e'; m.textContent = e.message; } });
   $('gerar').addEventListener('click', () => { $('senhaNova').value = gerarSenha(); });
   $('copiar').addEventListener('click', async () => { try { await navigator.clipboard.writeText($('senhaNova').value); $('msgSenha').style.color = ''; $('msgSenha').textContent = 'Copiada.'; } catch (e) { $('senhaNova').select(); } });
   $('salvarSenha').addEventListener('click', salvarSenha);
